@@ -49,4 +49,5 @@ object Account:
                            swimmerId: Long,
                            duration: Long,
                            distance: Int,
+                           style: String,
                            swam: Long = LocalDate.now.toEpochDay) extends Entity
