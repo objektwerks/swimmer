@@ -13,5 +13,6 @@ CREATE TABLE account (
 CREATE TABLE swimmer (
   id BIGSERIAL PRIMARY KEY,
   license VARCHAR(36) REFERENCES account(license),
-  name VARCHAR(24) NOT NULL
+  name VARCHAR(24) NOT NULL,
+  swam BIGINT NOT NULL
 );
