@@ -21,5 +21,6 @@ CREATE TABLE session (
   pool_id BIGINT REFERENCES pool(id),
   lap INT NOT NULL,
   laps INT NOT NULL,
+  duration BIGINT NOT NULL,
   swam BIGINT NOT NULL
 );
