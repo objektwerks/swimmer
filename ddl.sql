@@ -26,5 +26,6 @@ CREATE TABLE session (
   duration BIGINT NOT NULL,
   stoke VARCHAR(6) NOT NULL,
   aide VARCHAR(9) NOT NULL,
-  swam BIGINT NOT NULL
+  to BIGINT NOT NULL,
+  from BIGINT NOT NULL
 );
