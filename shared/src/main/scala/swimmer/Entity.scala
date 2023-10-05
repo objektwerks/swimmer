@@ -58,4 +58,4 @@ object Account:
     case freestyle, breast
 
   enum Training:
-    case kickboard
+    case kickboard, fins
