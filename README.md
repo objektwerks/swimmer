@@ -1,6 +1,6 @@
 Swimmer
 -------
->Swimmer app.
+>Swimmer app using ScalaFx and Scala3. WIP!
    
 Build
 -----
