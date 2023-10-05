@@ -42,4 +42,5 @@ object Account:
   )
 
   final case class Swimmer(id: Long = 0,
-                           license: String = "") extends Entity
+                           license: String = "",
+                           name: String = "") extends Entity
