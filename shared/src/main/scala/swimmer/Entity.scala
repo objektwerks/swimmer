@@ -51,7 +51,6 @@ object Account:
                            swimmerId: Long,
                            lap: Int,
                            laps: Int,
-                           duration: Long,
                            stroke: String = Stroke.free.toString,
                            aide: String = Aid.none.toString,
                            to: Long = Instant.now.toEpochMilli,
