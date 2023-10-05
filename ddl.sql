@@ -15,3 +15,9 @@ CREATE TABLE swimmer (
   license VARCHAR(36) REFERENCES account(license),
   name VARCHAR(24) NOT NULL
 );
+
+CREATE TABLE session (
+  id BIGSERIAL PRIMARY KEY,
+  pool_id BIGINT REFERENCES pool(id),
+  swam BIGINT NOT NULL
+);
