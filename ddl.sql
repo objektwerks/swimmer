@@ -23,7 +23,6 @@ CREATE TABLE session (
   pool_id BIGINT REFERENCES pool(id),
   lap INT NOT NULL,
   laps INT NOT NULL,
-  duration BIGINT NOT NULL,
   stoke VARCHAR(6) NOT NULL,
   aide VARCHAR(9) NOT NULL,
   to BIGINT NOT NULL,
