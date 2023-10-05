@@ -51,11 +51,11 @@ object Account:
                            laps: Int,
                            duration: Long,
                            stroke: Stroke,
-                           aide: Training,
+                           aide: Equipment,
                            swam: Long = LocalDate.now.toEpochDay) extends Entity
 
   enum Stroke:
     case free, breast, back
 
-  enum Training:
-    case kickboard, fins
+  enum Equipment:
+    case kickboard, fins, none
