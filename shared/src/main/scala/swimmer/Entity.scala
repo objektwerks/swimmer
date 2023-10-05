@@ -41,4 +41,5 @@ object Account:
     deactivated = 0
   )
 
-  final case class Swimmer(id: Long = 0) extends Entity
+  final case class Swimmer(id: Long = 0,
+                           license: String = "") extends Entity
