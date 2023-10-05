@@ -51,7 +51,7 @@ object Account:
                            laps: Int,
                            duration: Long,
                            stroke: String,
-                           aide: String,
+                           aide: Training,
                            swam: Long = LocalDate.now.toEpochDay) extends Entity
 
   enum Training:
