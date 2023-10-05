@@ -1,6 +1,6 @@
 package swimmer
 
-import java.time.LocalDate
+import java.time.{Instant, LocalDate}
 import java.util.UUID
 
 import scala.util.Random
@@ -54,7 +54,8 @@ object Account:
                            duration: Long,
                            stroke: String = Stroke.free.toString,
                            aide: String = Aid.none.toString,
-                           swam: Long = LocalDate.now.toEpochDay) extends Entity
+                           to: Long = Instant.now.toEpochMilli,
+                           from: Long = Instant.now.toEpochMilli) extends Entity
 
   enum Stroke:
     case free, breast, back
