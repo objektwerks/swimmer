@@ -46,4 +46,5 @@ object Account:
                            name: String = "") extends Entity
 
   final case class Session(id: Long = 0,
-                           swimmerId: Long) extends Entity
+                           swimmerId: Long,
+                           swam: Long = LocalDate.now.toEpochDay) extends Entity
