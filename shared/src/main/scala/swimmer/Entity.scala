@@ -53,3 +53,6 @@ object Account:
                            stroke: String,
                            aide: String,
                            swam: Long = LocalDate.now.toEpochDay) extends Entity
+
+  enum Training:
+    case kickboard
