@@ -55,7 +55,7 @@ object Account:
                            stroke: String = Stroke.free.toString,
                            aide: String = Aid.none.toString,
                            to: Long = Instant.now.toEpochMilli,
-                           from: Long = Instant.now.toEpochMilli) extends Entity
+                           from: Long = Instant.now.toEpochMilli + 1) extends Entity
 
   enum Stroke:
     case free, breast, back
