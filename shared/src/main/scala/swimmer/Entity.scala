@@ -13,8 +13,7 @@ final case class Account(id: Long = 0,
                          emailAddress: String = "",
                          pin: String = newPin,
                          activated: Long = LocalDate.now.toEpochDay,
-                         deactivated: Long = 0) extends Entity:
-  def toArray: Array[Any] = Array(id, license, pin, activated, deactivated)
+                         deactivated: Long = 0) extends Entity
 
 object Account:
   private val specialChars = "~!@#$%^&*-+=<>?/:;".toList
