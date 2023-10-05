@@ -23,5 +23,6 @@ CREATE TABLE session (
   laps INT NOT NULL,
   duration BIGINT NOT NULL,
   stoke VARCHAR(6) NOT NULL,
+  aide VARCHAR(9) NOT NULL,
   swam BIGINT NOT NULL
 );
