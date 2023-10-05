@@ -12,7 +12,7 @@ CREATE TABLE account (
 
 CREATE TABLE swimmer (
   id BIGSERIAL PRIMARY KEY,
-  license VARCHAR(36) REFERENCES account(license),
+  swimmer_id BIGINT REFERENCES account(id),
   name VARCHAR(24) NOT NULL,
   swam BIGINT NOT NULL
 );
