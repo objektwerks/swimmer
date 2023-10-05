@@ -1,6 +1,6 @@
 package swimmer
 
-import java.time.{Instant, LocalDate}
+import java.time.Instant
 import java.util.UUID
 
 import scala.util.Random
@@ -12,7 +12,7 @@ final case class Account(id: Long = 0,
                          license: String = newLicense,
                          emailAddress: String = "",
                          pin: String = newPin,
-                         activated: Long = LocalDate.now.toEpochDay,
+                         activated: Long = Instant.now.toEpochMilli,
                          deactivated: Long = 0) extends Entity
 
 object Account:
