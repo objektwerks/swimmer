@@ -50,7 +50,7 @@ object Account:
                            lap: Int,
                            laps: Int,
                            duration: Long,
-                           stroke: String,
+                           stroke: Stroke,
                            aide: Training,
                            swam: Long = LocalDate.now.toEpochDay) extends Entity
 
