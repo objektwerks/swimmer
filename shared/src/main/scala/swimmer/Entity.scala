@@ -50,8 +50,8 @@ object Account:
                            lap: Int,
                            laps: Int,
                            duration: Long,
-                           stroke: Stroke,
-                           aide: Aid,
+                           stroke: String = Stroke.free.toString,
+                           aide: String = Aid.none.toString,
                            swam: Long = LocalDate.now.toEpochDay) extends Entity
 
   enum Stroke:
