@@ -55,7 +55,7 @@ object Account:
                            swam: Long = LocalDate.now.toEpochDay) extends Entity
 
   enum Stroke:
-    case freestyle, breast
+    case freestyle, breaststroke, backstroke
 
   enum Training:
     case kickboard, fins
