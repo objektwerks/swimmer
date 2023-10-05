@@ -20,5 +20,6 @@ CREATE TABLE session (
   id BIGSERIAL PRIMARY KEY,
   pool_id BIGINT REFERENCES pool(id),
   lap INT NOT NULL,
+  laps INT NOT NULL,
   swam BIGINT NOT NULL
 );
