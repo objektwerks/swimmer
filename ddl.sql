@@ -19,5 +19,6 @@ CREATE TABLE swimmer (
 CREATE TABLE session (
   id BIGSERIAL PRIMARY KEY,
   pool_id BIGINT REFERENCES pool(id),
+  lap INT NOT NULL,
   swam BIGINT NOT NULL
 );
