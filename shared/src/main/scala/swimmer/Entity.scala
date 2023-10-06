@@ -41,21 +41,21 @@ object Account:
     deactivated = 0
   )
 
-  final case class Swimmer(id: Long = 0,
-                           license: String = "",
-                           name: String = "",
-                           height: Int = 0,
-                           weight: Int = 0) extends Entity
+final case class Swimmer(id: Long = 0,
+                          license: String = "",
+                          name: String = "",
+                          height: Int = 0,
+                          weight: Int = 0) extends Entity
 
-  final case class Session(id: Long = 0,
-                           swimmerId: Long,
-                           lap: Int,
-                           laps: Int,
-                           stroke: String = Stroke.free.toString,
-                           kickboard: Boolean = false,
-                           fins: Boolean = false,
-                           minutes: Int = 1,
-                           seconds: Int = 0) extends Entity
+final case class Session(id: Long = 0,
+                          swimmerId: Long,
+                          lap: Int,
+                          laps: Int,
+                          stroke: String = Stroke.free.toString,
+                          kickboard: Boolean = false,
+                          fins: Boolean = false,
+                          minutes: Int = 1,
+                          seconds: Int = 0) extends Entity
 
-  enum Stroke:
-    case free, breast, back, kick
+enum Stroke:
+  case free, breast, back, kick
