@@ -25,15 +25,13 @@ sealed trait Entity:
   val id: Long
 
 final case class Account(id: Long = 0,
-                         license: String = newLicense,
+                         license: String = UUID.randomUUID.toString,
                          emailAddress: String = "",
                          pin: String = Pin.newInstance,
                          activated: Long = Instant.now.toEpochMilli,
                          deactivated: Long = 0) extends Entity
 
 object Account:
-  private def newLicense: String = UUID.randomUUID.toString
-
   val empty = Account(
     license = "",
     emailAddress = "",
