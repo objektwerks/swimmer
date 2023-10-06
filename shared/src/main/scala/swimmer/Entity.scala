@@ -8,20 +8,13 @@ import scala.util.Random
 sealed trait Entity:
   val id: Long
 
-final case class Account(id: Long = 0,
-                         license: String = newLicense,
-                         emailAddress: String = "",
-                         pin: String = newPin,
-                         activated: Long = Instant.now.toEpochMilli,
-                         deactivated: Long = 0) extends Entity
-
-object Account:
+object Pin:
   private val specialChars = "~!@#$%^&*-+=<>?/:;".toList
   private val random = Random
 
   private def newSpecialChar: Char = specialChars( random.nextInt(specialChars.length) )
 
-  private def newPin: String =
+  def newInstance: String =
     Random.shuffle(
       Random
         .alphanumeric
@@ -31,6 +24,14 @@ object Account:
         .appended(newSpecialChar)
     ).mkString
 
+final case class Account(id: Long = 0,
+                         license: String = newLicense,
+                         emailAddress: String = "",
+                         pin: String = Pin.newInstance,
+                         activated: Long = Instant.now.toEpochMilli,
+                         deactivated: Long = 0) extends Entity
+
+object Account:
   private def newLicense: String = UUID.randomUUID.toString
 
   val empty = Account(
