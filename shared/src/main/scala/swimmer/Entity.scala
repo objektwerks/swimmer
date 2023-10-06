@@ -58,4 +58,4 @@ object Account:
                            seconds: Int = 0) extends Entity
 
   enum Stroke:
-    case free, breast, back
+    case free, breast, back, kick
