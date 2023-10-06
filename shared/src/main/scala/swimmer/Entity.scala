@@ -55,7 +55,8 @@ final case class Session(id: Long = 0,
                           kickboard: Boolean = false,
                           fins: Boolean = false,
                           minutes: Int = 1,
-                          seconds: Int = 0) extends Entity
+                          seconds: Int = 0,
+                          swam: Long = Instant.now.toEpochMilli) extends Entity
 
 enum Stroke:
   case free, breast, back, kick
