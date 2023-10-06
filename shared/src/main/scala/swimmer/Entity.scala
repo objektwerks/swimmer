@@ -64,6 +64,8 @@ enum Weight:
 
 enum Unit:
   case feet, meters, yards
+  def poundsToKilograms(pounds: Double): Double = pounds * 0.454
+  def kilogramsToPounds(kilograms: Double): Double = kilograms * 2.205
 
 enum Stroke:
   case breast, back, butterfly, freestyle, kick
