@@ -71,16 +71,16 @@ object Validator:
     def isValid =
       swimmer.id >= 0 &&
       swimmer.license.isLicense &&
-      swimmer.name.nonEmpty &&
-      swimmer.weight > 0 &&
-      swimmer.unit.nonEmpty
+      swimmer.name.nonEmpty
 
   extension (session: Session)
     def isValid: Boolean =
       session.id >= 0 &&
       session.swimmerId > 0 &&
+      session.weight > 0 &&
+      session.weightUnit.nonEmpty &&
       session.lap > 0 &&
-      session.unit.nonEmpty &&
+      session.lapUnit.nonEmpty &&
       session.laps > 0 &&
       session.stroke.nonEmpty &&
       session.minutes > 0 &&
