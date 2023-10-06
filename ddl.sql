@@ -13,16 +13,16 @@ CREATE TABLE account (
 CREATE TABLE swimmer (
   id BIGSERIAL PRIMARY KEY,
   license CHAR(36) REFERENCES account(license),
-  name VARCHAR(24) NOT NULL,
-  weight INT NOT NULL,
-  unit: CHAR(2) NOT NULL
+  name VARCHAR(24) NOT NULL
 );
 
 CREATE TABLE session (
   id BIGSERIAL PRIMARY KEY,
   swimmer_id BIGINT REFERENCES swimmer(id),
+  weight INT NOT NULL,
+  weight_unit: CHAR(2) NOT NULL,
   lap INT NOT NULL,
-  unit VARCHAR(6) NOT NULL,
+  lap_unit VARCHAR(6) NOT NULL,
   laps INT NOT NULL,
   stoke VARCHAR(9) NOT NULL,
   kickboard BOOLEAN NOT NULL,
