@@ -1,6 +1,10 @@
 Swimmer
 -------
 >Swimmer app using ScalaFx and Scala3. WIP!
+
+Calories
+--------
+*[Calories Burned Swimming](https://www.calculatorpro.com/calculator/calories-burned-swimming-calculator/)
    
 Build
 -----
