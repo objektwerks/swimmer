@@ -44,8 +44,7 @@ object Account:
 final case class Swimmer(id: Long = 0,
                           license: String = "",
                           name: String = "",
-                          height: Int = 60,
-                          weight: Int = 100) extends Entity
+                          weight: Int = 150) extends Entity
 
 final case class Session(id: Long = 0,
                           swimmerId: Long,
