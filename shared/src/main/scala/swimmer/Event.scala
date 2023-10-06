@@ -14,10 +14,10 @@ final case class LoggedIn(account: Account) extends Event
 final case class Deactivated(account: Account) extends Event
 final case class Reactivated(account: Account) extends Event
 
-final case class SwimmersListed(pools: List[Swimmer]) extends Event
+final case class SwimmersListed(swimmers: List[Swimmer]) extends Event
 final case class SwimmerSaved(id: Long) extends Event
 
-final case class SessionsListed(cleanings: List[Session]) extends Event
+final case class SessionsListed(sessions: List[Session]) extends Event
 final case class SessionSaved(id: Long) extends Event
 
 object Fault:
