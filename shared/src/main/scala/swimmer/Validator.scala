@@ -80,6 +80,7 @@ object Validator:
       session.id >= 0 &&
       session.swimmerId > 0 &&
       session.lap > 0 &&
+      session.unit.nonEmpty &&
       session.laps > 0 &&
       session.stroke.nonEmpty &&
       session.minutes > 0 &&
