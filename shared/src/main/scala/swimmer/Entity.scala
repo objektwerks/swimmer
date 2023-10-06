@@ -58,7 +58,7 @@ final case class Session(id: Long = 0,
                          minutes: Int = 15,
                          seconds: Int = 0,
                          calories: Int = 150,
-                         swam: Long = Instant.now.toEpochMilli) extends Entity
+                         datetime: Long = Instant.now.toEpochMilli) extends Entity
 
 enum Unit:
   case lb, kg, feet, meters, yards
