@@ -52,12 +52,10 @@ object Account:
                            lap: Int,
                            laps: Int,
                            stroke: String = Stroke.free.toString,
-                           aide: String = Aid.none.toString,
+                           kickboard: Boolean = false,
+                           fins: Boolean = false,
                            to: Long = Instant.now.toEpochMilli,
                            from: Long = Instant.now.toEpochMilli + 1) extends Entity
 
   enum Stroke:
     case free, breast, back
-
-  enum Aid:
-    case kickboard, fins, none
