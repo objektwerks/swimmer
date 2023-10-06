@@ -26,6 +26,6 @@ CREATE TABLE session (
   stoke VARCHAR(6) NOT NULL,
   kickboard BOOLEAN NOT NULL,
   fins BOOLEAN NOT NULL,
-  to BIGINT NOT NULL,
-  from BIGINT NOT NULL
+  minutes INT NOT NULL,
+  seconds INT NOT NULL
 );
