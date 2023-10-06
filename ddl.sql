@@ -30,5 +30,5 @@ CREATE TABLE session (
   minutes INT NOT NULL,
   seconds INT NOT NULL,
   calories INT NOT NULL,
-  swam BIGINT NOT NULL
+  datetime BIGINT NOT NULL
 );
