@@ -12,7 +12,7 @@ CREATE TABLE account (
 
 CREATE TABLE swimmer (
   id BIGSERIAL PRIMARY KEY,
-  license VARCHAR(36) REFERENCES account(license),
+  license CHAR(36) REFERENCES account(license),
   name VARCHAR(24) NOT NULL,
   weight INT NOT NULL,
   unit: CHAR(2) NOT NULL
