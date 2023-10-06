@@ -42,23 +42,23 @@ object Account:
   )
 
 final case class Swimmer(id: Long = 0,
-                          license: String = "",
-                          name: String = "") extends Entity
+                         license: String = "",
+                         name: String = "") extends Entity
 
 final case class Session(id: Long = 0,
-                          swimmerId: Long,
-                          weight: Int,
-                          weightUnit: String = Unit.lb.toString,
-                          lap: Int,
-                          lapUnit: String = Unit.yards.toString,
-                          laps: Int,
-                          style: String = Style.freestyle.toString,
-                          kickboard: Boolean = false,
-                          fins: Boolean = false,
-                          minutes: Int = 15,
-                          seconds: Int = 0,
-                          calories: Int = 150,
-                          swam: Long = Instant.now.toEpochMilli) extends Entity
+                         swimmerId: Long,
+                         weight: Int,
+                         weightUnit: String = Unit.lb.toString,
+                         lap: Int,
+                         lapUnit: String = Unit.yards.toString,
+                         laps: Int,
+                         style: String = Style.freestyle.toString,
+                         kickboard: Boolean = false,
+                         fins: Boolean = false,
+                         minutes: Int = 15,
+                         seconds: Int = 0,
+                         calories: Int = 150,
+                         swam: Long = Instant.now.toEpochMilli) extends Entity
 
 enum Unit:
   case lb, kg, feet, meters, yards
