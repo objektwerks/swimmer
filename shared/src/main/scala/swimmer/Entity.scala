@@ -54,8 +54,8 @@ object Account:
                            stroke: String = Stroke.free.toString,
                            kickboard: Boolean = false,
                            fins: Boolean = false,
-                           to: Long = Instant.now.toEpochMilli,
-                           from: Long = Instant.now.toEpochMilli + 1) extends Entity
+                           minutes: Int = 1,
+                           seconds: Int = 0) extends Entity
 
   enum Stroke:
     case free, breast, back
