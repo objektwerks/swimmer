@@ -14,7 +14,6 @@ CREATE TABLE swimmer (
   id BIGSERIAL PRIMARY KEY,
   license VARCHAR(36) REFERENCES account(license),
   name VARCHAR(24) NOT NULL,
-  height INT NOT NULL,
   weight INT NOT NULL
 );
 
