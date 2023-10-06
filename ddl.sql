@@ -15,7 +15,7 @@ CREATE TABLE swimmer (
   license VARCHAR(36) REFERENCES account(license),
   name VARCHAR(24) NOT NULL,
   weight INT NOT NULL,
-  unit: VARCHAR(3) NOT NULL
+  unit: CHAR(2) NOT NULL
 );
 
 CREATE TABLE session (
