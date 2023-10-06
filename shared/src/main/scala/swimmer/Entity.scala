@@ -17,7 +17,7 @@ final case class Account(id: Long = 0,
 
 object Account:
   private val specialChars = "~!@#$%^&*-+=<>?/:;".toList
-  private val random = new Random
+  private val random = Random
 
   private def newSpecialChar: Char = specialChars(random.nextInt(specialChars.length))
 
