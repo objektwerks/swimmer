@@ -3,9 +3,9 @@ CREATE SCHEMA PUBLIC;
 
 CREATE TABLE account (
   id BIGSERIAL PRIMARY KEY,
-  license VARCHAR(36) UNIQUE NOT NULL,
+  license CHAR(36) UNIQUE NOT NULL,
   email_address VARCHAR UNIQUE NOT NULL,
-  pin VARCHAR(7) NOT NULL,
+  pin CHAR(7) NOT NULL,
   activated BIGINT NOT NULL,
   deactivated BIGINT NOT NULL
 );
@@ -20,7 +20,7 @@ CREATE TABLE swimmer (
 
 CREATE TABLE session (
   id BIGSERIAL PRIMARY KEY,
-  pool_id BIGINT REFERENCES pool(id),
+  swimmer_id BIGINT REFERENCES swimmer(id),
   lap INT NOT NULL,
   unit VARCHAR(6) NOT NULL,
   laps INT NOT NULL,
