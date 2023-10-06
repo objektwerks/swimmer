@@ -14,7 +14,8 @@ CREATE TABLE swimmer (
   id BIGSERIAL PRIMARY KEY,
   license VARCHAR(36) REFERENCES account(license),
   name VARCHAR(24) NOT NULL,
-  weight INT NOT NULL
+  weight INT NOT NULL,
+  unit: VARCHAR(3) NOT NULL
 );
 
 CREATE TABLE session (
