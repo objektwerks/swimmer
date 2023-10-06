@@ -29,5 +29,6 @@ CREATE TABLE session (
   fins BOOLEAN NOT NULL,
   minutes INT NOT NULL,
   seconds INT NOT NULL,
+  calories INT NOT NULL,
   swam BIGINT NOT NULL
 );
