@@ -43,14 +43,14 @@ object Account:
 
 final case class Swimmer(id: Long = 0,
                           license: String = "",
-                          name: String = "",
-                          weight: Int = 150,
-                          unit: String = Weight.lb.toString) extends Entity
+                          name: String = "") extends Entity
 
 final case class Session(id: Long = 0,
                           swimmerId: Long,
+                          weight: Int,
+                          weightUnit: String = Unit.lb.toString,
                           lap: Int,
-                          unit: String = Unit.yards.toString,
+                          lapUnit: String = Unit.yards.toString,
                           laps: Int,
                           stroke: String = Stroke.freestyle.toString,
                           kickboard: Boolean = false,
@@ -59,14 +59,10 @@ final case class Session(id: Long = 0,
                           seconds: Int = 0,
                           swam: Long = Instant.now.toEpochMilli) extends Entity
 
-enum Weight:
-  case lb, kg
+enum Unit:
+  case lb, kg, feet, meters, yards
   def poundsToKilograms(lbs: Double): Double = lbs * 0.454
   def kilogramsToPounds(kgs: Double): Double = kgs * 2.205
-
-enum Unit:
-  case feet, meters, yards
-
 
 enum Stroke:
   case breast, back, butterfly, freestyle, kick
