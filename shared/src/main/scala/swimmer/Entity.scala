@@ -61,8 +61,8 @@ final case class Session(id: Long = 0,
 
 enum Unit:
   case lb, kg, feet, meters, yards
-  def poundsToKilograms(lbs: Double): Double = lbs * 0.454
-  def kilogramsToPounds(kgs: Double): Double = kgs * 2.205
+  def lbsToKgs(lbs: Double): Double = lbs * 0.454
+  def kgsToLbs(kgs: Double): Double = kgs * 2.205
 
 enum Style:
   case breaststroke, backstroke, butterfly, freestyle, kick
