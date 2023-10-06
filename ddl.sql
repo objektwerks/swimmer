@@ -23,7 +23,7 @@ CREATE TABLE session (
   lap INT NOT NULL,
   unit VARCHAR(6) NOT NULL,
   laps INT NOT NULL,
-  stoke VARCHAR(6) NOT NULL,
+  stoke VARCHAR(9) NOT NULL,
   kickboard BOOLEAN NOT NULL,
   fins BOOLEAN NOT NULL,
   minutes INT NOT NULL,
