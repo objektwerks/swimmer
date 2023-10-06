@@ -24,7 +24,8 @@ CREATE TABLE session (
   lap INT NOT NULL,
   laps INT NOT NULL,
   stoke VARCHAR(6) NOT NULL,
-  aide VARCHAR(9) NOT NULL,
+  kickboard BOOL NOT NULL,
+  fins BOOL NOT NULL,
   to BIGINT NOT NULL,
   from BIGINT NOT NULL
 );
