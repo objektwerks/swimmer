@@ -82,7 +82,7 @@ object Validator:
       session.lap > 0 &&
       session.lapUnit.nonEmpty &&
       session.laps > 0 &&
-      session.stroke.nonEmpty &&
+      session.style.nonEmpty &&
       session.minutes > 0 &&
       session.seconds >= 0 &&
-      session.swam > 0
+      session.datetime > 0
