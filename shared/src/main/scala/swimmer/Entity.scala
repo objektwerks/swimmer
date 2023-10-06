@@ -55,7 +55,7 @@ final case class Session(id: Long = 0,
                           stroke: String = Stroke.freestyle.toString,
                           kickboard: Boolean = false,
                           fins: Boolean = false,
-                          minutes: Int = 1,
+                          minutes: Int = 30,
                           seconds: Int = 0,
                           swam: Long = Instant.now.toEpochMilli) extends Entity
 
