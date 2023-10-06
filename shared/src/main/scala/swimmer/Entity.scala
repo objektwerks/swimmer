@@ -5,9 +5,6 @@ import java.util.UUID
 
 import scala.util.Random
 
-sealed trait Entity:
-  val id: Long
-
 object Pin:
   private val specialChars = "~!@#$%^&*-+=<>?/:;".toList
   private val random = Random
@@ -23,6 +20,9 @@ object Pin:
         .prepended(newSpecialChar)
         .appended(newSpecialChar)
     ).mkString
+
+sealed trait Entity:
+  val id: Long
 
 final case class Account(id: Long = 0,
                          license: String = newLicense,
