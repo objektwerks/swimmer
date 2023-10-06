@@ -51,7 +51,7 @@ final case class Session(id: Long = 0,
                           lap: Int,
                           unit: String = Unit.yards.toString,
                           laps: Int,
-                          stroke: String = Stroke.free.toString,
+                          stroke: String = Stroke.freestyle.toString,
                           kickboard: Boolean = false,
                           fins: Boolean = false,
                           minutes: Int = 1,
@@ -62,4 +62,4 @@ enum Unit:
   case feet, yards, meters
 
 enum Stroke:
-  case free, breast, back, kick
+  case breast, back, butterfly, freestyle, kick
