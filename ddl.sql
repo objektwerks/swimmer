@@ -28,5 +28,6 @@ CREATE TABLE session (
   kickboard BOOLEAN NOT NULL,
   fins BOOLEAN NOT NULL,
   minutes INT NOT NULL,
-  seconds INT NOT NULL
+  seconds INT NOT NULL,
+  swam BIGINT NOT NULL
 );
