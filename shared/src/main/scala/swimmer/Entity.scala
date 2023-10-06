@@ -52,7 +52,7 @@ final case class Session(id: Long = 0,
                           lap: Int,
                           lapUnit: String = Unit.yards.toString,
                           laps: Int,
-                          stroke: String = Stroke.freestyle.toString,
+                          style: String = Style.freestyle.toString,
                           kickboard: Boolean = false,
                           fins: Boolean = false,
                           minutes: Int = 15,
@@ -65,5 +65,5 @@ enum Unit:
   def poundsToKilograms(lbs: Double): Double = lbs * 0.454
   def kilogramsToPounds(kgs: Double): Double = kgs * 2.205
 
-enum Stroke:
-  case breast, back, butterfly, freestyle, kick
+enum Style:
+  case breaststroke, backstroke, butterfly, freestyle, kick
