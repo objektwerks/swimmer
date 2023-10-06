@@ -58,5 +58,8 @@ final case class Session(id: Long = 0,
                           seconds: Int = 0,
                           swam: Long = Instant.now.toEpochMilli) extends Entity
 
+enum Unit:
+  case feet, yards, meters
+
 enum Stroke:
   case free, breast, back, kick
