@@ -27,4 +27,6 @@ object Serializer:
   given JsonValueCodec[Reactivated] = JsonCodecMaker.make[Reactivated]( CodecMakerConfig.withDiscriminatorFieldName(None) )
   given JsonValueCodec[SwimmersListed] = JsonCodecMaker.make[SwimmersListed]( CodecMakerConfig.withDiscriminatorFieldName(None) )
   given JsonValueCodec[SwimmerSaved] = JsonCodecMaker.make[SwimmerSaved]( CodecMakerConfig.withDiscriminatorFieldName(None) )
+  given JsonValueCodec[SessionsListed] = JsonCodecMaker.make[SessionsListed]( CodecMakerConfig.withDiscriminatorFieldName(None) )
+  given JsonValueCodec[SessionSaved] = JsonCodecMaker.make[SessionSaved]( CodecMakerConfig.withDiscriminatorFieldName(None) )
   given JsonValueCodec[Fault] = JsonCodecMaker.make[Fault]( CodecMakerConfig.withDiscriminatorFieldName(None) )
