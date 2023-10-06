@@ -44,7 +44,8 @@ object Account:
 final case class Swimmer(id: Long = 0,
                           license: String = "",
                           name: String = "",
-                          weight: Int = 150) extends Entity
+                          weight: Int = 150,
+                          unit: String = Unit.lb.toString) extends Entity
 
 final case class Session(id: Long = 0,
                           swimmerId: Long,
@@ -59,7 +60,7 @@ final case class Session(id: Long = 0,
                           swam: Long = Instant.now.toEpochMilli) extends Entity
 
 enum Unit:
-  case feet, yards, meters
+  case feet, meters, yards, lb, kg
 
 enum Stroke:
   case breast, back, butterfly, freestyle, kick
