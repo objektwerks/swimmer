@@ -55,8 +55,9 @@ final case class Session(id: Long = 0,
                           stroke: String = Stroke.freestyle.toString,
                           kickboard: Boolean = false,
                           fins: Boolean = false,
-                          minutes: Int = 30,
+                          minutes: Int = 15,
                           seconds: Int = 0,
+                          calories: Int = 150,
                           swam: Long = Instant.now.toEpochMilli) extends Entity
 
 enum Unit:
