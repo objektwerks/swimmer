@@ -8,6 +8,7 @@ import WeightUnit.*
 final class WeightUnitTest extends AnyFunSuite with Matchers:
   test("lbs to kgs"):
     lbsToKgs(1.0) shouldBe 0.454
+    lbsToKgs(2.0) shouldBe 0.908
 
   test("kgs to lbs"):
     kgsToLbs(1.0) shouldBe 2.205
