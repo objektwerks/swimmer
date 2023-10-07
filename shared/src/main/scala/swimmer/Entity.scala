@@ -60,7 +60,9 @@ final case class Session(id: Long = 0,
                          minutes: Int,
                          seconds: Int,
                          calories: Int,
-                         datetime: Long = Instant.now.toEpochMilli) extends Entity
+                         datetime: Long = Instant.now.toEpochMilli) extends Entity:
+  val weightProperty = ObjectProperty[Int](this, "weight", weight)
+
 
 enum Unit:
   case lb, kg, feet, meters, yards
