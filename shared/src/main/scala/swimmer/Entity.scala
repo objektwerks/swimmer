@@ -65,6 +65,7 @@ final case class Session(id: Long = 0,
   val weightUnitProperty = ObjectProperty[String](this, "weightUnit", weightUnit)
   val lapsProperty = ObjectProperty[Int](this, "laps", laps)
   val lapsUnitProperty = ObjectProperty[String](this, "lapsUnit", lapUnit)
+  val styleProperty = ObjectProperty[String](this, "style", style)
 
 enum Unit:
   case lb, kg, feet, meters, yards
