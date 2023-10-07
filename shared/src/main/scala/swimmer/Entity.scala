@@ -51,9 +51,9 @@ final case class Swimmer(id: Long = 0,
 final case class Session(id: Long = 0,
                          swimmerId: Long,
                          weight: Int,
-                         weightUnit: String = Unit.lb.toString,
+                         weightUnit: String = WeightUnit.lb.toString,
                          laps: Int,
-                         lapUnit: String = Unit.yards.toString,
+                         lapUnit: String = LapUnit.yards.toString,
                          style: String = Style.freestyle.toString,
                          kickboard: Boolean = false,
                          fins: Boolean = false,
@@ -73,10 +73,15 @@ final case class Session(id: Long = 0,
   val caloriesProperty = ObjectProperty[Int](this, "calories", calories)
   val datetimeProperty = ObjectProperty[Long](this, "datetime", datetime)
 
-enum Unit:
-  case lb, kg, feet, meters, yards
+enum WeightUnit:
+  case lb, kg
+
+object WeightUnit:
   def lbsToKgs(lbs: Double): Double = lbs * 0.454
   def kgsToLbs(kgs: Double): Double = kgs * 2.205
+
+enum LapUnit:
+  case feet, meters, yards
 
 enum Style:
   case breaststroke, backstroke, butterfly, freestyle, kick
