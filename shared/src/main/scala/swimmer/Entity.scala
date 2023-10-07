@@ -62,6 +62,7 @@ final case class Session(id: Long = 0,
                          calories: Int,
                          datetime: Long = Instant.now.toEpochMilli) extends Entity:
   val weightProperty = ObjectProperty[Int](this, "weight", weight)
+  val weightUnitProperty = ObjectProperty[String](this, "weightUnit", weightUnit)
 
 
 enum Unit:
