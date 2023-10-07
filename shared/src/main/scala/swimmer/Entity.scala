@@ -69,6 +69,7 @@ final case class Session(id: Long = 0,
   val kickboardProperty = ObjectProperty[Boolean](this, "kickboard", kickboard)
   val finsProperty = ObjectProperty[Boolean](this, "fins", fins)
   val minutesProperty = ObjectProperty[Int](this, "minutes", minutes)
+  val secondsProperty = ObjectProperty[Int](this, "seconds", seconds)
 
 enum Unit:
   case lb, kg, feet, meters, yards
