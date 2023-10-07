@@ -71,6 +71,7 @@ final case class Session(id: Long = 0,
   val minutesProperty = ObjectProperty[Int](this, "minutes", minutes)
   val secondsProperty = ObjectProperty[Int](this, "seconds", seconds)
   val caloriesProperty = ObjectProperty[Int](this, "calories", calories)
+  val datetimeProperty = ObjectProperty[Long](this, "datetime", datetime)
 
 enum Unit:
   case lb, kg, feet, meters, yards
