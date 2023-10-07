@@ -54,9 +54,9 @@ final case class Session(id: Long = 0,
                          style: String = Style.freestyle.toString,
                          kickboard: Boolean = false,
                          fins: Boolean = false,
-                         minutes: Int = 15,
-                         seconds: Int = 0,
-                         calories: Int = 150,
+                         minutes: Int,
+                         seconds: Int,
+                         calories: Int,
                          datetime: Long = Instant.now.toEpochMilli) extends Entity
 
 enum Unit:
