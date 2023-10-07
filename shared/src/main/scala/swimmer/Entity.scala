@@ -5,6 +5,8 @@ import java.util.UUID
 
 import scala.util.Random
 
+import scalafx.beans.property.ObjectProperty
+
 object Pin:
   private val specialChars = "~!@#$%^&*-+=<>?/:;".toList
   private val random = Random
@@ -42,7 +44,9 @@ object Account:
 
 final case class Swimmer(id: Long = 0,
                          license: String,
-                         name: String) extends Entity
+                         name: String) extends Entity:
+  val nameProperty = ObjectProperty[String](this, "name", name)
+  val swimmer = this
 
 final case class Session(id: Long = 0,
                          swimmerId: Long,
