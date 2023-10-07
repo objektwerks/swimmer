@@ -72,6 +72,7 @@ final case class Session(id: Long = 0,
   val secondsProperty = ObjectProperty[Int](this, "seconds", seconds)
   val caloriesProperty = ObjectProperty[Int](this, "calories", calories)
   val datetimeProperty = ObjectProperty[Long](this, "datetime", datetime)
+  val session = this
 
 enum WeightUnit:
   case lb, kg
