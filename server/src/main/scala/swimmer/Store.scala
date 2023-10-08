@@ -208,6 +208,17 @@ final class Store(config: Config,
       .updateAndReturnGeneratedKey()
   }
 
+  def updateSession(sess: Session): Long = DB localTx { implicit session =>
+    sql"""
+      update session set weight = ${sess.weight}, weight_unit = ${sess.weightUnit}, laps = ${sess.laps}, lap_unit = ${sess.lapUnit},
+      style = ${sess.style}, kickboard = ${sess.kickboard}, fins = ${sess.fins}, minutes = ${sess.minutes}, seconds = ${sess.seconds},
+      calories = ${sess.calories}, datetime = ${sess.datetime}
+      where id = ${sess.id}
+      """
+      .update()
+    sess.id
+  }
+
   def listFaults(): List[Fault] = DB readOnly { implicit session =>
     sql"select * from fault order by occurred desc"
       .map(rs =>
