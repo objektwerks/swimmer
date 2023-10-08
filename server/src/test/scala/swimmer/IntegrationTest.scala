@@ -21,7 +21,7 @@ final class IntegrationTest extends AnyFunSuite with Matchers:
   val dispatcher = Dispatcher(store, emailer)
 
   var testAccount = Account()
-  var testSwimmer = Swimmer(license = testAccount.license, name = "Fred Flintstone")
+  var testSwimmer = Swimmer(license = testAccount.license, name = "Fred")
   var testSession = Session(swimmerId = 0)
 
   test("integration"):
@@ -77,11 +77,11 @@ final class IntegrationTest extends AnyFunSuite with Matchers:
       case fault => fail(s"Invalid swimmer saved event: $fault")
 
   def updateSwimmer: Unit =
-    testPool = testPool.copy(volume = 10000)
-    val savePool = SavePool(testAccount.license, testPool)
-    dispatcher.dispatch(savePool) match
-      case PoolSaved(id) => id shouldBe testPool.id
-      case fault => fail(s"Invalid pool saved event: $fault")
+    testSwimmer = testSwimmer.copy(name = "Fred Flintstone")
+    val saveSwimmer = SaveSwimmer(testAccount.license, testSwimmer)
+    dispatcher.dispatch(saveSwimmer) match
+      case SwimmerSaved(id) => id shouldBe testSwimmer.id
+      case fault => fail(s"Invalid swimmer saved event: $fault")
     
   def listSwimmers: Unit =
     val listPools = ListPools(testAccount.license)
