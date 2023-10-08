@@ -199,6 +199,15 @@ final class Store(config: Config,
       .list()
   }
 
+  def addSessioin(sess: Session): Long = DB localTx { implicit session =>
+    sql"""
+      insert into session(swimmer_id, weight, weight_unit, laps, lap_unit, style, kickboard, fins, minutes, seconds, calories, datetime)
+      values(${sess.swimmerId}, ${sess.weight}, ${sess.weightUnit}, ${sess.laps}, ${sess.lapUnit}, ${sess.style}, ${sess.kickboard},
+      ${sess.fins}, ${sess.minutes}, ${sess.seconds}, ${sess.calories}, ${sess.datetime})
+      """
+      .updateAndReturnGeneratedKey()
+  }
+
   def listFaults(): List[Fault] = DB readOnly { implicit session =>
     sql"select * from fault order by occurred desc"
       .map(rs =>
