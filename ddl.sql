@@ -22,7 +22,7 @@ CREATE TABLE session (
   weight INT NOT NULL,
   weight_unit: CHAR(2) NOT NULL,
   laps INT NOT NULL,
-  lap INT NOT NULL,
+  lap_distance INT NOT NULL,
   lap_unit VARCHAR(6) NOT NULL,
   style VARCHAR(9) NOT NULL,
   kickboard BOOLEAN NOT NULL,
