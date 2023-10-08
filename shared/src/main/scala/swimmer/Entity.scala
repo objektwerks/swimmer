@@ -53,14 +53,14 @@ final case class Session(id: Long = 0,
                          weight: Int,
                          weightUnit: String = WeightUnit.lb.toString,
                          laps: Int,
-                         lapDistance: Int,
+                         lapDistance: Int = 50,
                          lapUnit: String = LapUnit.yards.toString,
                          style: String = Style.freestyle.toString,
                          kickboard: Boolean = false,
                          fins: Boolean = false,
                          minutes: Int,
-                         seconds: Int,
-                         calories: Int,
+                         seconds: Int = 0,
+                         calories: Int = 0,
                          datetime: Long = Instant.now.toEpochMilli) extends Entity:
   val weightProperty = ObjectProperty[Int](this, "weight", weight)
   val weightUnitProperty = ObjectProperty[String](this, "weightUnit", weightUnit)
