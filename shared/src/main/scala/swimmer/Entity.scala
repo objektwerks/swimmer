@@ -53,7 +53,7 @@ final case class Session(id: Long = 0,
                          weight: Int,
                          weightUnit: String = WeightUnit.lb.toString,
                          laps: Int,
-                         lap: Int,
+                         lapDistance: Int,
                          lapUnit: String = LapUnit.yards.toString,
                          style: String = Style.freestyle.toString,
                          kickboard: Boolean = false,
@@ -65,6 +65,7 @@ final case class Session(id: Long = 0,
   val weightProperty = ObjectProperty[Int](this, "weight", weight)
   val weightUnitProperty = ObjectProperty[String](this, "weightUnit", weightUnit)
   val lapsProperty = ObjectProperty[Int](this, "laps", laps)
+  val lapDistanceProperty = ObjectProperty[Int](this, "lapDistance", laps)
   val lapUnitProperty = ObjectProperty[String](this, "lapUnit", lapUnit)
   val styleProperty = ObjectProperty[String](this, "style", style)
   val kickboardProperty = ObjectProperty[Boolean](this, "kickboard", kickboard)
