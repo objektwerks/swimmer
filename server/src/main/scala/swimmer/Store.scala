@@ -177,6 +177,28 @@ final class Store(config: Config,
     swimmer.id
   }
 
+  def listSessions(swimmerId: Long): List[Session] = DB readOnly { implicit session =>
+    sql"select * from session where swimmerId = $swimmerId order by datetime desc"
+      .map(rs =>
+        Session(
+          rs.long("id"),
+          rs.long("swimmer_id"),
+          rs.int("weight"),
+          rs.string("weight_unit"),
+          rs.int("laps"),
+          rs.string("lap_unit"),
+          rs.string("style"),
+          rs.boolean("kickboard"),
+          rs.boolean("fins"),
+          rs.int("minutes"),
+          rs.int("seconds"),
+          rs.int("calories"),
+          rs.long("datetime")
+        )
+      )
+      .list()
+  }
+
   def listFaults(): List[Fault] = DB readOnly { implicit session =>
     sql"select * from fault order by occurred desc"
       .map(rs =>
