@@ -199,7 +199,7 @@ final class Store(config: Config,
       .list()
   }
 
-  def addSessioin(sess: Session): Long = DB localTx { implicit session =>
+  def addSession(sess: Session): Long = DB localTx { implicit session =>
     sql"""
       insert into session(swimmer_id, weight, weight_unit, laps, lap_unit, style, kickboard, fins, minutes, seconds, calories, datetime)
       values(${sess.swimmerId}, ${sess.weight}, ${sess.weightUnit}, ${sess.laps}, ${sess.lapUnit}, ${sess.style}, ${sess.kickboard},
