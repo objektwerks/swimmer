@@ -100,12 +100,11 @@ final class IntegrationTest extends AnyFunSuite with Matchers:
       case fault => fail(s"Invalid session saved event: $fault")
 
   def updateSession: Unit =
-    testCleaning = testCleaning.copy(vacuum = true)
-    val saveCleaning = SaveCleaning(testAccount.license, testCleaning)
-    dispatcher.dispatch(saveCleaning) match
-      case CleaningSaved(id) =>
-        id shouldBe testCleaning.id
-      case fault => fail(s"Invalid cleaning saved event: $fault")
+    testSession = testSession.copy(weight = 175)
+    val saveSession = SaveSession(testAccount.license, testSession)
+    dispatcher.dispatch(saveSession) match
+      case SessionSaved(id) => id shouldBe testSession.id
+      case fault => fail(s"Invalid session saved event: $fault")
 
   def listSessions: Unit =
     val listCleanings = ListCleanings(testAccount.license, testPool.id)
