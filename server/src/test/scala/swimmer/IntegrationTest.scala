@@ -22,7 +22,7 @@ final class IntegrationTest extends AnyFunSuite with Matchers:
 
   var testAccount = Account()
   var testSwimmer = Swimmer(license = testAccount.license, name = "Fred")
-  var testSession = Session(swimmerId = 0)
+  var testSession = Session(swimmerId = 0, weight = 150, weightUnit = )
 
   test("integration"):
     register
