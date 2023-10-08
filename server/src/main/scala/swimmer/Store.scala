@@ -149,34 +149,32 @@ final class Store(config: Config,
       else None
     }
 
-  def listPools(license: String): List[Pool] = DB readOnly { implicit session =>
-    sql"select * from pool where license = $license order by name"
+  def listSwimmers(license: String): List[Swimmer] = DB readOnly { implicit session =>
+    sql"select * from swimmer where license = $license order by name"
       .map(rs =>
-        Pool(
+        Swimmer(
           rs.long("id"),
           rs.string("license"),
           rs.string("name"), 
-          rs.int("volume"), 
-          rs.string("unit")
         )
       )
       .list()
   }
 
-  def addPool(pool: Pool): Long = DB localTx { implicit session =>
+  def addSwimmer(swimmer: Swimmer): Long = DB localTx { implicit session =>
     sql"""
-      insert into pool(name, license, volume, unit) values(${pool.name}, ${pool.license}, ${pool.volume}, ${pool.unit})
+      insert into swimmer(license, name) values(${swimmer.license}, ${swimmer.name})
       """
       .updateAndReturnGeneratedKey()
   }
 
-  def updatePool(pool: Pool): Long = DB localTx { implicit session =>
+  def updateSwimmer(swimmer: Swimmer): Long = DB localTx { implicit session =>
     sql"""
-      update pool set name = ${pool.name}, volume = ${pool.volume}, unit = ${pool.unit}
-      where id = ${pool.id}
+      update swimmer set name = ${swimmer.name}}
+      where id = ${swimmer.id}
       """
       .update()
-    pool.id
+    swimmer.id
   }
 
   def listFaults(): List[Fault] = DB readOnly { implicit session =>
