@@ -80,6 +80,7 @@ object Validator:
       session.weight > 0 &&
       session.weightUnit.nonEmpty &&
       session.laps > 0 &&
+      session.lap > 0 &&
       session.lapUnit.nonEmpty &&
       session.style.nonEmpty &&
       session.minutes > 0 &&
