@@ -68,6 +68,7 @@ final class IntegrationTest extends AnyFunSuite with Matchers:
       case fault => fail(s"Invalid reactivated event: $fault")
 
   def addSwimmer: Unit =
+    testSwimmer = testSwimmer.copy(license = testAccount.license)
     val saveSwimmer = SaveSwimmer(testAccount.license, testSwimmer)
     dispatcher.dispatch(saveSwimmer) match
       case SwimmerSaved(id) =>
