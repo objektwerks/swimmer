@@ -21,7 +21,7 @@ final class IntegrationTest extends AnyFunSuite with Matchers:
   val dispatcher = Dispatcher(store, emailer)
 
   var testAccount = Account()
-  var testSwimmer = Swimmer(license = testAccount.license, name = "Fred")
+  var testSwimmer = Swimmer(license = "", name = "")
   var testSession = Session(swimmerId = 0, weight = 150, laps = 10, minutes = 15)
 
   test("integration"):
@@ -68,7 +68,7 @@ final class IntegrationTest extends AnyFunSuite with Matchers:
       case fault => fail(s"Invalid reactivated event: $fault")
 
   def addSwimmer: Unit =
-    testSwimmer = testSwimmer.copy(license = testAccount.license)
+    testSwimmer = testSwimmer.copy(license = testAccount.license, name = "Fred")
     val saveSwimmer = SaveSwimmer(testAccount.license, testSwimmer)
     dispatcher.dispatch(saveSwimmer) match
       case SwimmerSaved(id) =>
