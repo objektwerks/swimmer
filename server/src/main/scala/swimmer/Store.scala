@@ -173,7 +173,7 @@ final class Store(config: Config,
 
   def updateSwimmer(swimmer: Swimmer): Long = DB localTx { implicit session =>
     sql"""
-      update swimmer set name = ${swimmer.name}}
+      update swimmer set name = ${swimmer.name}
       where id = ${swimmer.id}
       """
       .update()
