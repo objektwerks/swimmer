@@ -181,7 +181,7 @@ final class Store(config: Config,
   }
 
   def listSessions(swimmerId: Long): List[Session] = DB readOnly { implicit session =>
-    sql"select * from session where swimmerId = $swimmerId order by datetime desc"
+    sql"select * from session where swimmer_id = $swimmerId order by datetime desc"
       .map(rs =>
         Session(
           rs.long("id"),
