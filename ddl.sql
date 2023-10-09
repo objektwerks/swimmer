@@ -32,3 +32,8 @@ CREATE TABLE session (
   calories INT NOT NULL,
   datetime BIGINT NOT NULL
 );
+
+CREATE TABLE fault (
+  cause VARCHAR NOT NULL,
+  occurred VARCHAR NOT NULL
+);
