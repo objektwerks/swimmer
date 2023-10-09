@@ -1,6 +1,10 @@
 Swimmer
 -------
->Swimmer app using ScalaFx and Scala3. WIP!
+>Swimmer app using ScalaFx and Scala3.
+
+Todo
+----
+1. Client
 
 Calories
 --------
