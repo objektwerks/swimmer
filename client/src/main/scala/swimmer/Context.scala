@@ -54,14 +54,6 @@ final class Context(config: Config):
   val chartMuriaticAcid = config.getString("chart.muriaticAcid")
   val chartGranularSalt = config.getString("chart.granularSalt")
 
-  val columnYes = config.getString("column.yes")
-  val columnNo = config.getString("column.no")
-
-  val converterGallons = config.getString("converter.gallons")
-  val converterLiters = config.getString("converter.liters")
-  val converterPounds = config.getString("converter.pounds")
-  val converterKilograms = config.getString("converter.kilograms")
-
   val dialogRegisterLogin = config.getString("dialog.registerLogin")
   val dialogAccount = config.getString("dialog.account")
   val dialogSwimmer = config.getString("dialog.swimmer")
