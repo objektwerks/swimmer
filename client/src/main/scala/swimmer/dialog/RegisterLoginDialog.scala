@@ -1,4 +1,4 @@
-package pool.dialog
+package swimmer.dialog
 
 import java.awt.Toolkit
 
@@ -8,8 +8,8 @@ import scalafx.scene.control.{ButtonType, Dialog, TextField, TitledPane}
 import scalafx.scene.control.ButtonBar.ButtonData
 import scalafx.stage.Stage
 
-import pool.{Context, Register, Login}
-import pool.Validator.*
+import swimmer.{Context, Register, Login}
+import swimmer.Validator.*
 
 final case class RegisterLogin(register: Option[Register] = None,
                                login: Option[Login] = None)
