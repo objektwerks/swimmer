@@ -1,15 +1,16 @@
 package swimmer
 
-import scalafx.geometry.{Insets, Orientation}
+import scalafx.geometry.Insets
 import scalafx.scene.Scene
-import scalafx.scene.control.SplitPane
-import scalafx.scene.layout.{BorderPane, HBox, Priority, VBox}
+import scalafx.scene.layout.BorderPane
 
 final class View(context: Context, model: Model):
   val borderPane = new BorderPane:
     prefWidth = context.windowWidth
     prefHeight = context.windowHeight
     padding = Insets(6)
+
+  println(model) // Todo!
 
   val scene = new Scene:
     root = borderPane
