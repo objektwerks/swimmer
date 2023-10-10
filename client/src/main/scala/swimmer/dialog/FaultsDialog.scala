@@ -1,10 +1,10 @@
-package pool.dialog
+package swimmer.dialog
 
 import scalafx.Includes.*
 import scalafx.scene.control.{ButtonType, Dialog, TableColumn, TableView}
 import scalafx.scene.layout.VBox
 
-import pool.{Client, Context, Fault, Model}
+import swimmer.{Client, Context, Fault, Model}
 
 final class FaultsDialog(context: Context, model: Model) extends Dialog[Unit]:
   initOwner(Client.stage)
