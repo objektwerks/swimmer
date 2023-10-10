@@ -169,10 +169,6 @@ final class Context(config: Config):
   val labelCurrent = config.getString("label.current")
   val labelAverage = config.getString("label.average")
 
-  val tabCleanings = config.getString("tab.cleanings")
-  val tabMeasurements = config.getString("tab.measurements")
-  val tabChemicals = config.getString("tab.chemicals")
-
   def logoImage = loadImageView("/image/logo.png")
   def addImage = loadImageView("/image/add.png")
   def editImage = loadImageView("/image/edit.png")
