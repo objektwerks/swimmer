@@ -44,6 +44,9 @@ final class Context(config: Config):
   val labelSwimmers = config.getString("label.swimmers")
   val labelSessions = config.getString("label.sessions")
 
+  val tabSwimmers = config.getString("tab.swimmers")
+  val tabSessions = config.getString("tab.sessions")
+
   def logoImage = loadImageView("/image/logo.png")
   def addImage = loadImageView("/image/add.png")
   def editImage = loadImageView("/image/edit.png")
