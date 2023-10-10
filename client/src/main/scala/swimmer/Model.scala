@@ -2,8 +2,6 @@ package swimmer
 
 import com.typesafe.scalalogging.LazyLogging
 
-import java.text.NumberFormat
-
 import scalafx.application.Platform
 import scalafx.collections.ObservableBuffer
 import scalafx.beans.property.ObjectProperty
