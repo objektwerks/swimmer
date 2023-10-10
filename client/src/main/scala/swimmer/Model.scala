@@ -22,9 +22,9 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
   val selectedSessionId = ObjectProperty[Long](0)
 
   selectedSwimmerId.onChange { (_, oldSwimmerId, newSwimmerId) =>
-    logger.info(s"*** selected swimmer id onchange event: $oldSwimmerlId -> $newSwimmerId")
+    logger.info(s"*** selected swimmer id onchange event: $oldSwimmerId -> $newSwimmerId")
     shouldBeInFxThread("*** selected swimmer id onchange should be in fx thread.")
-    cleanings(newSwimmerId)
+    sessions(newSwimmerId)
   }
 
   val objectAccount = ObjectProperty[Account](Account.empty)
@@ -81,7 +81,7 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
         case fault @ Fault(_, _) => loggedin.set(false)
         case LoggedIn(account) =>
           objectAccount.set(account)
-          pools()
+          swimmers()
         case _ => ()
     )
 
