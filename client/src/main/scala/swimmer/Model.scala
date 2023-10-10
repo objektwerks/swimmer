@@ -138,37 +138,37 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
         case _ => ()
     )
 
-  def cleanings(poolId: Long): Unit =
+  def sessions(swimmerId: Long): Unit =
     fetcher.fetchAsync(
-      ListCleanings(objectAccount.get.license, poolId),
+      ListSessions(objectAccount.get.license, swimmerId),
       (event: Event) => event match
-        case fault @ Fault(_, _) => onFetchAsyncFault("Model.cleanings", fault)
-        case CleaningsListed(cleanings) =>
+        case fault @ Fault(_, _) => onFetchAsyncFault("Model.sessions", fault)
+        case SessionsListed(sessions) =>
           observableSessions.clear()
-          observableSessions ++= cleanings
+          observableSessions ++= sessions
         case _ => ()
     )
 
-  def add(selectedIndex: Int, cleaning: Cleaning)(runLast: => Unit): Unit =
+  def add(selectedIndex: Int, session: Session)(runLast: => Unit): Unit =
     fetcher.fetchAsync(
-      SaveCleaning(objectAccount.get.license, cleaning),
+      SaveSession(objectAccount.get.license, session),
       (event: Event) => event match
-        case fault @ Fault(_, _) => onFetchAsyncFault("Model.save cleaning", cleaning, fault)
-        case CleaningSaved(id) =>
-          observableSessions += cleaning.copy(id = id)
+        case fault @ Fault(_, _) => onFetchAsyncFault("Model.save session", session, fault)
+        case SessionSaved(id) =>
+          observableSessions += session.copy(id = id)
           observableSessions.sort()
           selectedSessionId.set(id)
           runLast
         case _ => ()
     )
 
-  def update(selectedIndex: Int, cleaning: Cleaning)(runLast: => Unit): Unit =
+  def update(selectedIndex: Int, session: Session)(runLast: => Unit): Unit =
     fetcher.fetchAsync(
-      SaveCleaning(objectAccount.get.license, cleaning),
+      SaveSession(objectAccount.get.license, session),
       (event: Event) => event match
-        case fault @ Fault(_, _) => onFetchAsyncFault("Model.save cleaning", cleaning, fault)
-        case CleaningSaved(id) =>
-          observableSessions.update(selectedIndex, cleaning)
+        case fault @ Fault(_, _) => onFetchAsyncFault("Model.save session", session, fault)
+        case SessionSaved(id) =>
+          observableSessions.update(selectedIndex, session)
           runLast
         case _ => ()
     )
