@@ -26,6 +26,10 @@ object Pin:
 sealed trait Entity:
   val id: Long
 
+object Entity:
+  given swimmerOrdering: Ordering[Swimmer] = Ordering.by[Swimmer, String](s => s.name)
+  given sessionOrdering: Ordering[Session] = Ordering.by[Session, Long](dt => dt.datetime).reverse
+
 final case class Account(id: Long = 0,
                          license: String = UUID.randomUUID.toString,
                          emailAddress: String = "",
