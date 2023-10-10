@@ -21,7 +21,6 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
   val selectedPoolId = ObjectProperty[Long](0)
   val selectedCleaningId = ObjectProperty[Long](0)
   val selectedMeasurementId = ObjectProperty[Long](0)
-  val selectedChemicalId = ObjectProperty[Long](0)
 
   selectedPoolId.onChange { (_, oldPoolId, newPoolId) =>
     logger.info(s"*** selected pool id onchange event: $oldPoolId -> $newPoolId")

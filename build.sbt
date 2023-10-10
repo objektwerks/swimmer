@@ -20,7 +20,7 @@ lazy val swimmer = (project in file("."))
   .settings(common)
   .settings(
     publish := {},
-    publishLocal := {}
+    publishLocal := {},
   )
 
 // Begin: Client Assembly Tasks
@@ -97,7 +97,10 @@ lazy val client = project
         "com.typesafe.scala-logging" %% "scala-logging" % "3.9.5",
         "ch.qos.logback" % "logback-classic" % "1.4.8"
       )
-    }
+    },
+    scalacOptions ++= Seq(
+      "-Wunused:all"
+    )
   )
   .settings(
     libraryDependencies ++= Seq("base", "controls", "web").map( jfxModule =>
@@ -119,7 +122,10 @@ lazy val shared = project
          exclude("org.openjfx", "javafx-web"),
         "org.scalatest" %% "scalatest" % "3.2.16" % Test
       )
-    }
+    },
+    scalacOptions ++= Seq(
+      "-Wunused:all"
+    )
   )
 
 lazy val server = project
@@ -138,5 +144,8 @@ lazy val server = project
         "ch.qos.logback" % "logback-classic" % "1.4.11",
         "org.scalatest" %% "scalatest" % "3.2.16" % Test
       )
-    }
+    },
+    scalacOptions ++= Seq(
+      "-Wunused:all"
+    )
   )
