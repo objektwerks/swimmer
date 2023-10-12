@@ -3,7 +3,7 @@ package swimmer.dialog
 import scalafx.Includes.*
 import scalafx.collections.ObservableBuffer
 import scalafx.scene.layout.Region
-import scalafx.scene.control.{ButtonType, ComboBox, Dialog, TextField}
+import scalafx.scene.control.{ButtonType, CheckBox, ComboBox, Dialog, TextField}
 import scalafx.scene.control.ButtonBar.ButtonData
 
 import swimmer.{Client, Context, Session}
@@ -39,13 +39,17 @@ final class PoolDialog(context: Context, session: Session) extends Dialog[Sessio
   	value = session.style.toString
   styleComboBox.prefWidth = 300
 
+  val kickboardCheckBox = new CheckBox:
+    selected = session.kickboard
+
   val controls = List[(String, Region)](
     context.labelWeightUnit  -> weightUnitTextField,
     context.labelWeightUnit  -> weightUnitComboBox,
     context.labelLaps        -> lapsTextField,
     context.labelLapDistance -> lapDistanceTextField,
     context.labelLapUnit     -> lapUnitComboBox,
-    context.labelStyle       -> styleComboBox
+    context.labelStyle       -> styleComboBox,
+    context.labelKickboard   -> kickboardCheckBox
   )
   dialogPane().content = ControlGridPane(controls)
 
@@ -60,6 +64,8 @@ final class PoolDialog(context: Context, session: Session) extends Dialog[Sessio
         laps = lapsTextField.int(session.laps),
         lapDistance = lapDistanceTextField.int(session.lapDistance),
         lapUnit = lapUnitComboBox.value.value,
-        style = styleComboBox.value.value
+        style = styleComboBox.value.value,
+        kickboard = kickboardCheckBox.selected.value,
+
       )
     else null
