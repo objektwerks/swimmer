@@ -8,21 +8,19 @@ import scalafx.scene.control.ButtonBar.ButtonData
 
 import swimmer.{Client, Context, Session}
 import swimmer.control.IntTextField
+import swimmer.WeightUnit
 
 final class PoolDialog(context: Context, session: Session) extends Dialog[Session]:
   initOwner(Client.stage)
   title = context.windowTitle
   headerText = context.dialogSession
 
-  val nameTextField = new TextField:
-    text = pool.name
-
-  val volumeTextField = new IntTextField:
-    text = pool.volume.toString
+  val weightTextField = new IntTextField:
+    text = session.weight.toString
   
   val unitComboBox = new ComboBox[String]:
-  	items = ObservableBuffer.from( UnitOfMeasure.toPoolList )
-  	value = pool.unit.toString
+  	items = ObservableBuffer.from( WeightUnit.values )
+  	value = session.weightUnit.toString
   unitComboBox.prefWidth = 200
 
   val controls = List[(String, Region)](
