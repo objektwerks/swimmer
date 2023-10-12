@@ -36,14 +36,14 @@ final class Context(config: Config):
   val headerOccurred = config.getString("header.occurred")
   val headerFault = config.getString("header.fault")
 
-  val labelLicense = config.getString("label.license")
-  val labelName = config.getString("label.name")
   val labelEmailAddress = config.getString("label.emailAddress")
   val labelPin = config.getString("label.pin")
   val labelActivated = config.getString("label.activated")
   val labelDeactivated = config.getString("label.deactivated")
   val labelSwimmers = config.getString("label.swimmers")
   val labelSessions = config.getString("label.sessions")
+  val labelLicense = config.getString("label.license")
+  val labelName = config.getString("label.name")
 
   val tabSwimmers = config.getString("tab.swimmers")
   val tabSessions = config.getString("tab.sessions")
