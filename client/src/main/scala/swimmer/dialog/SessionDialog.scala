@@ -65,8 +65,7 @@ final class PoolDialog(context: Context, session: Session) extends Dialog[Sessio
     context.labelFins        -> finsCheckBox,
     context.labelMinutes     -> minutesTextField,
     context.labelSeconds     -> secondsTextField,
-    context.labelCalories    -> caloriesTextField,
-
+    context.labelCalories    -> caloriesTextField
   )
   dialogPane().content = ControlGridPane(controls)
 
@@ -86,7 +85,6 @@ final class PoolDialog(context: Context, session: Session) extends Dialog[Sessio
         fins = finsCheckBox.selected.value,
         minutes = minutesTextField.int(session.minutes),
         seconds = secondsTextField.int(session.seconds),
-        calories = caloriesTextField.int(session.calories),
-        
+        calories = caloriesTextField.int(session.calories)
       )
     else null
