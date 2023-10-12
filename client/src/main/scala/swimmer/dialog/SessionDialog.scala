@@ -8,7 +8,7 @@ import scalafx.scene.control.ButtonBar.ButtonData
 
 import swimmer.{Client, Context, Session}
 import swimmer.control.IntTextField
-import swimmer.WeightUnit
+import swimmer.{LapUnit, WeightUnit}
 
 final class PoolDialog(context: Context, session: Session) extends Dialog[Session]:
   initOwner(Client.stage)
@@ -29,12 +29,17 @@ final class PoolDialog(context: Context, session: Session) extends Dialog[Sessio
   val lapDistanceTextField = new IntTextField:
     text = session.lapDistance.toString
 
+  val lapUnitComboBox = new ComboBox[String]:
+  	items = ObservableBuffer.from( LapUnit.toList )
+  	value = session.lapUnit.toString
+  lapUnitComboBox.prefWidth = 200
+
   val controls = List[(String, Region)](
     context.labelWeightUnit  -> weightUnitTextField,
     context.labelWeightUnit  -> weightUnitComboBox,
     context.labelLaps        -> lapsTextField,
     context.labelLapDistance -> lapDistanceTextField,
-
+    context.labelLapUnit     -> lapUnitComboBox
   )
   dialogPane().content = ControlGridPane(controls)
 
@@ -47,6 +52,7 @@ final class PoolDialog(context: Context, session: Session) extends Dialog[Sessio
         weight = weightTextField.int(session.weight),
         weightUnit = weightUnitComboBox.value.value,
         laps = lapsTextField.int(session.laps),
-        lapDistance = lapDistanceTextField.int(session.lapDistance)
+        lapDistance = lapDistanceTextField.int(session.lapDistance),
+        lapUnit = lapUnitComboBox.value.value
       )
     else null
