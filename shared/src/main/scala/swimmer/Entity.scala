@@ -96,3 +96,6 @@ object LapUnit:
 
 enum Style:
   case breaststroke, backstroke, butterfly, freestyle, kick
+
+object Style:
+  def toList: List[String] = Style.values.map(s => s.toString).toList
