@@ -42,6 +42,9 @@ final class PoolDialog(context: Context, session: Session) extends Dialog[Sessio
   val kickboardCheckBox = new CheckBox:
     selected = session.kickboard
 
+  val finsCheckBox = new CheckBox:
+    selected = session.fins
+
   val controls = List[(String, Region)](
     context.labelWeightUnit  -> weightUnitTextField,
     context.labelWeightUnit  -> weightUnitComboBox,
@@ -49,7 +52,8 @@ final class PoolDialog(context: Context, session: Session) extends Dialog[Sessio
     context.labelLapDistance -> lapDistanceTextField,
     context.labelLapUnit     -> lapUnitComboBox,
     context.labelStyle       -> styleComboBox,
-    context.labelKickboard   -> kickboardCheckBox
+    context.labelKickboard   -> kickboardCheckBox,
+    context.labelFins        -> finsCheckBox,
   )
   dialogPane().content = ControlGridPane(controls)
 
@@ -66,6 +70,6 @@ final class PoolDialog(context: Context, session: Session) extends Dialog[Sessio
         lapUnit = lapUnitComboBox.value.value,
         style = styleComboBox.value.value,
         kickboard = kickboardCheckBox.selected.value,
-
+        fins = finsCheckBox.selected.value,
       )
     else null
