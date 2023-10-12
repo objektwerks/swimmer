@@ -91,5 +91,8 @@ object WeightUnit:
 enum LapUnit:
   case feet, meters, yards
 
+object LapUnit:
+  def toList: List[String] = LapUnit.values.map(lu => lu.toString).toList
+
 enum Style:
   case breaststroke, backstroke, butterfly, freestyle, kick
