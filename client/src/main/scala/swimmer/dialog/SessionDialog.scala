@@ -26,10 +26,15 @@ final class PoolDialog(context: Context, session: Session) extends Dialog[Sessio
   val lapsTextField = new IntTextField:
     text = session.laps.toString
 
+  val lapDistanceTextField = new IntTextField:
+    text = session.lapDistance.toString
+
   val controls = List[(String, Region)](
-    context.labelWeightUnit -> weightUnitTextField,
-    context.labelWeightUnit -> weightUnitComboBox,
-    context.labelLaps       -> lapsTextField
+    context.labelWeightUnit  -> weightUnitTextField,
+    context.labelWeightUnit  -> weightUnitComboBox,
+    context.labelLaps        -> lapsTextField,
+    context.labelLapDistance -> lapDistanceTextField,
+
   )
   dialogPane().content = ControlGridPane(controls)
 
@@ -41,6 +46,7 @@ final class PoolDialog(context: Context, session: Session) extends Dialog[Sessio
       session.copy(
         weight = weightTextField.int(session.weight),
         weightUnit = weightUnitComboBox.value.value,
-        laps = lapsTextField.int(session.laps)
+        laps = lapsTextField.int(session.laps),
+        lapDistance = lapDistanceTextField.int(session.lapDistance)
       )
     else null
