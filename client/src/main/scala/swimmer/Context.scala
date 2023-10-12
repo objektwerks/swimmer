@@ -54,6 +54,8 @@ final class Context(config: Config):
   val labelFins = config.getString("label.fins")
   val labelMinutes = config.getString("label.minutes")
   val labelSeconds = config.getString("label.seconds")
+  val labelCalories = config.getString("label.calories")
+  val labelDatetime = config.getString("label.datetime")
 
   val tabSwimmers = config.getString("tab.swimmers")
   val tabSessions = config.getString("tab.sessions")
