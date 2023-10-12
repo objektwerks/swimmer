@@ -46,6 +46,9 @@ final class Context(config: Config):
   val labelName = config.getString("label.name")
   val labelWeight = config.getString("label.weight")
   val labelWeightUnit = config.getString("label.weightUnit")
+  val labelLaps = config.getString("label.laps")
+  val labelLapDistance = config.getString("label.lapDistance")
+  val labelLapUnit = config.getString("label.lapUnit")
 
   val tabSwimmers = config.getString("tab.swimmers")
   val tabSessions = config.getString("tab.sessions")
