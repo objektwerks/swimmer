@@ -82,11 +82,11 @@ final case class Session(id: Long = 0,
 
 enum WeightUnit:
   case lb, kg
-  def toList: List[String] = WeightUnit.values.map(wu => wu.toString).toList
 
 object WeightUnit:
   def lbsToKgs(lbs: Double): Double = lbs * 0.454
   def kgsToLbs(kgs: Double): Double = kgs * 2.205
+  def toList: List[String] = WeightUnit.values.map(wu => wu.toString).toList
 
 enum LapUnit:
   case feet, meters, yards
