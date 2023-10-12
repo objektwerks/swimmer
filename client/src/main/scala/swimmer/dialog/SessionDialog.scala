@@ -55,7 +55,7 @@ final class PoolDialog(context: Context, session: Session) extends Dialog[Sessio
     text = session.calories.toString
 
   val controls = List[(String, Region)](
-    context.labelWeightUnit  -> weightUnitTextField,
+    context.labelWeightUnit  -> weightTextField,
     context.labelWeightUnit  -> weightUnitComboBox,
     context.labelLaps        -> lapsTextField,
     context.labelLapDistance -> lapDistanceTextField,
