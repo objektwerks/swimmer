@@ -18,27 +18,24 @@ final class PoolDialog(context: Context, session: Session) extends Dialog[Sessio
   val weightTextField = new IntTextField:
     text = session.weight.toString
   
-  val unitComboBox = new ComboBox[String]:
-  	items = ObservableBuffer.from( WeightUnit.values )
+  val weightUnitComboBox = new ComboBox[String]:
+  	items = ObservableBuffer.from( WeightUnit.toList )
   	value = session.weightUnit.toString
-  unitComboBox.prefWidth = 200
+  weightUnitComboBox.prefWidth = 200
 
   val controls = List[(String, Region)](
-    context.labelName -> nameTextField,
-    context.labelVolume -> volumeTextField,
-    context.labelUnit -> unitComboBox
+    context.labelWeightUnit -> weightUnitTextField,
+    context.labelWeightUnit -> weightUnitComboBox
   )
   dialogPane().content = ControlGridPane(controls)
 
   val saveButtonType = new ButtonType(context.buttonSave, ButtonData.OKDone)
   dialogPane().buttonTypes = List(saveButtonType, ButtonType.Cancel)
 
-  resultConverter = dialogButton => {
+  resultConverter = dialogButton =>
     if dialogButton == saveButtonType then
-      pool.copy(
-        name = nameTextField.text.value,
-        volume = volumeTextField.text.value.toIntOption.getOrElse(pool.volume),
-        unit = unitComboBox.value.value
+      session.copy(
+        weight = weightTextField.text.value.toIntOption.getOrElse(session.weight),
+        weightUnit = weightUnitComboBox.value.value
       )
     else null
-  }
