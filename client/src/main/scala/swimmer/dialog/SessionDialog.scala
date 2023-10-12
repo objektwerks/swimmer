@@ -39,8 +39,8 @@ final class PoolDialog(context: Context, session: Session) extends Dialog[Sessio
   resultConverter = dialogButton =>
     if dialogButton == saveButtonType then
       session.copy(
-        weight = weightTextField.text.value.toIntOption.getOrElse(session.weight),
+        weight = weightTextField.int(session.weight),
         weightUnit = weightUnitComboBox.value.value,
-        laps = lapsTextField.text.value.toIntOption.getOrElse(session.laps)
+        laps = lapsTextField.int(session.laps)
       )
     else null
