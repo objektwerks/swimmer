@@ -23,9 +23,13 @@ final class PoolDialog(context: Context, session: Session) extends Dialog[Sessio
   	value = session.weightUnit.toString
   weightUnitComboBox.prefWidth = 200
 
+  val lapsTextField = new IntTextField:
+    text = session.laps.toString
+
   val controls = List[(String, Region)](
     context.labelWeightUnit -> weightUnitTextField,
-    context.labelWeightUnit -> weightUnitComboBox
+    context.labelWeightUnit -> weightUnitComboBox,
+    context.labelLaps       -> lapsTextField
   )
   dialogPane().content = ControlGridPane(controls)
 
@@ -36,6 +40,7 @@ final class PoolDialog(context: Context, session: Session) extends Dialog[Sessio
     if dialogButton == saveButtonType then
       session.copy(
         weight = weightTextField.text.value.toIntOption.getOrElse(session.weight),
-        weightUnit = weightUnitComboBox.value.value
+        weightUnit = weightUnitComboBox.value.value,
+        laps = lapsTextField.text.value.toIntOption.getOrElse(session.laps)
       )
     else null
