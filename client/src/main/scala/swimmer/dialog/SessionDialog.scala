@@ -48,6 +48,9 @@ final class PoolDialog(context: Context, session: Session) extends Dialog[Sessio
   val minutesTextField = new IntTextField:
     text = session.minutes.toString
 
+  val secondsTextField = new IntTextField:
+    text = session.seconds.toString
+
   val controls = List[(String, Region)](
     context.labelWeightUnit  -> weightUnitTextField,
     context.labelWeightUnit  -> weightUnitComboBox,
@@ -58,6 +61,8 @@ final class PoolDialog(context: Context, session: Session) extends Dialog[Sessio
     context.labelKickboard   -> kickboardCheckBox,
     context.labelFins        -> finsCheckBox,
     context.labelMinutes     -> minutesTextField,
+    context.labelSeconds     -> secondsTextField,
+
   )
   dialogPane().content = ControlGridPane(controls)
 
@@ -76,6 +81,7 @@ final class PoolDialog(context: Context, session: Session) extends Dialog[Sessio
         kickboard = kickboardCheckBox.selected.value,
         fins = finsCheckBox.selected.value,
         minutes = minutesTextField.int(session.minutes),
+        seconds = secondsTextField.int(session.seconds),
         
       )
     else null
