@@ -4,7 +4,8 @@ Swimmer
 
 Todo
 ----
-1. Client
+1. Charts
+2. Dashboard
 
 Model
 -----
