@@ -33,6 +33,7 @@ final class Context(config: Config):
   val dialogSession = config.getString("dialog.session")
   val dialogFaults = config.getString("dialog.faults")
 
+  val headerName = config.getString("header.name")
   val headerOccurred = config.getString("header.occurred")
   val headerFault = config.getString("header.fault")
 
