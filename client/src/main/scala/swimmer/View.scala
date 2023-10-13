@@ -26,6 +26,8 @@ final class View(context: Context, model: Model):
   splitPane.setDividerPositions(0.20, 0.80)
   VBox.setVgrow(splitPane, Priority.Always)
 
+  borderPane.center = splitPane
+
   val scene = new Scene:
     root = borderPane
     stylesheets = List("/style.css")
