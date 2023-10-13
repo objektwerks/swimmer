@@ -19,7 +19,7 @@ final class SessionsPane(context: Context, model: Model) extends VBox:
         cellValueFactory = _.value.weightProperty
       ,
       new TableColumn[Session, String]:
-        text = context.headeWeightUnit
+        text = context.headerWeightUnit
         cellValueFactory = _.value.weightUnitProperty
       ,
     )
