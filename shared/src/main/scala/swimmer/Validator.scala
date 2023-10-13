@@ -70,7 +70,7 @@ object Validator:
   extension (swimmer: Swimmer)
     def isValid =
       swimmer.id >= 0 &&
-      swimmer.license.isLicense &&
+      swimmer.accountId > 0 &&
       swimmer.name.nonEmpty
 
   extension (session: Session)
