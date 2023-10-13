@@ -157,7 +157,7 @@ final class Store(config: Config,
       .map(rs =>
         Swimmer(
           rs.long("id"),
-          rs.string("license"),
+          rs.long("account_id"),
           rs.string("name"), 
         )
       )
@@ -166,7 +166,7 @@ final class Store(config: Config,
 
   def addSwimmer(swimmer: Swimmer): Long = DB localTx { implicit session =>
     sql"""
-      insert into swimmer(license, name) values(${swimmer.license}, ${swimmer.name})
+      insert into swimmer(account_id, name) values(${swimmer.accountId}, ${swimmer.name})
       """
       .updateAndReturnGeneratedKey()
   }
