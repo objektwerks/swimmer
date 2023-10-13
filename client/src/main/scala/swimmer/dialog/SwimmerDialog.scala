@@ -12,14 +12,10 @@ final class SwimmerDialog(context: Context, swimmer: Swimmer) extends Dialog[Swi
   title = context.windowTitle
   headerText = context.dialogSwimmer
 
-  val licenseTextField = new TextField:
-    text = swimmer.license
-
   val nameTextField = new TextField:
     text = swimmer.name
 
   val controls = List[(String, Region)](
-    context.labelLicense -> licenseTextField,
     context.labelName -> nameTextField
   )
   dialogPane().content = ControlGridPane(controls)
@@ -30,7 +26,6 @@ final class SwimmerDialog(context: Context, swimmer: Swimmer) extends Dialog[Swi
   resultConverter = dialogButton =>
     if dialogButton == saveButtonType then
       swimmer.copy(
-        license = licenseTextField.text.value,
         name = nameTextField.text.value
       )
     else null
