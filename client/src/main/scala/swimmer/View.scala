@@ -4,7 +4,7 @@ import scalafx.geometry.Insets
 import scalafx.scene.Scene
 import scalafx.scene.layout.{BorderPane, Priority, VBox}
 
-import swimmer.pane.SwimmersPane
+import swimmer.pane.{SessionsPane, SwimmersPane}
 
 final class View(context: Context, model: Model):
   val borderPane = new BorderPane:
@@ -14,6 +14,9 @@ final class View(context: Context, model: Model):
 
   val swimmersPane = SwimmersPane(context, model)
   VBox.setVgrow(swimmersPane, Priority.Always)
+
+  val sessionsPane = SessionsPane(context, model)
+  VBox.setVgrow(sessionsPane, Priority.Always)
 
   val scene = new Scene:
     root = borderPane
