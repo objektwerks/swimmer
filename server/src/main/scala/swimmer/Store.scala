@@ -152,8 +152,8 @@ final class Store(config: Config,
       else None
     }
 
-  def listSwimmers(license: String): List[Swimmer] = DB readOnly { implicit session =>
-    sql"select * from swimmer where license = $license order by name"
+  def listSwimmers(accountId: Long): List[Swimmer] = DB readOnly { implicit session =>
+    sql"select * from swimmer where account_id = $accountId order by name"
       .map(rs =>
         Swimmer(
           rs.long("id"),

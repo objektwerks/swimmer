@@ -11,7 +11,7 @@ final case class Login(emailAddress: String, pin: String) extends Command
 final case class Deactivate(license: String) extends Command with License
 final case class Reactivate(license: String) extends Command with License
 
-final case class ListSwimmers(license: String) extends Command with License
+final case class ListSwimmers(license: String, accountId: Long) extends Command with License
 final case class SaveSwimmer(license: String, swimmer: Swimmer) extends Command with License
 
 final case class ListSessions(license: String, swimmerId: Long) extends Command with License
