@@ -15,7 +15,7 @@ object Validator:
         case login @ Login(_, _)               => login.isValid
         case deactivate @ Deactivate(_)        => deactivate.isValid
         case reactivate @ Reactivate(_)        => reactivate.isValid
-        case listSwimmers @ ListSwimmers(_)    => listSwimmers.isValid
+        case listSwimmers @ ListSwimmers(_, _) => listSwimmers.isValid
         case saveSwimmer @ SaveSwimmer(_, _)   => saveSwimmer.isValid
         case listSessions @ ListSessions(_, _) => listSessions.isValid
         case saveSession @ SaveSession(_, _)   => saveSession.isValid
@@ -37,13 +37,13 @@ object Validator:
     def isValid: Boolean = reactivate.license.isLicense
 
   extension (listSwimmers: ListSwimmers)
-    def isValid: Boolean = listSwimmers.license.isLicense
+    def isValid: Boolean = listSwimmers.license.isLicense && listSwimmers.accountId > 0
 
   extension (saveSwimmer: SaveSwimmer)
     def isValid: Boolean = saveSwimmer.license.isLicense && saveSwimmer.swimmer.isValid
 
   extension (listSessions: ListSessions)
-    def isValid: Boolean = listSessions.license.isLicense
+    def isValid: Boolean = listSessions.license.isLicense && listSessions.swimmerId > 0
 
   extension (saveSession: SaveSession)
     def isValid: Boolean = saveSession.license.isLicense && saveSession.session.isValid

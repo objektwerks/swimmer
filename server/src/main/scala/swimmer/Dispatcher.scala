@@ -19,7 +19,7 @@ final class Dispatcher(store: Store, emailer: Emailer):
       case Login(emailAddress, pin)   => login(emailAddress, pin)
       case Deactivate(license)        => deactivateAccount(license)
       case Reactivate(license)        => reactivateAccount(license)
-      case ListSwimmers(license)      => listSwimmers(license)
+      case ListSwimmers(_, accountId) => listSwimmers(accountId)
       case SaveSwimmer(_, swimmer)    => saveSwimmer(swimmer)
       case ListSessions(_, swimmerId) => listSessions(swimmerId)
       case SaveSession(_, session)    => saveSession(session)
@@ -77,9 +77,9 @@ final class Dispatcher(store: Store, emailer: Emailer):
         else Fault(s"Reactivate account failed for license: $license")
     )
 
-  private def listSwimmers(license: String): Event =
+  private def listSwimmers(accountId: Long): Event =
     Try {
-      SwimmersListed(store.listSwimmers(license))
+      SwimmersListed(store.listSwimmers(accountId))
     }.recover { case NonFatal(error) => Fault("List swimmers failed:", error) }
      .get
 
