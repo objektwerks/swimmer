@@ -107,13 +107,13 @@ Environment
 >The following environment variables must be defined:
 ```
 export SWIMMER_HOST="127.0.0.1"
-export SWIMMER_PORT=7272
+export SWIMMER_PORT=7171
 
-export SWIMMER_POSTGRESQL_URL="jdbc:postgresql://localhost:5432/poolbalance"
+export SWIMMER_POSTGRESQL_URL="jdbc:postgresql://localhost:5432/swimmer"
 export SWIMMER_POSTGRESQL_USER="yourusername"
-export SWIMMER_POSTGRESQL_PASSWORD="poolbalance"
+export SWIMMER_POSTGRESQL_PASSWORD="swimmer"
 export SWIMMER_POSTGRESQL_DRIVER="org.postgresql.ds.PGSimpleDataSource"
-export SWIMMER_POSTGRESQL_DB_NAME="poolbalance"
+export SWIMMER_POSTGRESQL_DB_NAME="swimmer"
 export SWIMMER_POSTGRESQL_HOST="127.0.0.1"
 export SWIMMER_POSTGRESQL_PORT=5432
 export SWIMMER_POSTGRESQL_POOL_INITIAL_SIZE=9
