@@ -82,7 +82,7 @@ final class SwimmersPane(context: Context, model: Model) extends VBox:
   }
 
   def add(): Unit =
-    SwimmerDialog(context, Swimmer(license = model.objectAccount.get.license, name = "")).showAndWait() match
+    SwimmerDialog(context, Swimmer(accountId = model.objectAccount.get.id, name = "")).showAndWait() match
       case Some(swimmer: Swimmer) => model.add(0, swimmer) {
         tableView.selectionModel().select(swimmer.copy(id = model.selectedSwimmerId.value))
       }

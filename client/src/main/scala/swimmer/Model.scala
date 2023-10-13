@@ -103,7 +103,7 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
 
   def swimmers(): Unit =
     fetcher.fetchAsync(
-      ListSwimmers(objectAccount.get.license),
+      ListSwimmers(objectAccount.get.license, objectAccount.get.id),
       (event: Event) => event match
         case fault @ Fault(_, _) => onFetchAsyncFault("Model.swimmers", fault)
         case SwimmersListed(swimmers) =>
