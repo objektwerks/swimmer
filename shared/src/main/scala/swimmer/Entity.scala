@@ -47,7 +47,7 @@ object Account:
   )
 
 final case class Swimmer(id: Long = 0,
-                         license: String,
+                         accountId: Long,
                          name: String) extends Entity:
   val nameProperty = ObjectProperty[String](this, "name", name)
   val swimmer = this
