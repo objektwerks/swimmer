@@ -10,7 +10,7 @@ import swimmer.{Client, Context, Session}
 import swimmer.control.IntTextField
 import swimmer.{LapUnit, Style, WeightUnit}
 
-final class PoolDialog(context: Context, session: Session) extends Dialog[Session]:
+final class SessionDialog(context: Context, session: Session) extends Dialog[Session]:
   initOwner(Client.stage)
   title = context.windowTitle
   headerText = context.dialogSession
