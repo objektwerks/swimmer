@@ -9,12 +9,14 @@ Todo
 Model
 -----
 >A session represents a **free form** workout, requiring the user to **replicate** data across sessions.
+* Account 1 <---> 1 Swimmer
 * Swimmer 1 ---> * Session
 
 Alternative Model
 -----------------
 >A workout represents a **template** for a session, allowing the user to select a **workout template**
 >for each session, lessening the data entry load on the user.
+* Account 1 <---> 1 Swimmer
 * Swimmer 1 ---> * Session 1 ---> 1 Workout
 
 Calories
