@@ -34,6 +34,10 @@ final class SessionsPane(context: Context, model: Model) extends VBox:
         text = context.headerLapUnit
         cellValueFactory = _.value.lapUnitProperty
       ,
+      new TableColumn[Session, String]:
+        text = context.headerStyle
+        cellValueFactory = _.value.styleProperty
+      ,
     )
     items = model.observableSessions
 
