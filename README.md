@@ -10,6 +10,10 @@ Model
 -----
 * Swimmer 1 ---> * Session
 
+Alternative Model
+-----------------
+* Workout 1 ---> * Swimmer 1 ---> * Session
+
 Calories
 --------
 *[Calories Burned Swimming](https://www.calculatorpro.com/calculator/calories-burned-swimming-calculator/)
