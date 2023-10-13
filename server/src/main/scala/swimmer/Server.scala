@@ -50,7 +50,7 @@ object Server extends LazyLogging:
     http.createContext("/command", handler)
 
     http.start()
-    println(s"*** Press Control-C to shutdown server at: $host:$port")
+    println(s"*** Press Control-C to shutdown Swimmer Http Server at: $host:$port")
     logger.info(s"*** Swimmer Http Server started at: $host:$port")
 
     sys.addShutdownHook:
