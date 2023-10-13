@@ -34,6 +34,18 @@ final class Context(config: Config):
   val dialogFaults = config.getString("dialog.faults")
 
   val headerName = config.getString("header.name")
+  val headerWeight = config.getString("header.weight")
+  val headerWeightUnit = config.getString("header.weightUnit")
+  val headerLaps = config.getString("header.laps")
+  val headerLapDistance = config.getString("header.lapDistance")
+  val headerLapUnit = config.getString("header.lapUnit")
+  val headerStyle = config.getString("header.style")
+  val headerKickboard = config.getString("header.kickboard")
+  val headerFins = config.getString("header.fins")
+  val headerMinutes = config.getString("header.minutes")
+  val headerSeconds = config.getString("header.seconds")
+  val headerCalories = config.getString("header.calories")
+  val headerDatetime = config.getString("header.datetime")
   val headerOccurred = config.getString("header.occurred")
   val headerFault = config.getString("header.fault")
 
