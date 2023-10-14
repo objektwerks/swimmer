@@ -10,32 +10,35 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends VBox:
   spacing = 3
   padding = Insets(3)
 
-  val labelYears = new Label:
+  val labelYear = new Label:
     alignment = Pos.CENTER_LEFT
     text = "Year:"
 
-  val labelMonths = new Label:
+  val labelMonth = new Label:
     alignment = Pos.CENTER_LEFT
     text = "Month:"
 
-  val labelDays = new Label:
+  val labelDay = new Label:
     alignment = Pos.CENTER_LEFT
     text = "Day:"
 
-  val labelHours = new Label:
+  val labelHour = new Label:
     alignment = Pos.CENTER_LEFT
     text = "Hour:"
 
   val labelMinutes = new Label:
     alignment = Pos.CENTER_LEFT
-    text = "Minutes:"
+    text = "Minute:"
 
   val labelSeconds = new Label:
     alignment = Pos.CENTER_LEFT
-    text = "Seconds:"
+    text = "Second:"
   
-  val hoursSpinner = Spinner[Int](min = 0, max = 23, initialValue = localDateTime.getHour, amountToStepBy = 1)
-  val minutesSpinner = Spinner[Int](min = 0, max = 59, initialValue = localDateTime.getMinute, amountToStepBy = 1)
-  val secondsSpinner = Spinner[Int](min = 0, max = 59, initialValue = localDateTime.getMinute, amountToStepBy = 1)
+  val yearSpinner = Spinner[Int](min = localDateTime.getYear, max = localDateTime.getYear + 1, initialValue = localDateTime.getYear, amountToStepBy = 1)
+  val monthSpinner = Spinner[Int](min = 1, max = 12, initialValue = localDateTime.getMonthValue, amountToStepBy = 1)
+  val daySpinner = Spinner[Int](min = 1, max = 31, initialValue = localDateTime.getDayOfMonth, amountToStepBy = 1)
+  val hourSpinner = Spinner[Int](min = 0, max = 23, initialValue = localDateTime.getHour, amountToStepBy = 1)
+  val minuteSpinner = Spinner[Int](min = 0, max = 59, initialValue = localDateTime.getMinute, amountToStepBy = 1)
+  val secondSpinner = Spinner[Int](min = 0, max = 59, initialValue = localDateTime.getSecond, amountToStepBy = 1)
 
   children = List()
