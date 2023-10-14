@@ -6,6 +6,10 @@ import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.control.{Label, Spinner}
 import scalafx.scene.layout.{GridPane, VBox}
 
+/**
+ * ImageButton onclick show Popup with date time selector
+ * Popup onclick | escape hide Popup with date time selector
+ */
 final class DateTimeSelector(localDateTime: LocalDateTime) extends VBox:
   val labelYear = new Label:
     alignment = Pos.CENTER_LEFT
