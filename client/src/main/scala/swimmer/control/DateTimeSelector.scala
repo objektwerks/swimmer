@@ -4,25 +4,25 @@ import java.time.LocalDateTime
 
 import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.control.{Label, Spinner}
-import scalafx.scene.layout.{HBox, Priority}
+import scalafx.scene.layout.VBox
 
-final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
+final class DateTimeSelector(localDateTime: LocalDateTime) extends VBox:
   spacing = 3
   padding = Insets(3)
 
-  val labelYear = new Label:
+  val labelYears = new Label:
     alignment = Pos.CENTER_LEFT
     text = "Year:"
 
-  val labelMonth = new Label:
+  val labelMonths = new Label:
     alignment = Pos.CENTER_LEFT
     text = "Month:"
 
-  val labelDay = new Label:
+  val labelDays = new Label:
     alignment = Pos.CENTER_LEFT
     text = "Day:"
 
-  val labelHour = new Label:
+  val labelHours = new Label:
     alignment = Pos.CENTER_LEFT
     text = "Hour:"
 
@@ -30,14 +30,12 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
     alignment = Pos.CENTER_LEFT
     text = "Minutes:"
 
-  val labelSecond = new Label:
+  val labelSeconds = new Label:
     alignment = Pos.CENTER_LEFT
     text = "Seconds:"
   
-  val hourSpinner = Spinner[Int](min = 0, max = 23, initialValue = localDateTime.getHour, amountToStepBy = 1)
-  val minuteSpinner = Spinner[Int](min = 0, max = 59, initialValue = localDateTime.getMinute, amountToStepBy = 1)
+  val hoursSpinner = Spinner[Int](min = 0, max = 23, initialValue = localDateTime.getHour, amountToStepBy = 1)
+  val minutesSpinner = Spinner[Int](min = 0, max = 59, initialValue = localDateTime.getMinute, amountToStepBy = 1)
+  val secondsSpinner = Spinner[Int](min = 0, max = 59, initialValue = localDateTime.getMinute, amountToStepBy = 1)
 
-  children = List(labelHour, hourSpinner, labelMinutes, minuteSpinner)
-  HBox.setHgrow(this, Priority.Always)
-
-  def value = localDateTime.withHour( hourSpinner.value.value ).withMinute( minuteSpinner.value.value )
+  children = List()
