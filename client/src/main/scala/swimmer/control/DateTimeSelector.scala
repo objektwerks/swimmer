@@ -47,11 +47,11 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends VBox:
     labelSecond -> secondSpinner
   )
 
-  val selector = toGridPane(controls)
+  val selector = buildGridPane(controls)
 
   children = List()
 
-  private def toGridPane(controls: List[(Label, Spinner[Int])]): GridPane =
+  private def buildGridPane(controls: List[(Label, Spinner[Int])]): GridPane =
     val gridPane = new GridPane:
       hgap = 6
       vgap = 6
