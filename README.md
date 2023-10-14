@@ -17,9 +17,8 @@ Alternative Model
 -----------------
 >A workout represents a **template** for a session, allowing the user to select a **workout** for each
 >session, removing the need to **replicate** data across sessions.
-* Account 1 ---> * Swimmer
+* Account 1 ---> * Swimmer | Workout
 * Swimmer 1 ---> * Session
-* Workout
 
 Calories
 --------
