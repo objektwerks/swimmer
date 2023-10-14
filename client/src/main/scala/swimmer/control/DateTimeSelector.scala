@@ -26,11 +26,11 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends VBox:
     alignment = Pos.CENTER_LEFT
     text = "Hour:"
 
-  val labelMinutes = new Label:
+  val labelMinute = new Label:
     alignment = Pos.CENTER_LEFT
     text = "Minute:"
 
-  val labelSeconds = new Label:
+  val labelSecond = new Label:
     alignment = Pos.CENTER_LEFT
     text = "Second:"
   
@@ -42,8 +42,12 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends VBox:
   val secondSpinner = Spinner[Int](min = 0, max = 59, initialValue = localDateTime.getSecond, amountToStepBy = 1)
 
   val controls = List[(Label, Spinner[Int])](
-    labelYear -> yearSpinner
-
+    labelYear -> yearSpinner,
+    labelMonth -> monthSpinner,
+    labelDay -> daySpinner,
+    labelHour -> hourSpinner,
+    labelMinute -> minuteSpinner,
+    labelSecond -> secondSpinner
   )
 
   val selector = toGridPane(controls)
