@@ -7,9 +7,6 @@ import scalafx.scene.control.{Label, Spinner}
 import scalafx.scene.layout.{GridPane, VBox}
 
 final class DateTimeSelector(localDateTime: LocalDateTime) extends VBox:
-  spacing = 3
-  padding = Insets(3)
-
   val labelYear = new Label:
     alignment = Pos.CENTER_LEFT
     text = "Year:"
