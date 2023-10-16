@@ -5,6 +5,7 @@ import java.time.LocalDateTime
 import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.control.{Label, Spinner}
 import scalafx.scene.layout.{GridPane, HBox, VBox}
+import scalafx.stage.Popup
 
 /**
  * ImageButton onclick show Popup with date time selector
@@ -19,6 +20,7 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
     text = "Date Time:"
 
   val dateTimePopupView = DateTimePopupView(localDateTime)
+  val dateTimePopup = Popup()
 
 private final class DateTimePopupView(localDateTime: LocalDateTime) extends VBox:
   val labelYear = new Label:
