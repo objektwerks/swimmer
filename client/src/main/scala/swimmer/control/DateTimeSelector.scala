@@ -24,15 +24,16 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
   val localDateTimeButton = new Button:
     text = "..."
     disable = false
-    onAction = { _ => popup(true) }
+    onAction = { _ => showPopup() }
 
   children = List(localDateTimeLabel, localDateTimeButton)
   HBox.setHgrow(this, Priority.Always)
 
   val dateTimePopupView = DateTimePopupView(localDateTime)
   val dateTimePopup = Popup()
+  dateTimePopup.getContent.addAll(dateTimePopupView)
 
-  def popup(show: Boolean): Unit = if show then dateTimePopup.show(Client.stage)
+  def showPopup(): Unit = dateTimePopup.show(Client.stage)
 
 private final class DateTimePopupView(localDateTime: LocalDateTime) extends VBox:
   val labelYear = new Label:
