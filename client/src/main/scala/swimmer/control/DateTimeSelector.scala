@@ -8,7 +8,7 @@ import scalafx.scene.control.{Button, Label, Spinner}
 import scalafx.scene.layout.{GridPane, HBox, Priority, VBox}
 import scalafx.stage.Popup
 
-import swimmer.Client
+import swimmer.{Client, Entity}
 
 final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
   spacing = 3
@@ -18,7 +18,7 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
 
   private val localDateTimeLabel = new Label:
     alignment = Pos.CENTER_LEFT
-    text = "Date Time:"
+    text = Entity.format(1l)
 
   private val localDateTimeButton = new Button:
     text = "..."
