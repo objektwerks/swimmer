@@ -4,7 +4,7 @@ import java.time.LocalDateTime
 
 import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.control.{Button, Label, Spinner}
-import scalafx.scene.layout.{GridPane, HBox, VBox}
+import scalafx.scene.layout.{GridPane, HBox, Priority, VBox}
 import scalafx.stage.Popup
 
 import swimmer.Client
@@ -25,6 +25,9 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
     text = "..."
     disable = false
     onAction = { _ => popup(true) }
+
+  children = List(localDateTimeLabel, localDateTimeButton)
+  HBox.setHgrow(this, Priority.Always)
 
   val dateTimePopupView = DateTimePopupView(localDateTime)
   val dateTimePopup = Popup()
