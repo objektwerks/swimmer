@@ -77,7 +77,9 @@ private final class DateTimePopupView(localDateTime: LocalDateTime) extends VBox
 
   val selector = buildGridPane(controls)
 
-  children = List()
+  children = List(selector)
+
+  def value: LocalDateTime = localDateTime
 
   private def buildGridPane(controls: List[(Label, Spinner[Int])]): GridPane =
     val gridPane = new GridPane:
