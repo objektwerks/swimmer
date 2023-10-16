@@ -67,7 +67,7 @@ private final class PopupView(localDateTime: LocalDateTime,
     alignment = Pos.CENTER_LEFT
     text = "Second:"
   
-  val yearSpinner = Spinner[Int](min = localDateTime.getYear, max = localDateTime.getYear + 1, initialValue = localDateTime.getYear, amountToStepBy = 1)
+  val yearSpinner = Spinner[Int](min = localDateTime.getYear - 1, max = localDateTime.getYear, initialValue = localDateTime.getYear, amountToStepBy = 1)
   val monthSpinner = Spinner[Int](min = 1, max = 12, initialValue = localDateTime.getMonthValue, amountToStepBy = 1)
   val daySpinner = Spinner[Int](min = 1, max = 31, initialValue = localDateTime.getDayOfMonth, amountToStepBy = 1)
   val hourSpinner = Spinner[Int](min = 0, max = 23, initialValue = localDateTime.getHour, amountToStepBy = 1)
