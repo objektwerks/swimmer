@@ -12,6 +12,7 @@ object Entity:
   given swimmerOrdering: Ordering[Swimmer] = Ordering.by[Swimmer, String](s => s.name)
   given sessionOrdering: Ordering[Session] = Ordering.by[Session, Long](dt => dt.datetime).reverse
 
+  def format(epochMillis: Long): String = toLocalDateTime(epochMillis).toString
   def toLocalDateTime(epochMillis: Long): LocalDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(epochMillis), ZoneOffset.UTC)
   def toEpochMillis(localDateTime: LocalDateTime): Long = localDateTime.toInstant(ZoneOffset.UTC).toEpochMilli
 
@@ -62,7 +63,7 @@ final case class Session(id: Long = 0,
   val minutesProperty = ObjectProperty[Int](this, "minutes", minutes)
   val secondsProperty = ObjectProperty[Int](this, "seconds", seconds)
   val caloriesProperty = ObjectProperty[Int](this, "calories", calories)
-  val datetimeProperty = ObjectProperty[String](this, "datetime", datetime.toString)
+  val datetimeProperty = ObjectProperty[String](this, "datetime", Entity.format(datetime))
   val session = this
 
 enum WeightUnit:
