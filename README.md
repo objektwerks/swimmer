@@ -5,7 +5,7 @@ Swimmer
 Todo
 ----
 1. Charts
-2. Dashboard
+2. Ox Fetcher
 
 Model
 -----
