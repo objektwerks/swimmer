@@ -31,7 +31,7 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
   private def showPopup(): Unit =
     val popup = Popup()
     val popupView = PopupView(value.value, popup, popupValue)
-    popup.getContent.addAll(popupView)
+    popup.content.addOne(popupView)
     popup.show(Client.stage)
 
   private def popupValue(popupLocalDateTime: LocalDateTime): Unit = value.value = popupLocalDateTime
