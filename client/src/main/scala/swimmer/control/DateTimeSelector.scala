@@ -16,11 +16,11 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
 
   val value: ObjectProperty[LocalDateTime] = ObjectProperty(localDateTime)
 
-  val localDateTimeLabel = new Label:
+  private val localDateTimeLabel = new Label:
     alignment = Pos.CENTER_LEFT
     text = "Date Time:"
 
-  val localDateTimeButton = new Button:
+  private val localDateTimeButton = new Button:
     text = "..."
     disable = false
     onAction = { _ => showPopup() }
@@ -28,13 +28,13 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
   children = List(localDateTimeLabel, localDateTimeButton)
   HBox.setHgrow(this, Priority.Always)
 
-  def showPopup(): Unit =
+  private def showPopup(): Unit =
     val popup = Popup()
     val popupView = PopupView(value.value, popup, popupValue)
     popup.getContent.addAll(popupView)
     popup.show(Client.stage)
 
-  def popupValue(popupLocalDateTime: LocalDateTime): Unit = value.value = popupLocalDateTime
+  private def popupValue(popupLocalDateTime: LocalDateTime): Unit = value.value = popupLocalDateTime
 
 private final class PopupView(localDateTime: LocalDateTime,
                               popup: Popup,
