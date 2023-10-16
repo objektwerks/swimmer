@@ -73,6 +73,14 @@ final class Context(config: Config):
   val tabSwimmers = config.getString("tab.swimmers")
   val tabSessions = config.getString("tab.sessions")
 
+  val dateTimeSelectorEllipsis = config.getString("dateTimeSelector.ellipsis")
+  val dateTimeSelectorYear = config.getString("dateTimeSelector.year")
+  val dateTimeSelectorMonth = config.getString("dateTimeSelector.month")
+  val dateTimeSelectorDay = config.getString("dateTimeSelector.day")
+  val dateTimeSelectorHour = config.getString("dateTimeSelector.hour")
+  val dateTimeSelectorMinute = config.getString("dateTimeSelector.minute")
+  val dateTimeSelectorSecond = config.getString("dateTimeSelector.second")
+
   def logoImage = loadImageView("/image/logo.png")
   def addImage = loadImageView("/image/add.png")
   def editImage = loadImageView("/image/edit.png")
