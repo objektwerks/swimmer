@@ -30,6 +30,9 @@ final class DateTimeSelector(context: Context, localDateTime: LocalDateTime) ext
 
   private def showPopup(): Unit =
     val popup = Popup()
+    popup.setAutoHide(true)
+    popup.setHideOnEscape(true)
+    popup.setConsumeAutoHidingEvents(false)
     val popupView = PopupView(context, value.value, popup, popupValue)
     popup.content.addOne(popupView)
     popup.show(Client.stage)
