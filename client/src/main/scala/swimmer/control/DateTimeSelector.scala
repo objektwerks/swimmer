@@ -106,7 +106,7 @@ private final class PopupView(localDateTime: LocalDateTime,
         secondSpinner.value.value
       )
 
-  private def buildGridPane(controls: List[(Label, Spinner[Int])]): GridPane =
+  private def buildGridPane(controls: List[(String, Spinner[Int])]): GridPane =
     val gridPane = new GridPane:
       hgap = 6
       vgap = 6
@@ -114,7 +114,10 @@ private final class PopupView(localDateTime: LocalDateTime,
     
     var row = 0
     for ((label, spinner) <- controls)
-      gridPane.add(label, columnIndex = 0, rowIndex = row)
+      val columnLabel = new Label:
+        alignment = Pos.CENTER_LEFT
+        text = label
+      gridPane.add(columnLabel, columnIndex = 0, rowIndex = row)
       gridPane.add(spinner, columnIndex = 1, rowIndex = row)
       row += 1
 
