@@ -3,9 +3,11 @@ package swimmer.control
 import java.time.LocalDateTime
 
 import scalafx.geometry.{Insets, Pos}
-import scalafx.scene.control.{Label, Spinner}
+import scalafx.scene.control.{Button, Label, Spinner}
 import scalafx.scene.layout.{GridPane, HBox, VBox}
 import scalafx.stage.Popup
+
+import swimmer.Client
 
 /**
  * ImageButton onclick show Popup with date time selector
@@ -15,12 +17,19 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
   spacing = 3
   padding = Insets(3)
 
-  val labelLocalDateTime = new Label:
+  val localDateTimeLabel = new Label:
     alignment = Pos.CENTER_LEFT
     text = "Date Time:"
 
+  val localDateTimeButton = new Button:
+    text = "..."
+    disable = false
+    onAction = { _ => popup() }
+
   val dateTimePopupView = DateTimePopupView(localDateTime)
   val dateTimePopup = Popup()
+
+  def popup(show: Boolean): Unit = if show then dateTimePopup.show(Client.stage)
 
 private final class DateTimePopupView(localDateTime: LocalDateTime) extends VBox:
   val labelYear = new Label:
