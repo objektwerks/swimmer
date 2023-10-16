@@ -24,7 +24,7 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
   val localDateTimeButton = new Button:
     text = "..."
     disable = false
-    onAction = { _ => popup() }
+    onAction = { _ => popup(true) }
 
   val dateTimePopupView = DateTimePopupView(localDateTime)
   val dateTimePopup = Popup()
