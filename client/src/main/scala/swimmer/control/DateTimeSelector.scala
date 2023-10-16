@@ -32,8 +32,8 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
   children = List(localDateTimeLabel, localDateTimeButton)
   HBox.setHgrow(this, Priority.Always)
 
-  val dateTimePopupView = DateTimePopupView(localDateTime, hidePopup)
   val dateTimePopup = Popup()
+  val dateTimePopupView = DateTimePopupView(localDateTime, dateTimePopup, hidePopup)
   dateTimePopup.getContent.addAll(dateTimePopupView)
 
   def showPopup(): Unit = dateTimePopup.show(Client.stage)
@@ -42,7 +42,9 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
     dateTimePopup.hide()
     value.value = Some(popupLocalDateTime)
 
-private final class DateTimePopupView(localDateTime: LocalDateTime, hide: (LocalDateTime) => Unit) extends VBox:
+private final class DateTimePopupView(localDateTime: LocalDateTime,
+                                      parent: Popup,
+                                      hide: (LocalDateTime) => Unit) extends VBox:
   val labelYear = new Label:
     alignment = Pos.CENTER_LEFT
     text = "Year:"
@@ -85,9 +87,14 @@ private final class DateTimePopupView(localDateTime: LocalDateTime, hide: (Local
 
   val selector = buildGridPane(controls)
 
-  children = List(selector)
+  val closeButton = new Button:
+    text = "Close"
+    disable = false
+    onAction = { _ => hide( value() ) }
 
-  def value: LocalDateTime = localDateTime
+  children = List(selector, closeButton)
+
+  def value(): LocalDateTime = localDateTime
 
   private def buildGridPane(controls: List[(Label, Spinner[Int])]): GridPane =
     val gridPane = new GridPane:
