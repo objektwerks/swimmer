@@ -80,6 +80,7 @@ final class Context(config: Config):
   val dateTimeSelectorHour = config.getString("dateTimeSelector.hour")
   val dateTimeSelectorMinute = config.getString("dateTimeSelector.minute")
   val dateTimeSelectorSecond = config.getString("dateTimeSelector.second")
+  val dateTimeSelectorClose = config.getString("dateTimeSelector.close")
 
   def logoImage = loadImageView("/image/logo.png")
   def addImage = loadImageView("/image/add.png")
