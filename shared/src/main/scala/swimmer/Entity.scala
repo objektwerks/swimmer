@@ -14,6 +14,8 @@ object Entity:
   given sessionOrdering: Ordering[Session] = Ordering.by[Session, Long](dt => dt.datetime).reverse
 
   def format(epochMillis: Long): String = toLocalDateTime(epochMillis).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+  def format(localDateTime: LocalDateTime): String = localDateTime.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+
   def toLocalDateTime(epochMillis: Long): LocalDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(epochMillis), ZoneOffset.UTC)
   def toEpochMillis(localDateTime: LocalDateTime): Long = localDateTime.toInstant(ZoneOffset.UTC).toEpochMilli
 
