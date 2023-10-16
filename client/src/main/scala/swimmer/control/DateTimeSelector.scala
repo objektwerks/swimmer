@@ -34,7 +34,9 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
     popup.content.addOne(popupView)
     popup.show(Client.stage)
 
-  private def popupValue(popupLocalDateTime: LocalDateTime): Unit = value.value = popupLocalDateTime
+  private def popupValue(popupLocalDateTime: LocalDateTime): Unit =
+    value.value = popupLocalDateTime
+    localDateTimeLabel.text = Entity.format(popupLocalDateTime)
 
 private final class PopupView(localDateTime: LocalDateTime,
                               popup: Popup,
