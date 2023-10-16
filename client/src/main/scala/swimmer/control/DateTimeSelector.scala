@@ -18,7 +18,7 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
 
   private val localDateTimeLabel = new Label:
     alignment = Pos.CENTER_LEFT
-    text = Entity.format(1l)
+    text = Entity.format(localDateTime)
 
   private val localDateTimeButton = new Button:
     text = "..."
