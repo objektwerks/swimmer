@@ -18,7 +18,7 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
   spacing = 3
   padding = Insets(3)
 
-  var value: ObjectProperty[LocalDateTime] = ObjectProperty(localDateTime)
+  val value: ObjectProperty[LocalDateTime] = ObjectProperty(localDateTime)
 
   val localDateTimeLabel = new Label:
     alignment = Pos.CENTER_LEFT
