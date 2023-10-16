@@ -8,9 +8,9 @@ import scalafx.scene.control.{Button, Label, Spinner}
 import scalafx.scene.layout.{GridPane, HBox, Priority, VBox}
 import scalafx.stage.Popup
 
-import swimmer.{Client, Entity}
+import swimmer.{Client, Context, Entity}
 
-final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
+final class DateTimeSelector(context: Context, localDateTime: LocalDateTime) extends HBox:
   spacing = 3
   padding = Insets(3)
 
@@ -21,7 +21,7 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
     text = Entity.format(localDateTime)
 
   private val localDateTimeButton = new Button:
-    text = "..."
+    text = context.ellipsis
     disable = false
     onAction = { _ => showPopup() }
 
@@ -38,7 +38,8 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
     value.value = popupLocalDateTime
     localDateTimeLabel.text = Entity.format(popupLocalDateTime)
 
-private final class PopupView(localDateTime: LocalDateTime,
+private final class PopupView(context: Context,
+                              localDateTime: LocalDateTime,
                               popup: Popup,
                               popupValue: (LocalDateTime) => Unit) extends VBox: 
   val yearSpinner = Spinner[Int](min = localDateTime.getYear - 1, max = localDateTime.getYear, initialValue = localDateTime.getYear, amountToStepBy = 1)
@@ -49,19 +50,19 @@ private final class PopupView(localDateTime: LocalDateTime,
   val secondSpinner = Spinner[Int](min = 0, max = 59, initialValue = localDateTime.getSecond, amountToStepBy = 1)
 
   val controls = List[(String, Spinner[Int])](
-    "Year:" -> yearSpinner,
-    "Month:" -> monthSpinner,
-    "Day:" -> daySpinner,
-    "Hour:" -> hourSpinner,
-    "Minute:" -> minuteSpinner,
-    "Second:" -> secondSpinner
+    context.labelYear -> yearSpinner,
+    context.labelMonth -> monthSpinner,
+    context.labelDay -> daySpinner,
+    context.labelHour -> hourSpinner,
+    context.labelMinute -> minuteSpinner,
+    context.labelSecond -> secondSpinner
   )
 
   val selector = buildGridPane(controls)
 
   val closeButton = new Button:
     alignment = Pos.CENTER
-    text = "Close"
+    text = context.buttonClose
     disable = false
     onAction = { _ =>
       popup.hide()
