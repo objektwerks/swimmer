@@ -18,7 +18,7 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
   spacing = 3
   padding = Insets(3)
 
-  var value: ObjectProperty[Option[LocalDateTime]] = ObjectProperty(None)
+  var value: ObjectProperty[LocalDateTime] = ObjectProperty(localDateTime)
 
   val localDateTimeLabel = new Label:
     alignment = Pos.CENTER_LEFT
@@ -40,7 +40,7 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
 
   def hidePopup(popupLocalDateTime: LocalDateTime): Unit =
     dateTimePopup.hide()
-    value.value = Some(popupLocalDateTime)
+    value.value = popupLocalDateTime
 
 private final class DateTimePopupView(localDateTime: LocalDateTime,
                                       hidePopupView: (LocalDateTime) => Unit) extends VBox:
@@ -93,7 +93,7 @@ private final class DateTimePopupView(localDateTime: LocalDateTime,
 
   children = List(selector, closeButton)
 
-  def value(): LocalDateTime =
+  private def value(): LocalDateTime =
     LocalDateTime
       .of(
         yearSpinner.value.value,
