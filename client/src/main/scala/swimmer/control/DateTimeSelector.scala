@@ -4,13 +4,17 @@ import java.time.LocalDateTime
 
 import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.control.{Label, Spinner}
-import scalafx.scene.layout.{GridPane, VBox}
+import scalafx.scene.layout.{GridPane, HBox, VBox}
 
 /**
  * ImageButton onclick show Popup with date time selector
  * Popup onclick | escape hide Popup with date time selector
  */
-final class DateTimeSelector(localDateTime: LocalDateTime) extends VBox:
+final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
+  spacing = 3
+  padding = Insets(3)
+
+private final class DateTimePopupView(localDateTime: LocalDateTime) extends VBox:
   val labelYear = new Label:
     alignment = Pos.CENTER_LEFT
     text = "Year:"
