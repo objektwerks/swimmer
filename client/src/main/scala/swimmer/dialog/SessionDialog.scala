@@ -57,7 +57,7 @@ final class SessionDialog(context: Context, session: Session) extends Dialog[Ses
   val caloriesTextField = new IntTextField:
     text = session.calories.toString
 
-  val dateTimeSelector = DateTimeSelector( Entity.toLocalDateTime(session.datetime) )
+  val datetimeSelector = DateTimeSelector( Entity.toLocalDateTime(session.datetime) )
 
   val controls = List[(String, Region)](
     context.labelWeightUnit  -> weightTextField,
@@ -70,7 +70,8 @@ final class SessionDialog(context: Context, session: Session) extends Dialog[Ses
     context.labelFins        -> finsCheckBox,
     context.labelMinutes     -> minutesTextField,
     context.labelSeconds     -> secondsTextField,
-    context.labelCalories    -> caloriesTextField
+    context.labelCalories    -> caloriesTextField,
+    context.labelDatetime    -> datetimeSelector
   )
   dialogPane().content = ControlGridPane(controls)
 
@@ -90,6 +91,7 @@ final class SessionDialog(context: Context, session: Session) extends Dialog[Ses
         fins = finsCheckBox.selected.value,
         minutes = minutesTextField.int(session.minutes),
         seconds = secondsTextField.int(session.seconds),
-        calories = caloriesTextField.int(session.calories)
+        calories = caloriesTextField.int(session.calories),
+        datetime = Entity.toEpochMillis(datetimeSelector.value.value)
       )
     else null
