@@ -87,6 +87,7 @@ private final class DateTimePopupView(localDateTime: LocalDateTime,
   val selector = buildGridPane(controls)
 
   val closeButton = new Button:
+    alignment = Pos.CENTER
     text = "Close"
     disable = false
     onAction = { _ => hidePopupView( value() ) }
