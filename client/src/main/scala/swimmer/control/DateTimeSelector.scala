@@ -10,10 +10,6 @@ import scalafx.stage.Popup
 
 import swimmer.Client
 
-/**
- * ImageButton onclick show Popup with date time selector
- * Popup onclick | escape hide Popup with date time selector
- */
 final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
   spacing = 3
   padding = Insets(3)
