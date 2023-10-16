@@ -5,7 +5,7 @@ Swimmer
 Todo
 ----
 1. Distance / Time Chart - by Stroke per Swimmer
-2. Ox Fetcher
+2. Fetcher using Ox
 
 Model
 -----
