@@ -9,6 +9,9 @@ import scalafx.scene.control.ButtonBar.ButtonData
 import swimmer.{Client, Context, Session}
 import swimmer.control.IntTextField
 import swimmer.{LapUnit, Style, WeightUnit}
+import swimmer.control.DateTimeSelector
+
+import swimmer.Entity
 
 final class SessionDialog(context: Context, session: Session) extends Dialog[Session]:
   initOwner(Client.stage)
@@ -53,6 +56,8 @@ final class SessionDialog(context: Context, session: Session) extends Dialog[Ses
 
   val caloriesTextField = new IntTextField:
     text = session.calories.toString
+
+  val dateTimeSelector = DateTimeSelector( Entity.toLocalDateTime(session.datetime) )
 
   val controls = List[(String, Region)](
     context.labelWeightUnit  -> weightTextField,

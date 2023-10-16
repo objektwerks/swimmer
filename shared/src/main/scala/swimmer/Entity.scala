@@ -1,6 +1,6 @@
 package swimmer
 
-import java.time.Instant
+import java.time.{Instant, LocalDateTime, ZoneOffset}
 import java.util.UUID
 
 import scalafx.beans.property.ObjectProperty
@@ -11,6 +11,8 @@ sealed trait Entity:
 object Entity:
   given swimmerOrdering: Ordering[Swimmer] = Ordering.by[Swimmer, String](s => s.name)
   given sessionOrdering: Ordering[Session] = Ordering.by[Session, Long](dt => dt.datetime).reverse
+
+  def toLocalDateTime(epochMillis: Long): LocalDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(epochMillis), ZoneOffset.UTC)
 
 final case class Account(id: Long = 0,
                          license: String = UUID.randomUUID.toString,
