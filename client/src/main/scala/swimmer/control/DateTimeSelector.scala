@@ -93,7 +93,16 @@ private final class DateTimePopupView(localDateTime: LocalDateTime,
 
   children = List(selector, closeButton)
 
-  def value(): LocalDateTime = localDateTime
+  def value(): LocalDateTime =
+    LocalDateTime
+      .of(
+        yearSpinner.value.value,
+        monthSpinner.value.value,
+        daySpinner.value.value,
+        hourSpinner.value.value,
+        minuteSpinner.value.value,
+        secondSpinner.value.value
+      )
 
   private def buildGridPane(controls: List[(Label, Spinner[Int])]): GridPane =
     val gridPane = new GridPane:
