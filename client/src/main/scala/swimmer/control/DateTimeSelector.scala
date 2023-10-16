@@ -14,6 +14,8 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
   spacing = 3
   padding = Insets(3)
 
+  val dateTimePopupView = DateTimePopupView(localDateTime)
+
 private final class DateTimePopupView(localDateTime: LocalDateTime) extends VBox:
   val labelYear = new Label:
     alignment = Pos.CENTER_LEFT
