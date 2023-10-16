@@ -40,31 +40,7 @@ final class DateTimeSelector(localDateTime: LocalDateTime) extends HBox:
 
 private final class PopupView(localDateTime: LocalDateTime,
                               popup: Popup,
-                              popupValue: (LocalDateTime) => Unit) extends VBox:
-  val labelYear = new Label:
-    alignment = Pos.CENTER_LEFT
-    text = "Year:"
-
-  val labelMonth = new Label:
-    alignment = Pos.CENTER_LEFT
-    text = "Month:"
-
-  val labelDay = new Label:
-    alignment = Pos.CENTER_LEFT
-    text = "Day:"
-
-  val labelHour = new Label:
-    alignment = Pos.CENTER_LEFT
-    text = "Hour:"
-
-  val labelMinute = new Label:
-    alignment = Pos.CENTER_LEFT
-    text = "Minute:"
-
-  val labelSecond = new Label:
-    alignment = Pos.CENTER_LEFT
-    text = "Second:"
-  
+                              popupValue: (LocalDateTime) => Unit) extends VBox: 
   val yearSpinner = Spinner[Int](min = localDateTime.getYear - 1, max = localDateTime.getYear, initialValue = localDateTime.getYear, amountToStepBy = 1)
   val monthSpinner = Spinner[Int](min = 1, max = 12, initialValue = localDateTime.getMonthValue, amountToStepBy = 1)
   val daySpinner = Spinner[Int](min = 1, max = 31, initialValue = localDateTime.getDayOfMonth, amountToStepBy = 1)
@@ -72,13 +48,13 @@ private final class PopupView(localDateTime: LocalDateTime,
   val minuteSpinner = Spinner[Int](min = 0, max = 59, initialValue = localDateTime.getMinute, amountToStepBy = 1)
   val secondSpinner = Spinner[Int](min = 0, max = 59, initialValue = localDateTime.getSecond, amountToStepBy = 1)
 
-  val controls = List[(Label, Spinner[Int])](
-    labelYear -> yearSpinner,
-    labelMonth -> monthSpinner,
-    labelDay -> daySpinner,
-    labelHour -> hourSpinner,
-    labelMinute -> minuteSpinner,
-    labelSecond -> secondSpinner
+  val controls = List[(String, Spinner[Int])](
+    "Year:" -> yearSpinner,
+    "Month:" -> monthSpinner,
+    "Day:" -> daySpinner,
+    "Hour:" -> hourSpinner,
+    "Minute:" -> minuteSpinner,
+    "Second:" -> secondSpinner
   )
 
   val selector = buildGridPane(controls)
