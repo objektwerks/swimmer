@@ -21,7 +21,7 @@ final class DateTimeSelector(context: Context, localDateTime: LocalDateTime) ext
     text = Entity.format(localDateTime)
 
   private val localDateTimeButton = new Button:
-    text = context.ellipsis
+    text = context.dateTimeSelectorEllipsis
     disable = false
     onAction = { _ => showPopup() }
 
@@ -30,7 +30,7 @@ final class DateTimeSelector(context: Context, localDateTime: LocalDateTime) ext
 
   private def showPopup(): Unit =
     val popup = Popup()
-    val popupView = PopupView(value.value, popup, popupValue)
+    val popupView = PopupView(context, value.value, popup, popupValue)
     popup.content.addOne(popupView)
     popup.show(Client.stage)
 
@@ -50,19 +50,19 @@ private final class PopupView(context: Context,
   val secondSpinner = Spinner[Int](min = 0, max = 59, initialValue = localDateTime.getSecond, amountToStepBy = 1)
 
   val controls = List[(String, Spinner[Int])](
-    context.labelYear -> yearSpinner,
-    context.labelMonth -> monthSpinner,
-    context.labelDay -> daySpinner,
-    context.labelHour -> hourSpinner,
-    context.labelMinute -> minuteSpinner,
-    context.labelSecond -> secondSpinner
+    context.dateTimeSelectorYear -> yearSpinner,
+    context.dateTimeSelectorMonth -> monthSpinner,
+    context.dateTimeSelectorDay -> daySpinner,
+    context.dateTimeSelectorHour -> hourSpinner,
+    context.dateTimeSelectorMinute -> minuteSpinner,
+    context.dateTimeSelectorSecond -> secondSpinner
   )
 
   val selector = buildGridPane(controls)
 
   val closeButton = new Button:
     alignment = Pos.CENTER
-    text = context.buttonClose
+    text = context.dateTimeSelectorClose
     disable = false
     onAction = { _ =>
       popup.hide()
