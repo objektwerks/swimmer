@@ -20,9 +20,10 @@ Alternative Model
 * Account 1 ---> * Swimmer | Workout
 * Swimmer 1 ---> * Session
 
-Calories
---------
+Calculations
+------------
 *[Calories Burned Swimming](https://www.calculatorpro.com/calculator/calories-burned-swimming-calculator/)
+*[Distance / Time](https://www.calculatorsoup.com/calculators/math/speed-distance-time-calculator.php)
    
 Build
 -----
