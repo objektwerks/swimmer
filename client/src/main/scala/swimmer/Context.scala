@@ -12,10 +12,6 @@ final class Context(config: Config):
 
   val url = config.getString("url")
 
-  val errorServer = config.getString("error.server")
-  val errorRegister = config.getString("error.register")
-  val errorLogin = config.getString("error.login")
-
   val buttonAdd = config.getString("button.add")
   val buttonEdit = config.getString("button.edit")
   val buttonSave = config.getString("button.save")
@@ -36,6 +32,10 @@ final class Context(config: Config):
   val dialogSwimmer = config.getString("dialog.swimmer")
   val dialogSession = config.getString("dialog.session")
   val dialogFaults = config.getString("dialog.faults")
+
+  val errorServer = config.getString("error.server")
+  val errorRegister = config.getString("error.register")
+  val errorLogin = config.getString("error.login")
 
   val headerName = config.getString("header.name")
   val headerWeight = config.getString("header.weight")
