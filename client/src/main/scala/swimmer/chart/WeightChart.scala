@@ -12,10 +12,10 @@ import swimmer.{Context, Entity, Model}
 final case class WeightXY(xDate: String, yCount: Int)
 
 final class WeightChart(context: Context, model: Model) extends TabPane:
-  val expendables = model.observableSessions.reverse
+  val weights = model.observableSessions.reverse
   val dateFormat = DateTimeFormatter.ofPattern("M.dd")
-  val minDate = Entity.toLocalDateTime( expendables.map(e => e.datetime).min ).format(dateFormat)
-  val maxDate = Entity.toLocalDateTime( expendables.map(e => e.datetime).max ).format(dateFormat)
+  val minDate = Entity.toLocalDateTime( weights.map(e => e.datetime).min ).format(dateFormat)
+  val maxDate = Entity.toLocalDateTime( weights.map(e => e.datetime).max ).format(dateFormat)
 
   val tab = new Tab:
     closable = false
@@ -26,7 +26,7 @@ final class WeightChart(context: Context, model: Model) extends TabPane:
   tabs = List(tab)
 
   def buildChart(): LineChart[String, Number] =
-    val filtered = expendables.map(e => WeightXY( Entity.toLocalDateTime(e.datetime).format(dateFormat), e.weight) )
+    val filtered = weights.map(e => WeightXY( Entity.toLocalDateTime(e.datetime).format(dateFormat), e.weight) )
     val (chart, series) = LineChartBuilder.build(context = context,
                                                  xLabel = context.chartMonthDay,
                                                  xMinDate = minDate,
