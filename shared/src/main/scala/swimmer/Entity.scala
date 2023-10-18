@@ -69,6 +69,8 @@ final case class Session(id: Long = 0,
   val datetimeProperty = ObjectProperty[String](this, "datetime", Entity.format(datetime))
   val session = this
 
+  def distance(): Int = laps * lapDistance
+
 enum WeightUnit:
   case lb, kg
 
