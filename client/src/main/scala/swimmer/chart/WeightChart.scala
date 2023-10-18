@@ -3,27 +3,22 @@ package swimmer.chart
 import java.time.format.DateTimeFormatter
 
 import scalafx.Includes.*
-import scalafx.geometry.Insets
 import scalafx.scene.chart.{LineChart, XYChart}
-import scalafx.scene.control.{Tab, TabPane}
+import scalafx.scene.control.Tab
 
 import swimmer.{Context, Entity, Model}
 
 final case class WeightXY(xDate: String, yCount: Int)
 
-final class WeightChart(context: Context, model: Model) extends TabPane:
+final class WeightChart(context: Context, model: Model) extends Tab:
   val weights = model.observableSessions.reverse
   val dateFormat = DateTimeFormatter.ofPattern("M.dd")
   val minDate = Entity.toLocalDateTime( weights.map(e => e.datetime).min ).format(dateFormat)
   val maxDate = Entity.toLocalDateTime( weights.map(e => e.datetime).max ).format(dateFormat)
 
-  val tab = new Tab:
-    closable = false
-    text = context.tabWeight
-    content = buildChart()
-
-  padding = Insets(6)
-  tabs = List(tab)
+  closable = false
+  text = context.tabWeight
+  content = buildChart()
 
   def buildChart(): LineChart[String, Number] =
     val filtered = weights.map(e => WeightXY( Entity.toLocalDateTime(e.datetime).format(dateFormat), e.weight) )
