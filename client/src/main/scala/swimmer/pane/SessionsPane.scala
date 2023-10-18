@@ -2,10 +2,11 @@ package swimmer.pane
 
 import scalafx.Includes.*
 import scalafx.geometry.Insets
-import scalafx.scene.control.{Button, SelectionMode, TableColumn, TableView}
+import scalafx.scene.control.{Button, SelectionMode, Tab, TabPane, TableColumn, TableView}
 import scalafx.scene.layout.{HBox, Priority, VBox}
 
 import swimmer.{Session, Context, Model}
+import swimmer.chart.{CaloriesChart, DistanceChart, WeightChart}
 import swimmer.dialog.SessionDialog
 
 final class SessionsPane(context: Context, model: Model) extends VBox:
@@ -87,13 +88,26 @@ final class SessionsPane(context: Context, model: Model) extends VBox:
     spacing = 6
     children = List(addButton, editButton, chartButton)
 
+  val tab = new Tab:
+  	text = context.tabSwimmers
+  	closable = false
+  	content = new VBox {
+      spacing = 6
+      padding = Insets(6)
+      children = List(tableView, buttonBar)
+    }
+
+  val tabPane = new TabPane:
+    tabs = List(tab, DistanceChart(context, model))
+
+  children = List(tabPane)
+  VBox.setVgrow(tableView, Priority.Always)
+  VBox.setVgrow(tabPane, Priority.Always)
+
   model.selectedSessionId.onChange { (_, _, _) =>
     addButton.disable = false
     chartButton.disable = false
   }
-
-  children = List(tableView, buttonBar)
-  VBox.setVgrow(tableView, Priority.Always)
 
   tableView.onMouseClicked = { event =>
     if (event.getClickCount == 2 && tableView.selectionModel().getSelectedItem != null) update()
