@@ -98,7 +98,12 @@ final class SessionsPane(context: Context, model: Model) extends VBox:
     }
 
   val tabPane = new TabPane:
-    tabs = List(tab, DistanceChart(context, model), CaloriesChart(context, model), WeightChart(context, model))
+    tabs = List(
+      tab,
+      DistanceChart(context, model),
+      CaloriesChart(context, model),
+      WeightChart(context, model)
+    )
 
   children = List(tabPane)
   VBox.setVgrow(tableView, Priority.Always)
