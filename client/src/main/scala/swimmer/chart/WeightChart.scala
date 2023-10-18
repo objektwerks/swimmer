@@ -31,7 +31,7 @@ final class WeightChart(context: Context, model: Model) extends TabPane:
                                                  xLabel = context.chartMonthDay,
                                                  xMinDate = minDate,
                                                  xMaxDate = maxDate,
-                                                 yLabel = context.headerCalories,
+                                                 yLabel = context.headerWeight,
                                                  yLowerBound = 50,
                                                  yUpperBound = 400,
                                                  yTickUnit = 50,
