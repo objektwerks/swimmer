@@ -19,7 +19,7 @@ final class CaloriesChart(context: Context, model: Model) extends TabPane:
 
   val tab = new Tab:
     closable = false
-    text = context.tabExpendables
+    text = context.tabCalories
     content = buildChart()
 
   padding = Insets(6)
