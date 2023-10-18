@@ -26,7 +26,7 @@ final class WeightChart(context: Context, model: Model) extends TabPane:
   tabs = List(tab)
 
   def buildChart(): LineChart[String, Number] =
-    val filtered = expendables.map(e => CalorieXY( Entity.toLocalDateTime(e.datetime).format(dateFormat), e.weight) )
+    val filtered = expendables.map(e => WeightXY( Entity.toLocalDateTime(e.datetime).format(dateFormat), e.weight) )
     val (chart, series) = LineChartBuilder.build(context = context,
                                                  xLabel = context.chartMonthDay,
                                                  xMinDate = minDate,
