@@ -26,6 +26,7 @@ final class Context(config: Config):
   val chartMin = config.getString("chart.min")
   val chartMax = config.getString("chart.max")
   val chartAvg = config.getString("chart.avg")
+  val chartMonthDay = config.getString("chart.monthDay")
 
   val dialogRegisterLogin = config.getString("dialog.registerLogin")
   val dialogAccount = config.getString("dialog.account")
