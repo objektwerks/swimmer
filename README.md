@@ -7,8 +7,7 @@ Todo
 1. Distance / Time Line Chart - by Stroke per Swimmer past 7 days
 2. Calories / Time Line Chart - by Swimmer past 7 days
 3. Weight / Time Line Chart - by Swimmer past 6 months
-4. Top *N* Swims Table - by Stroke / Distance / Time per Swimmer past 7 days
-5. Fetcher using Ox
+4. Fetcher using Ox
 
 Model
 -----
