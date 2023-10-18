@@ -57,7 +57,7 @@ final class SessionDialog(context: Context, session: Session) extends Dialog[Ses
   val caloriesTextField = new IntTextField:
     text = session.calories.toString
 
-  val datetimeSelector = DateTimeSelector( Entity.toLocalDateTime(session.datetime) )
+  val datetimeSelector = DateTimeSelector( context, Entity.toLocalDateTime(session.datetime) )
 
   val controls = List[(String, Region)](
     context.labelWeightUnit  -> weightTextField,
