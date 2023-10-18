@@ -12,10 +12,10 @@ import swimmer.{Context, Entity, Model}
 final case class DistanceXY(xDate: String, yCount: Int)
 
 final class DistanceChart(context: Context, model: Model) extends TabPane:
-  val expendables = model.observableSessions.reverse
+  val distances = model.observableSessions.reverse
   val dateFormat = DateTimeFormatter.ofPattern("M.dd")
-  val minDate = Entity.toLocalDateTime( expendables.map(e => e.datetime).min ).format(dateFormat)
-  val maxDate = Entity.toLocalDateTime( expendables.map(e => e.datetime).max ).format(dateFormat)
+  val minDate = Entity.toLocalDateTime( distances.map(e => e.datetime).min ).format(dateFormat)
+  val maxDate = Entity.toLocalDateTime( distances.map(e => e.datetime).max ).format(dateFormat)
 
   val tab = new Tab:
     closable = false
@@ -26,7 +26,7 @@ final class DistanceChart(context: Context, model: Model) extends TabPane:
   tabs = List(tab)
 
   def buildChart(): LineChart[String, Number] =
-    val filtered = expendables.map(e => DistanceXY( Entity.toLocalDateTime(e.datetime).format(dateFormat), e.distance()) )
+    val filtered = distances.map(e => DistanceXY( Entity.toLocalDateTime(e.datetime).format(dateFormat), e.distance()) )
     val (chart, series) = LineChartBuilder.build(context = context,
                                                  xLabel = context.chartMonthDay,
                                                  xMinDate = minDate,

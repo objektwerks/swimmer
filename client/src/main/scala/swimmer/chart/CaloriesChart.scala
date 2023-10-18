@@ -31,7 +31,7 @@ final class CaloriesChart(context: Context, model: Model) extends TabPane:
                                                  xLabel = context.chartMonthDay,
                                                  xMinDate = minDate,
                                                  xMaxDate = maxDate,
-                                                 yLabel = context.headerCalories,
+                                                 yLabel = context.tabCalories,
                                                  yLowerBound = 100,
                                                  yUpperBound = 10000,
                                                  yTickUnit = 100,
