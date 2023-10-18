@@ -31,7 +31,7 @@ final class DistanceChart(context: Context, model: Model) extends TabPane:
                                                  xLabel = context.chartMonthDay,
                                                  xMinDate = minDate,
                                                  xMaxDate = maxDate,
-                                                 yLabel = context.headerDistance,
+                                                 yLabel = context.tabDistance,
                                                  yLowerBound = 100,
                                                  yUpperBound = 10000,
                                                  yTickUnit = 100,
