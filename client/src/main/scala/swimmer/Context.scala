@@ -76,6 +76,9 @@ final class Context(config: Config):
 
   val tabSwimmers = config.getString("tab.swimmers")
   val tabSessions = config.getString("tab.sessions")
+  val tabCalories = config.getString("tab.calories")
+  val tabWeight = config.getString("tab.weight")
+  val tabDistance = config.getString("tab.distance")
 
   val dateTimeSelectorEllipsis = config.getString("dateTimeSelector.ellipsis")
   val dateTimeSelectorYear = config.getString("dateTimeSelector.year")
