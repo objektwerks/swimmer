@@ -19,7 +19,7 @@ final class WeightChart(context: Context, model: Model) extends TabPane:
 
   val tab = new Tab:
     closable = false
-    text = context.tabCalories
+    text = context.tabWeight
     content = buildChart()
 
   padding = Insets(6)
@@ -31,7 +31,7 @@ final class WeightChart(context: Context, model: Model) extends TabPane:
                                                  xLabel = context.chartMonthDay,
                                                  xMinDate = minDate,
                                                  xMaxDate = maxDate,
-                                                 yLabel = context.headerWeight,
+                                                 yLabel = context.tabWeight,
                                                  yLowerBound = 50,
                                                  yUpperBound = 400,
                                                  yTickUnit = 50,
