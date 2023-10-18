@@ -2,9 +2,11 @@ package swimmer.chart
 
 import java.time.format.DateTimeFormatter
 
+import scalafx.geometry.Insets
 import scalafx.Includes.*
 import scalafx.scene.chart.{LineChart, XYChart}
 import scalafx.scene.control.Tab
+import scalafx.scene.layout.VBox
 
 import swimmer.{Context, Entity, Model}
 
@@ -19,6 +21,11 @@ final class DistanceChart(context: Context, model: Model) extends Tab:
   closable = false
   text = context.tabDistance
   content = buildChart()
+  content = new VBox { // TODO!
+    spacing = 6
+    padding = Insets(6)
+    children = List(strokeComboBox, buildChart())
+  }
 
   def buildChart(): LineChart[String, Number] =
     val filtered = distances.map(e => DistanceXY( Entity.toLocalDateTime(e.datetime).format(dateFormat), e.distance()) )
