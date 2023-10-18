@@ -32,8 +32,8 @@ final class CaloriesChart(context: Context, model: Model) extends TabPane:
                                                  xMinDate = minDate,
                                                  xMaxDate = maxDate,
                                                  yLabel = context.headerCalories,
-                                                 yLowerBound = 1,
-                                                 yUpperBound = 1000,
+                                                 yLowerBound = 100,
+                                                 yUpperBound = 10000,
                                                  yTickUnit = 100,
                                                  yValues = filtered.map(exy => exy.yCount))
     filtered foreach { exy =>
