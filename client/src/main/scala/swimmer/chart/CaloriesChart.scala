@@ -11,17 +11,17 @@ import swimmer.{Context, Entity, Model}
 final case class CalorieXY(xDate: String, yCount: Int)
 
 final class CaloriesChart(context: Context, model: Model) extends Tab:
-  val calories = model.observableSessions.reverse
+  val sessions = model.observableSessions.reverse
   val dateFormat = DateTimeFormatter.ofPattern("M.dd")
-  val minDate = Entity.toLocalDateTime( calories.map(e => e.datetime).min ).format(dateFormat)
-  val maxDate = Entity.toLocalDateTime( calories.map(e => e.datetime).max ).format(dateFormat)
+  val minDate = Entity.toLocalDateTime( sessions.map(e => e.datetime).min ).format(dateFormat)
+  val maxDate = Entity.toLocalDateTime( sessions.map(e => e.datetime).max ).format(dateFormat)
 
   closable = false
   text = context.tabCalories
   content = buildChart()
 
   def buildChart(): LineChart[String, Number] =
-    val filtered = calories.map(e => CalorieXY( Entity.toLocalDateTime(e.datetime).format(dateFormat), e.calories) )
+    val filtered = sessions.map(e => CalorieXY( Entity.toLocalDateTime(e.datetime).format(dateFormat), e.calories) )
     val (chart, series) = LineChartBuilder.build(context = context,
                                                  xLabel = context.chartMonthDay,
                                                  xMinDate = minDate,
