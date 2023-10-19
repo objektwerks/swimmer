@@ -70,6 +70,10 @@ final case class Session(id: Long = 0,
   val session = this
 
   def roundSecondsToMinute(): Int = if seconds > 29 then 1 else 0
+
+  // Duration (in minutes) x (MET x 3.5 x weight in kg) / 200
+  def caloriesBurned(weightInKg: Int): Double = ( minutes + roundSecondsToMinute() ) * (1 * 3.5 * weightInKg) / 200
+
   def distance(): Int = laps * lapDistance
   def speed(): Int = distance() / ( minutes + roundSecondsToMinute() )
 
