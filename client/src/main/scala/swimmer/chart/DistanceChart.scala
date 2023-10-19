@@ -3,10 +3,10 @@ package swimmer.chart
 import java.time.format.DateTimeFormatter
 
 import scalafx.collections.ObservableBuffer
-import scalafx.geometry.Insets
+import scalafx.geometry.{Insets, Orientation}
 import scalafx.Includes.*
 import scalafx.scene.chart.{LineChart, XYChart}
-import scalafx.scene.control.{ComboBox, Tab}
+import scalafx.scene.control.{ComboBox, Separator, Tab}
 import scalafx.scene.layout.VBox
 
 import swimmer.{Context, Entity, Model, Style}
@@ -31,7 +31,7 @@ final class DistanceChart(context: Context, model: Model) extends Tab:
   content = new VBox { // TODO!
     spacing = 6
     padding = Insets(6)
-    children = List(styleComboBox, buildChart())
+    children = List(styleComboBox, Separator(Orientation.Horizontal), buildChart())
   }
 
   def buildChart(): LineChart[String, Number] =
