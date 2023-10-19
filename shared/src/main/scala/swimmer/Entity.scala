@@ -71,10 +71,10 @@ final case class Session(id: Long = 0,
 
   def roundSecondsToMinute(): Int = if seconds > 29 then 1 else 0
 
-  def caloriesBurned(lbs: Int): Double =
-    ( minutes + roundSecondsToMinute() ) * (Session.MET * 3.5 * WeightUnit.lbsToKgs(lbs)) / 200
+  def caloriesBurned(kg: Int): Double = ( minutes + roundSecondsToMinute() ) * (Session.MET * 3.5 * kg) / 200
 
   def distance(): Int = laps * lapDistance
+
   def speed(): Int = distance() / ( minutes + roundSecondsToMinute() )
 
 object Session:
