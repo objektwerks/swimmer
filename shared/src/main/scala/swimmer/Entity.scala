@@ -43,7 +43,7 @@ final case class Swimmer(id: Long = 0,
 
 final case class Session(id: Long = 0,
                          swimmerId: Long,
-                         weight: Int = 150,
+                         weight: Double = 150.0,
                          weightUnit: String = WeightUnit.lb.toString,
                          laps: Int = 10,
                          lapDistance: Int = 50,
@@ -55,7 +55,7 @@ final case class Session(id: Long = 0,
                          seconds: Int = 0,
                          calories: Int = 0,
                          datetime: Long = Instant.now.toEpochMilli) extends Entity:
-  val weightProperty = ObjectProperty[Int](this, "weight", weight)
+  val weightProperty = ObjectProperty[Double](this, "weight", weight)
   val weightUnitProperty = ObjectProperty[String](this, "weightUnit", weightUnit)
   val lapsProperty = ObjectProperty[Int](this, "laps", laps)
   val lapDistanceProperty = ObjectProperty[Int](this, "lapDistance", laps)
@@ -72,7 +72,7 @@ final case class Session(id: Long = 0,
   def roundSecondsToMinute(): Int = if seconds > 29 then 1 else 0
 
   def caloriesBurned(): Double =
-    val kg = if WeightUnit.lb.toString == weightUnit then WeightUnit.lbsToKgs(weight) else weight.toDouble // TODO!
+    val kg = if WeightUnit.lb.toString == weightUnit then WeightUnit.lbsToKgs(weight) else weight
     ( minutes + roundSecondsToMinute() ) * (Session.MET * 3.5 * kg) / 200
 
   def distance(): Int = laps * lapDistance
@@ -86,8 +86,8 @@ enum WeightUnit:
   case lb, kg
 
 object WeightUnit:
-  def lbsToKgs(lbs: Int): Double = lbs * 0.454
-  def kgsToLbs(kgs: Int): Double = kgs * 2.205
+  def lbsToKgs(lbs: Double): Double = lbs * 0.454
+  def kgsToLbs(kgs: Double): Double = kgs * 2.205
   def toList: List[String] = WeightUnit.values.map(wu => wu.toString).toList
 
 enum LapUnit:
