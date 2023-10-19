@@ -9,8 +9,10 @@ class CalorieTextField(session: Session) extends HBox:
   val caloriesTextField = new IntTextField:
     text = session.calories.toString
 
-  val addButton = new Button:
+  val calcButton = new Button:
     text = "!"
     onAction = { _ =>
       caloriesTextField.text = session.caloriesBurned().toString
     }
+
+  children = List(caloriesTextField, calcButton)
