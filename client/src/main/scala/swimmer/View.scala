@@ -3,12 +3,12 @@ package swimmer
 import scalafx.geometry.{Insets, Orientation}
 import scalafx.scene.Scene
 import scalafx.scene.control.SplitPane
-import scalafx.scene.layout.{BorderPane, Priority, VBox}
+import scalafx.scene.layout.{Priority, VBox}
 
 import swimmer.pane.{SessionsPane, SwimmersPane}
 
 final class View(context: Context, model: Model):
-  val borderPane = new BorderPane:
+  val vbox = new VBox:
     prefWidth = context.windowWidth
     prefHeight = context.windowHeight
     padding = Insets(6)
@@ -26,8 +26,8 @@ final class View(context: Context, model: Model):
   splitPane.setDividerPositions(0.20, 0.80)
   VBox.setVgrow(splitPane, Priority.Always)
 
-  borderPane.center = splitPane
+  vbox.children = List(splitPane)
 
   val scene = new Scene:
-    root = borderPane
+    root = vbox
     stylesheets = List("/style.css")
