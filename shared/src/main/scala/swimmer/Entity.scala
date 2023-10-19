@@ -69,10 +69,9 @@ final case class Session(id: Long = 0,
   val datetimeProperty = ObjectProperty[String](this, "datetime", Entity.format(datetime))
   val session = this
 
+  def roundSecondsToMinute(): Int = if seconds > 29 then 1 else 0
   def distance(): Int = laps * lapDistance
-  def speed(): Int =
-    val extraMinute = if seconds > 29 then 1 else 0
-    distance() / ( minutes + extraMinute )
+  def speed(): Int = distance() / ( minutes + roundSecondsToMinute() )
 
 enum WeightUnit:
   case lb, kg
