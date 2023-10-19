@@ -4,8 +4,7 @@ Swimmer
 
 Todo
 ----
-1. Calories Calculation
-2. Fetcher using Ox
+1. Build Calorie Calculator
 
 Model
 -----
