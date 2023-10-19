@@ -5,8 +5,7 @@ Swimmer
 Todo
 ----
 1. Calories Calculation
-2. Distance-Time Calculation
-3. Fetcher using Ox
+2. Fetcher using Ox
 
 Model
 -----
