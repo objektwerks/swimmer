@@ -19,7 +19,7 @@ CREATE TABLE swimmer (
 CREATE TABLE session (
   id BIGSERIAL PRIMARY KEY,
   swimmer_id BIGINT REFERENCES swimmer(id),
-  weight INT NOT NULL,
+  weight NUMERIC(5, 2) NOT NULL,
   weight_unit CHAR(2) NOT NULL,
   laps INT NOT NULL,
   lap_distance INT NOT NULL,
