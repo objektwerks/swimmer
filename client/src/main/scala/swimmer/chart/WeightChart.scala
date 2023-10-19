@@ -8,7 +8,7 @@ import scalafx.scene.control.Tab
 
 import swimmer.{Context, Entity, Model}
 
-final case class WeightXY(xDate: String, yCount: Int)
+final case class WeightXY(xDate: String, yCount: Double)
 
 final class WeightChart(context: Context, model: Model) extends Tab:
   val sessions = model.observableSessions.reverse
