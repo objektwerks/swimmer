@@ -32,7 +32,6 @@ final class DistanceChart(context: Context, model: Model) extends Tab:
 
   closable = false
   text = context.tabDistance
-  content = buildChart(Style.freestyle)
   content = new VBox {
     spacing = 6
     padding = Insets(6)
