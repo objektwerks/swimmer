@@ -4,10 +4,9 @@ Swimmer
 
 Todo
 ----
-1. Distance Chart by Style
-2. Calories Calculation
-3. Distance-Time Calculation
-4. Fetcher using Ox
+1. Calories Calculation
+2. Distance-Time Calculation
+3. Fetcher using Ox
 
 Model
 -----
