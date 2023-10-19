@@ -16,3 +16,5 @@ class CalorieTextField(session: Session) extends HBox:
     }
 
   children = List(caloriesTextField, calcButton)
+
+  def int(default: Int): Int = caloriesTextField.text.value.toIntOption.getOrElse(default)
