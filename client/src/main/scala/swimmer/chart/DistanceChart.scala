@@ -23,18 +23,18 @@ final class DistanceChart(context: Context, model: Model) extends Tab:
   	items = ObservableBuffer.from( Style.toList )
   	value = Style.freestyle.toString
   styleComboBox.prefWidth = 300
-  styleComboBox.onAction = { _ => buildChart() }
+  styleComboBox.onAction = { _ => buildChart( Style.valueOf(styleComboBox.value.value) ) }
 
   closable = false
   text = context.tabDistance
-  content = buildChart()
-  content = new VBox { // TODO!
+  content = buildChart(Style.freestyle)
+  content = new VBox {
     spacing = 6
     padding = Insets(6)
-    children = List(styleComboBox, Separator(Orientation.Horizontal), buildChart())
+    children = List(styleComboBox, Separator(Orientation.Horizontal), buildChart(Style.freestyle))
   }
 
-  def buildChart(): LineChart[String, Number] =
+  def buildChart(style: Style): LineChart[String, Number] =
     val filtered = distances.map(e => DistanceXY( Entity.toLocalDateTime(e.datetime).format(dateFormat), e.distance()) )
     val (chart, series) = LineChartBuilder.build(context = context,
                                                  xLabel = context.chartMonthDay,
