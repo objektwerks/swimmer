@@ -84,8 +84,8 @@ enum WeightUnit:
   case lb, kg
 
 object WeightUnit:
-  def lbsToKgs(lbs: Double): Double = lbs * 0.454
-  def kgsToLbs(kgs: Double): Double = kgs * 2.205
+  def lbsToKgs(lbs: Int): Double = lbs * 0.454
+  def kgsToLbs(kgs: Int): Double = kgs * 2.205
   def toList: List[String] = WeightUnit.values.map(wu => wu.toString).toList
 
 enum LapUnit:
