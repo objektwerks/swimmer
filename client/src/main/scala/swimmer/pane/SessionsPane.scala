@@ -15,7 +15,7 @@ final class SessionsPane(context: Context, model: Model) extends VBox:
 
   val tableView = new TableView[Session]():
     columns ++= List(
-      new TableColumn[Session, Int]:
+      new TableColumn[Session, Double]:
         text = context.headerWeight
         cellValueFactory = _.value.weightProperty
       ,
