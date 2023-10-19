@@ -71,7 +71,9 @@ final case class Session(id: Long = 0,
 
   def roundSecondsToMinute(): Int = if seconds > 29 then 1 else 0
 
-  def caloriesBurned(kg: Int): Double = ( minutes + roundSecondsToMinute() ) * (Session.MET * 3.5 * kg) / 200
+  def caloriesBurned(): Double =
+    val kg = if WeightUnit.lb.toString == weightUnit then WeightUnit.lbsToKgs(weight) else weight.toDouble // TODO!
+    ( minutes + roundSecondsToMinute() ) * (Session.MET * 3.5 * kg) / 200
 
   def distance(): Int = laps * lapDistance
 
