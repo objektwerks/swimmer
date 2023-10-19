@@ -7,7 +7,7 @@ import scalafx.scene.control.{ButtonType, CheckBox, ComboBox, Dialog}
 import scalafx.scene.control.ButtonBar.ButtonData
 
 import swimmer.{Client, Context, Session}
-import swimmer.control.IntTextField
+import swimmer.control.{DoubleTextField, IntTextField}
 import swimmer.{LapUnit, Style, WeightUnit}
 import swimmer.control.DateTimeSelector
 
@@ -18,7 +18,7 @@ final class SessionDialog(context: Context, session: Session) extends Dialog[Ses
   title = context.windowTitle
   headerText = context.dialogSession
 
-  val weightTextField = new IntTextField:
+  val weightTextField = new DoubleTextField:
     text = session.weight.toString
   
   val weightUnitComboBox = new ComboBox[String]:
@@ -81,7 +81,7 @@ final class SessionDialog(context: Context, session: Session) extends Dialog[Ses
   resultConverter = dialogButton =>
     if dialogButton == saveButtonType then
       session.copy(
-        weight = weightTextField.int(session.weight),
+        weight = weightTextField.double(session.weight),
         weightUnit = weightUnitComboBox.value.value,
         laps = lapsTextField.int(session.laps),
         lapDistance = lapDistanceTextField.int(session.lapDistance),
