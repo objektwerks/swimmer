@@ -23,6 +23,7 @@ final class DistanceChart(context: Context, model: Model) extends Tab:
   	items = ObservableBuffer.from( Style.toList )
   	value = Style.freestyle.toString
   styleComboBox.prefWidth = 300
+  styleComboBox.onAction = { _ => buildChart() }
 
   closable = false
   text = context.tabDistance
