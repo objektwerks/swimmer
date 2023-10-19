@@ -70,6 +70,7 @@ final case class Session(id: Long = 0,
   val session = this
 
   def distance(): Int = laps * lapDistance
+  def speed(): Double = distance() / minutes
 
 enum WeightUnit:
   case lb, kg
