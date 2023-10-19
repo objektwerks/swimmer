@@ -21,7 +21,7 @@ final class CaloriesChart(context: Context, model: Model) extends Tab:
   content = buildChart()
 
   def buildChart(): LineChart[String, Number] =
-    val filtered = sessions.map(e => CalorieXY( Entity.toLocalDateTime(e.datetime).format(dateFormat), e.calories) )
+    val filtered = sessions.map(s => CalorieXY( Entity.toLocalDateTime(s.datetime).format(dateFormat), s.calories) )
     val (chart, series) = LineChartBuilder.build(context = context,
                                                  xLabel = context.chartMonthDay,
                                                  xMinDate = minDate,
