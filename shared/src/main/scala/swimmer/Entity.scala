@@ -73,8 +73,8 @@ final case class Session(id: Long = 0,
 
   def caloriesBurned(): Int =
     val kg = if WeightUnit.lb.toString == weightUnit then WeightUnit.lbsToKgs(weight) else weight
-    val mins = minutes + roundSecondsToMinute()
     val met = (Session.MET * 3.5 * kg) / 200
+    val mins = minutes + roundSecondsToMinute()
     ( mins * met ).toInt
 
   def distance(): Int = laps * lapDistance
