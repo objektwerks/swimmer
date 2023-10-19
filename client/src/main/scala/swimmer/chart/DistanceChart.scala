@@ -36,7 +36,11 @@ final class DistanceChart(context: Context, model: Model) extends Tab:
   content = new VBox {
     spacing = 6
     padding = Insets(6)
-    children = List(ControlGridPane(controls), Separator(Orientation.Horizontal), buildChart(Style.freestyle))
+    children = List(
+      ControlGridPane(controls),
+      Separator(Orientation.Horizontal),
+      buildChart(Style.freestyle)
+    )
   }
 
   def buildChart(style: Style): LineChart[String, Number] =
