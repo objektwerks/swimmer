@@ -22,8 +22,8 @@ Alternative Model
 
 Calculations
 ------------
-*[Calories Burned Swimming](https://www.calculatorpro.com/calculator/calories-burned-swimming-calculator/)
-*[Distance / Time](https://www.calculatorsoup.com/calculators/math/speed-distance-time-calculator.php)
+1. [Calories Burned Swimming](https://www.calculatorpro.com/calculator/calories-burned-swimming-calculator/)
+2. [Distance / Time](https://www.calculatorsoup.com/calculators/math/speed-distance-time-calculator.php)
    
 Build
 -----
