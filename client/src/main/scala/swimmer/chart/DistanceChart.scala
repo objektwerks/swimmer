@@ -7,9 +7,10 @@ import scalafx.geometry.{Insets, Orientation}
 import scalafx.Includes.*
 import scalafx.scene.chart.{LineChart, XYChart}
 import scalafx.scene.control.{ComboBox, Separator, Tab}
-import scalafx.scene.layout.VBox
+import scalafx.scene.layout.{Region, VBox}
 
 import swimmer.{Context, Entity, Model, Style}
+import swimmer.dialog.ControlGridPane
 
 final case class DistanceXY(xDate: String, yCount: Int)
 
@@ -25,13 +26,17 @@ final class DistanceChart(context: Context, model: Model) extends Tab:
   styleComboBox.prefWidth = 300
   styleComboBox.onAction = { _ => buildChart( Style.valueOf(styleComboBox.value.value) ) }
 
+  val controls = List[(String, Region)](
+    context.labelStyle -> styleComboBox
+  )
+
   closable = false
   text = context.tabDistance
   content = buildChart(Style.freestyle)
   content = new VBox {
     spacing = 6
     padding = Insets(6)
-    children = List(styleComboBox, Separator(Orientation.Horizontal), buildChart(Style.freestyle))
+    children = List(ControlGridPane(controls), Separator(Orientation.Horizontal), buildChart(Style.freestyle))
   }
 
   def buildChart(style: Style): LineChart[String, Number] =
