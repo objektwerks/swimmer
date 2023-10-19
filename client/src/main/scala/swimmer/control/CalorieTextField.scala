@@ -1,7 +1,16 @@
 package swimmer.control
 
+import scalafx.scene.control.Button
 import scalafx.scene.layout.HBox
 
-class CalorieTextField(calories: String) extends HBox:
+import swimmer.Session
+
+class CalorieTextField(session: Session) extends HBox:
   val caloriesTextField = new IntTextField:
-    text = calories
+    text = session.calories.toString
+
+  val addButton = new Button:
+    text = "!"
+    onAction = { _ =>
+      caloriesTextField.text = session.caloriesBurned().toString
+    }
