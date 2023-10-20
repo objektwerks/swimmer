@@ -5,6 +5,7 @@ Swimmer
 Todo
 ----
 1. Test Client
+2. Update doc images.
 
 Model
 -----
