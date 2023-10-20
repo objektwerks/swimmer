@@ -43,7 +43,7 @@ final case class Swimmer(id: Long = 0,
 
 final case class Session(id: Long = 0,
                          swimmerId: Long,
-                         weight: Double = 150.0,
+                         weight: Int = 150,
                          weightUnit: String = WeightUnit.lb.toString,
                          laps: Int = 10,
                          lapDistance: Int = 50,
@@ -74,7 +74,7 @@ final case class Session(id: Long = 0,
   def caloriesBurned(): Int =
     if weight < 1.0 || minutes < 1 then 0
     else
-      val kg = if WeightUnit.lb.toString == weightUnit then WeightUnit.lbsToKgs(weight) else weight
+      val kg = if WeightUnit.lb.toString == weightUnit then WeightUnit.lbsToKgs(weight) else weight.toDouble
       val met = (Session.MET * 3.5 * kg) / 200
       val mins = minutes + roundSecondsToMinute()
       ( mins * met ).round.toInt
@@ -90,8 +90,8 @@ enum WeightUnit:
   case lb, kg
 
 object WeightUnit:
-  def lbsToKgs(lbs: Double): Double = lbs * 0.454
-  def kgsToLbs(kgs: Double): Double = kgs * 2.205
+  def lbsToKgs(lbs: Int): Double = lbs * 0.454
+  def kgsToLbs(kgs: Int): Double = kgs * 2.205
   def toList: List[String] = WeightUnit.values.map(wu => wu.toString).toList
 
 enum LapUnit:
