@@ -80,7 +80,6 @@ final case class Session(id: Long = 0,
       ( mins * met ).round.toInt
 
   def distance(): Int = laps * lapDistance
-
   def speed(): Int = distance() / ( minutes + roundSecondsToMinute() )
 
 object Session:
