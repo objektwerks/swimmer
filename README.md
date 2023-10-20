@@ -4,7 +4,7 @@ Swimmer
 
 Todo
 ----
-1. Build Calorie Calculator
+1. Test Client
 
 Model
 -----
