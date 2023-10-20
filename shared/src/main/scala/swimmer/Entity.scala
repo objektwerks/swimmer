@@ -77,7 +77,7 @@ final case class Session(id: Long = 0,
       val kg = if WeightUnit.lb.toString == weightUnit then WeightUnit.lbsToKgs(weight) else weight
       val met = (Session.MET * 3.5 * kg) / 200
       val mins = minutes + roundSecondsToMinute()
-      ( mins * met ).toInt
+      ( mins * met ).round.toInt
 
   def distance(): Int = laps * lapDistance
 
