@@ -8,7 +8,7 @@ import swimmer.chart.{CaloriesChart, DistanceChart, WeightChart}
 class ChartDialog(context: Context, model: Model) extends Dialog:
   initOwner(Client.stage)
   title = context.windowTitle
-  headerText = context.dialogChart
+  headerText = context.dialogCharts
 
   val tabPane = new TabPane:
     tabs = List(
