@@ -6,7 +6,7 @@ import scalafx.scene.control.{Button, SelectionMode, Tab, TabPane, TableColumn, 
 import scalafx.scene.layout.{HBox, Priority, VBox}
 
 import swimmer.{Session, Context, Model}
-import swimmer.dialog.SessionDialog
+import swimmer.dialog.{ChartDialog, SessionDialog}
 
 final class SessionsPane(context: Context, model: Model) extends VBox:
   spacing = 6
@@ -137,4 +137,4 @@ final class SessionsPane(context: Context, model: Model) extends VBox:
       }
       case _ =>
 
-  def chart(): Unit = ??? // SessionsChartDialog(context, model).showAndWait()
+  def chart(): Unit = ChartDialog(context, model).showAndWait()
