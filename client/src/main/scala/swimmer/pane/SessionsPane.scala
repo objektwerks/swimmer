@@ -6,7 +6,6 @@ import scalafx.scene.control.{Button, SelectionMode, Tab, TabPane, TableColumn, 
 import scalafx.scene.layout.{HBox, Priority, VBox}
 
 import swimmer.{Session, Context, Model}
-import swimmer.chart.{CaloriesChart, DistanceChart, WeightChart}
 import swimmer.dialog.SessionDialog
 
 final class SessionsPane(context: Context, model: Model) extends VBox:
@@ -98,12 +97,7 @@ final class SessionsPane(context: Context, model: Model) extends VBox:
     }
 
   val tabPane = new TabPane:
-    tabs = List(
-      tab,
-      DistanceChart(context, model),
-      CaloriesChart(context, model),
-      WeightChart(context, model)
-    )
+    tabs = List(tab)
 
   children = List(tabPane)
   VBox.setVgrow(tableView, Priority.Always)
