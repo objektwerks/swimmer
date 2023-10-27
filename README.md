@@ -5,7 +5,7 @@ Swimmer
 Todo
 ----
 1. Test Client
-2. Add app images.
+2. Add app png
 
 Model
 -----
