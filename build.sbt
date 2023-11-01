@@ -7,7 +7,7 @@ lazy val common = Defaults.coreDefaultSettings ++ Seq(
   scalaVersion := "3.3.1",
   libraryDependencies ++= {
     val ironVersion = "2.3.0"
-    val jsoniterVersion = "2.24.2"
+    val jsoniterVersion = "2.24.3"
     Seq(
       "io.github.iltotore" %% "iron" % ironVersion,
       "io.github.iltotore" %% "iron-jsoniter" % ironVersion,
