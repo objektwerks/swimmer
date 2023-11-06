@@ -15,7 +15,7 @@ lazy val common = Defaults.coreDefaultSettings ++ Seq(
   )
 )
 
-lazy val json = Seq(
+lazy val jsoniter = Seq(
   libraryDependencies ++= {
     val jsoniterVersion = "2.24.4"
     Seq(
@@ -26,7 +26,7 @@ lazy val json = Seq(
   }
 )
 
-lazy val validators = Seq(
+lazy val iron = Seq(
   libraryDependencies ++= {
     val ironVersion = "2.3.0"
     Seq(
@@ -127,7 +127,7 @@ lazy val client = project
   )
 
 lazy val shared = project
-  .settings(common)
+  .settings(common, jsoniter, iron)
   .settings(
     libraryDependencies ++= {
       Seq(
