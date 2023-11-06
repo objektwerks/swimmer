@@ -148,6 +148,7 @@ object Session:
       weightUnit <- weightUnit.refineEither[FixedLength[2]].left.map(error => invalidations.add("weightUnit", error))
       laps       <- laps.refineEither[Greater[0]].left.map(error => invalidations.add("laps", error))
       lapUnit    <- lapUnit.refineEither[GreaterEqual[4]].left.map(error => invalidations.add("lapUnit", error))
+      style      <- style.refineEither[GreaterEqual[4]].left.map(error => invalidations.add("style", error))
 
       datetime  <- datetime.refineEither[Greater[0]].left.map(error => invalidations.add("datetime", error))
     yield Session(id, swimmerId, weight, weightUnit, laps, datetime)
