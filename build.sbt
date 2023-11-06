@@ -103,10 +103,7 @@ lazy val client = project
         "com.typesafe.scala-logging" %% "scala-logging" % "3.9.5",
         "ch.qos.logback" % "logback-classic" % logbackVersion
       )
-    },
-    scalacOptions ++= Seq(
-      "-Wunused:all"
-    )
+    }
   )
   .settings(
     libraryDependencies ++= Seq("base", "controls", "web").map( jfxModule =>
@@ -128,10 +125,7 @@ lazy val shared = project
          exclude("org.openjfx", "javafx-web"),
         "org.scalatest" %% "scalatest" % scalatestVersion % Test
       )
-    },
-    scalacOptions ++= Seq(
-      "-Wunused:all"
-    )
+    }
   )
 
 lazy val server = project
@@ -150,8 +144,5 @@ lazy val server = project
         "ch.qos.logback" % "logback-classic" % logbackVersion,
         "org.scalatest" %% "scalatest" % scalatestVersion % Test
       )
-    },
-    scalacOptions ++= Seq(
-      "-Wunused:all"
-    )
+    }
   )
