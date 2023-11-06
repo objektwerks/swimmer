@@ -76,7 +76,7 @@ object Swimmer:
 
 final case class Session(id: Long = 0,
                          swimmerId: Long,
-                         weight: Int,
+                         weight: Int = 150,
                          weightUnit: String = WeightUnit.lb.toString,
                          laps: Int = 10,
                          lapDistance: Int = 50,
