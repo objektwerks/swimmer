@@ -14,8 +14,6 @@ import scalafx.application.Platform
 import scala.concurrent.{ExecutionContext, Future}
 import scala.jdk.FutureConverters.*
 
-import Serializer.given
-
 final class Fetcher(context: Context) extends LazyLogging:
   implicit private val executionContext: ExecutionContext = ExecutionContext.fromExecutor( Executors.newVirtualThreadPerTaskExecutor() )
   private val uri = URI(context.url)
