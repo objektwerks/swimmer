@@ -17,8 +17,7 @@ sealed trait Entity:
   val id: Long
 
 object Entity:
-  given swimmerOrdering: Ordering[Swimmer] = Ordering.by[Swimmer, String](s => s.name)
-  given sessionOrdering: Ordering[Session] = Ordering.by[Session, Long](dt => dt.datetime).reverse
+  given JsonValueCodec[Entity] = JsonCodecMaker.make[Entity]
 
   def format(epochMillis: Long): String = toLocalDateTime(epochMillis).format(DateTimeFormatter.ISO_DATE_TIME)
   def format(localDateTime: LocalDateTime): String = localDateTime.format(DateTimeFormatter.ISO_DATE_TIME)
@@ -69,6 +68,7 @@ final case class Swimmer private (id: Long = 0,
 
 object Swimmer:
   given JsonValueCodec[Swimmer] = JsonCodecMaker.make[Swimmer]
+  given swimmerOrdering: Ordering[Swimmer] = Ordering.by[Swimmer, String](s => s.name)
 
   def validate(id: Long,
                accountId: Long,
@@ -125,6 +125,7 @@ final case class Session private (id: Long = 0,
 object Session:
   val MET = 6
   given JsonValueCodec[Session] = JsonCodecMaker.make[Session]
+  given sessionOrdering: Ordering[Session] = Ordering.by[Session, Long](dt => dt.datetime).reverse
 
   def validate(id: Long = 0,
                swimmerId: Long,
