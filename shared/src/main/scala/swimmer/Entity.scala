@@ -83,7 +83,7 @@ object Swimmer:
 
 final case class Session private (id: Long = 0,
                                   swimmerId: Long,
-                                  weight: Int = 150,
+                                  weight: Int,
                                   weightUnit: String = WeightUnit.lb.toString,
                                   laps: Int = 10,
                                   lapDistance: Int = 50,
@@ -142,12 +142,13 @@ object Session:
                datetime: Long = Instant.now.toEpochMilli): Either[Invalidations, Session] =
     val invalidations = Invalidations()
     val either = for
-      id        <- id.refineEither[GreaterEqual[0]].left.map(error => invalidations.add("id", error))
-      swimmerId <- swimmerId.refineEither[Greater[0]].left.map(error => invalidations.add("swimmerId", error))
-      weight    <- weight.refineEither[Greater[50]].left.map(error => invalidations.add("weight", error))
+      id         <- id.refineEither[GreaterEqual[0]].left.map(error => invalidations.add("id", error))
+      swimmerId  <- swimmerId.refineEither[Greater[0]].left.map(error => invalidations.add("swimmerId", error))
+      weight     <- weight.refineEither[Greater[50]].left.map(error => invalidations.add("weight", error))
+      weightUnit <- weightUnit.refineEither[FixedLength[2]].left.map(error => invalidations.add("weightUnit", error))
 
       datetime  <- datetime.refineEither[Greater[0]].left.map(error => invalidations.add("datetime", error))
-    yield Session(id, swimmerId, datetime)
+    yield Session(id, swimmerId, weight, weightUnit, datetime)
     invalidations.toEither(either)
 
 enum WeightUnit:
