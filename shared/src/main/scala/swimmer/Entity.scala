@@ -1,5 +1,12 @@
 package swimmer
 
+import com.github.plokhotnyuk.jsoniter_scala.core.*
+import com.github.plokhotnyuk.jsoniter_scala.macros.*
+
+import io.github.iltotore.iron.*
+import io.github.iltotore.iron.constraint.collection.{FixedLength, MinLength}
+import io.github.iltotore.iron.constraint.numeric.{Greater, GreaterEqual}
+
 import java.time.{Instant, LocalDateTime, ZoneOffset}
 import java.time.format.DateTimeFormatter
 import java.util.UUID
@@ -34,6 +41,25 @@ object Account:
     activated = 0,
     deactivated = 0
   )
+
+  given JsonValueCodec[Account] = JsonCodecMaker.make[Account]
+
+  def validate(id: Long,
+               license: String,
+               emailAddress: String,
+               pin: String,
+               activated: Long,
+               deactivated: Long): Either[Invalidations, Account] =
+    val invalidations = Invalidations()
+    val either = for
+      id           <- id.refineEither[GreaterEqual[0]].left.map(error => invalidations.add("id", error))
+      license      <- license.refineEither[FixedLength[36]].left.map(error => invalidations.add("license", error))
+      emailAddress <- emailAddress.refineEither[MinLength[3]].left.map(error => invalidations.add("emailAddress", error))
+      pin          <- pin.refineEither[FixedLength[7]].left.map(error => invalidations.add("pin", error))
+      activated    <- activated.refineEither[GreaterEqual[0]].left.map(error => invalidations.add("activated", error))
+      deactivated  <- deactivated.refineEither[GreaterEqual[0]].left.map(error => invalidations.add("deactivated", error))
+    yield Account(id, license, emailAddress, pin, activated, deactivated)
+    invalidations.toEither(either)
 
 final case class Swimmer(id: Long = 0,
                          accountId: Long,
