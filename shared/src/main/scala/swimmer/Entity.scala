@@ -81,20 +81,20 @@ object Swimmer:
     yield Swimmer(id, accountId, name)
     invalidations.toEither(either)
 
-final case class Session(id: Long = 0,
-                         swimmerId: Long,
-                         weight: Int = 150,
-                         weightUnit: String = WeightUnit.lb.toString,
-                         laps: Int = 10,
-                         lapDistance: Int = 50,
-                         lapUnit: String = LapUnit.yards.toString,
-                         style: String = Style.freestyle.toString,
-                         kickboard: Boolean = false,
-                         fins: Boolean = false,
-                         minutes: Int = 15,
-                         seconds: Int = 0,
-                         calories: Int = 150,
-                         datetime: Long = Instant.now.toEpochMilli) extends Entity:
+final case class Session private (id: Long = 0,
+                                  swimmerId: Long,
+                                  weight: Int = 150,
+                                  weightUnit: String = WeightUnit.lb.toString,
+                                  laps: Int = 10,
+                                  lapDistance: Int = 50,
+                                  lapUnit: String = LapUnit.yards.toString,
+                                  style: String = Style.freestyle.toString,
+                                  kickboard: Boolean = false,
+                                  fins: Boolean = false,
+                                  minutes: Int = 15,
+                                  seconds: Int = 0,
+                                  calories: Int = 150,
+                                  datetime: Long = Instant.now.toEpochMilli) extends Entity:
   val weightProperty = ObjectProperty[Double](this, "weight", weight)
   val weightUnitProperty = ObjectProperty[String](this, "weightUnit", weightUnit)
   val lapsProperty = ObjectProperty[Int](this, "laps", laps)
@@ -142,10 +142,12 @@ object Session:
                datetime: Long = Instant.now.toEpochMilli): Either[Invalidations, Session] =
     val invalidations = Invalidations()
     val either = for
-      id      <- id.refineEither[GreaterEqual[0]].left.map(error => invalidations.add("id", error))
-      poolId  <- poolId.refineEither[Greater[0]].left.map(error => invalidations.add("poolId", error))
-      cleaned <- poolId.refineEither[Greater[0]].left.map(error => invalidations.add("cleaned", error))
-    yield Cleaning(id, poolId, brush, net, skimmerBasket, pumpBasket, pumpFilter, vacuum, cleaned)
+      id        <- id.refineEither[GreaterEqual[0]].left.map(error => invalidations.add("id", error))
+      swimmerId <- swimmerId.refineEither[Greater[0]].left.map(error => invalidations.add("swimmerId", error))
+      weight    <- weight.refineEither[Greater[50]].left.map(error => invalidations.add("weight", error))
+
+      datetime  <- datetime.refineEither[Greater[0]].left.map(error => invalidations.add("datetime", error))
+    yield Session(id, swimmerId, datetime)
     invalidations.toEither(either)
 
 enum WeightUnit:
