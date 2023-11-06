@@ -53,9 +53,9 @@ object Account:
     yield Account(id, license, emailAddress, pin, activated, deactivated)
     invalidations.toEither(either)
 
-final case class Swimmer private (id: Long = 0,
-                                  accountId: Long,
-                                  name: String) extends Entity:
+final case class Swimmer(id: Long = 0,
+                         accountId: Long,
+                         name: String) extends Entity:
   val nameProperty = ObjectProperty[String](this, "name", name)
   val swimmer = this
 
@@ -74,20 +74,20 @@ object Swimmer:
     yield Swimmer(id, accountId, name)
     invalidations.toEither(either)
 
-final case class Session private (id: Long = 0,
-                                  swimmerId: Long,
-                                  weight: Int,
-                                  weightUnit: String = WeightUnit.lb.toString,
-                                  laps: Int = 10,
-                                  lapDistance: Int = 50,
-                                  lapUnit: String = LapUnit.yards.toString,
-                                  style: String = Style.freestyle.toString,
-                                  kickboard: Boolean = false,
-                                  fins: Boolean = false,
-                                  minutes: Int = 15,
-                                  seconds: Int = 0,
-                                  calories: Int = 150,
-                                  datetime: Long = Instant.now.toEpochMilli) extends Entity:
+final case class Session(id: Long = 0,
+                         swimmerId: Long,
+                         weight: Int,
+                         weightUnit: String = WeightUnit.lb.toString,
+                         laps: Int = 10,
+                         lapDistance: Int = 50,
+                         lapUnit: String = LapUnit.yards.toString,
+                         style: String = Style.freestyle.toString,
+                         kickboard: Boolean = false,
+                         fins: Boolean = false,
+                         minutes: Int = 15,
+                         seconds: Int = 0,
+                         calories: Int = 150,
+                         datetime: Long = Instant.now.toEpochMilli) extends Entity:
   val weightProperty = ObjectProperty[Double](this, "weight", weight)
   val weightUnitProperty = ObjectProperty[String](this, "weightUnit", weightUnit)
   val lapsProperty = ObjectProperty[Int](this, "laps", laps)
