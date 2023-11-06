@@ -4,17 +4,6 @@ import com.github.plokhotnyuk.jsoniter_scala.core.*
 import com.github.plokhotnyuk.jsoniter_scala.macros.*
 
 object Serializer:
-  given JsonValueCodec[Command] = JsonCodecMaker.make[Command]( CodecMakerConfig.withDiscriminatorFieldName(None) )
-  given JsonValueCodec[License] = JsonCodecMaker.make[License]( CodecMakerConfig.withDiscriminatorFieldName(None) )
-  given JsonValueCodec[Register] = JsonCodecMaker.make[Register]( CodecMakerConfig.withDiscriminatorFieldName(None) )
-  given JsonValueCodec[Login] = JsonCodecMaker.make[Login]( CodecMakerConfig.withDiscriminatorFieldName(None) )
-  given JsonValueCodec[Deactivate] = JsonCodecMaker.make[Deactivate]( CodecMakerConfig.withDiscriminatorFieldName(None) )
-  given JsonValueCodec[Reactivate] = JsonCodecMaker.make[Reactivate]( CodecMakerConfig.withDiscriminatorFieldName(None) )
-  given JsonValueCodec[ListSwimmers] = JsonCodecMaker.make[ListSwimmers]( CodecMakerConfig.withDiscriminatorFieldName(None) )
-  given JsonValueCodec[SaveSwimmer] = JsonCodecMaker.make[SaveSwimmer]( CodecMakerConfig.withDiscriminatorFieldName(None) )
-  given JsonValueCodec[ListSessions] = JsonCodecMaker.make[ListSessions]( CodecMakerConfig.withDiscriminatorFieldName(None) )
-  given JsonValueCodec[SaveSession] = JsonCodecMaker.make[SaveSession]( CodecMakerConfig.withDiscriminatorFieldName(None) )
-
   given JsonValueCodec[Event] = JsonCodecMaker.make[Event]( CodecMakerConfig.withDiscriminatorFieldName(None) )
   given JsonValueCodec[Registered] = JsonCodecMaker.make[Registered]( CodecMakerConfig.withDiscriminatorFieldName(None) )
   given JsonValueCodec[LoggedIn] = JsonCodecMaker.make[LoggedIn]( CodecMakerConfig.withDiscriminatorFieldName(None) )
