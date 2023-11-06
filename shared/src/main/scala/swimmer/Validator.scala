@@ -85,4 +85,5 @@ object Validator:
       session.style.nonEmpty &&
       session.minutes > 0 &&
       session.seconds >= 0 &&
+      session.calories >= 0 &&
       session.datetime > 0
