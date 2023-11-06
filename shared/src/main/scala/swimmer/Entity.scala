@@ -67,6 +67,20 @@ final case class Swimmer(id: Long = 0,
   val nameProperty = ObjectProperty[String](this, "name", name)
   val swimmer = this
 
+object Swimmer:
+  given JsonValueCodec[Swimmer] = JsonCodecMaker.make[Swimmer]
+
+  def validate(id: Long,
+               accountId: Long,
+               name: String): Either[Invalidations, Swimmer] =
+    val invalidations = Invalidations()
+    val either = for
+      id        <- id.refineEither[GreaterEqual[0]].left.map(error => invalidations.add("id", error))
+      accountId <- accountId.refineEither[Greater[0]].left.map(error => invalidations.add("accountId", error))
+      name      <- name.refineEither[MinLength[3]].left.map(error => invalidations.add("name", error))
+    yield Swimmer(id, accountId, name)
+    invalidations.toEither(either)
+
 final case class Session(id: Long = 0,
                          swimmerId: Long,
                          weight: Int = 150,
