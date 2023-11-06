@@ -81,7 +81,7 @@ object Validator:
       session.weightUnit.length == 2 &&
       session.laps > 0 &&
       session.lapDistance > 0 &&
-      session.lapUnit.nonEmpty &&
+      session.lapUnit.length >= 4 &&
       session.style.nonEmpty &&
       session.minutes > 0 &&
       session.seconds >= 0 &&
