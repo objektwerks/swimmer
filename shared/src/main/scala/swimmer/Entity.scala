@@ -70,7 +70,7 @@ object Swimmer:
     val either = for
       id        <- id.refineEither[GreaterEqual[0]].left.map(error => invalidations.add("id", error))
       accountId <- accountId.refineEither[Greater[0]].left.map(error => invalidations.add("accountId", error))
-      name      <- name.refineEither[MinLength[3]].left.map(error => invalidations.add("name", error))
+      name      <- name.refineEither[MinLength[2]].left.map(error => invalidations.add("name", error))
     yield Swimmer(id, accountId, name)
     invalidations.toEither(either)
 
