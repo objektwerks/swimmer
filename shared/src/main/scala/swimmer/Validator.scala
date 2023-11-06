@@ -71,7 +71,7 @@ object Validator:
     def isValid =
       swimmer.id >= 0 &&
       swimmer.accountId > 0 &&
-      swimmer.name.nonEmpty
+      swimmer.name.length >= 2
 
   extension (session: Session)
     def isValid: Boolean =
