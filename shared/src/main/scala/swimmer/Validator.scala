@@ -78,7 +78,7 @@ object Validator:
       session.id >= 0 &&
       session.swimmerId > 0 &&
       session.weight > 0 &&
-      session.weightUnit.nonEmpty &&
+      session.weightUnit.length == 2 &&
       session.laps > 0 &&
       session.lapDistance > 0 &&
       session.lapUnit.nonEmpty &&

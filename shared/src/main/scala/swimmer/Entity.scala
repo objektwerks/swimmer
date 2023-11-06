@@ -138,7 +138,7 @@ object Session:
     val either = for
       id          <- id.refineEither[GreaterEqual[0]].left.map(error => invalidations.add("id", error))
       swimmerId   <- swimmerId.refineEither[Greater[0]].left.map(error => invalidations.add("swimmerId", error))
-      weight      <- weight.refineEither[Greater[50]].left.map(error => invalidations.add("weight", error))
+      weight      <- weight.refineEither[Greater[0]].left.map(error => invalidations.add("weight", error))
       weightUnit  <- weightUnit.refineEither[FixedLength[2]].left.map(error => invalidations.add("weightUnit", error))
       laps        <- laps.refineEither[Greater[0]].left.map(error => invalidations.add("laps", error))
       lapDistance <- laps.refineEither[Greater[0]].left.map(error => invalidations.add("lapDistance", error))
