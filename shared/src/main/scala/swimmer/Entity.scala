@@ -33,14 +33,7 @@ final case class Account private (id: Long = 0,
                                   deactivated: Long = 0) extends Entity
 
 object Account:
-  val empty = Account(
-    license = "",
-    emailAddress = "",
-    pin = "",
-    activated = 0,
-    deactivated = 0
-  )
-
+  val empty = Account(license = "", emailAddress = "", pin = "", activated = 0, deactivated = 0)
   given JsonValueCodec[Account] = JsonCodecMaker.make[Account]
 
   def validate(id: Long,
