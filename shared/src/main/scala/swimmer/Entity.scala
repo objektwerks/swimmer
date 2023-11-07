@@ -92,37 +92,6 @@ object Session:
   given JsonValueCodec[Session] = JsonCodecMaker.make[Session]
   given sessionOrdering: Ordering[Session] = Ordering.by[Session, Long](dt => dt.datetime).reverse
 
-  def validate(id: Long = 0,
-               swimmerId: Long,
-               weight: Int = 150,
-               weightUnit: String = WeightUnit.lb.toString,
-               laps: Int = 10,
-               lapDistance: Int = 50,
-               lapUnit: String = LapUnit.yards.toString,
-               style: String = Style.freestyle.toString,
-               kickboard: Boolean = false,
-               fins: Boolean = false,
-               minutes: Int = 15,
-               seconds: Int = 0,
-               calories: Int = 150,
-               datetime: Long = Instant.now.toEpochMilli): Either[Invalidations, Session] =
-    val invalidations = Invalidations()
-    val either = for
-      id          <- id.refineEither[GreaterEqual[0]].left.map(error => invalidations.add("id", error))
-      swimmerId   <- swimmerId.refineEither[Greater[0]].left.map(error => invalidations.add("swimmerId", error))
-      weight      <- weight.refineEither[Greater[0]].left.map(error => invalidations.add("weight", error))
-      weightUnit  <- weightUnit.refineEither[FixedLength[2]].left.map(error => invalidations.add("weightUnit", error))
-      laps        <- laps.refineEither[Greater[0]].left.map(error => invalidations.add("laps", error))
-      lapDistance <- laps.refineEither[Greater[0]].left.map(error => invalidations.add("lapDistance", error))
-      lapUnit     <- lapUnit.refineEither[MinLength[4]].left.map(error => invalidations.add("lapUnit", error))
-      style       <- style.refineEither[MinLength[4]].left.map(error => invalidations.add("style", error))
-      minutes     <- minutes.refineEither[Greater[0]].left.map(error => invalidations.add("minutes", error))
-      seconds     <- minutes.refineEither[GreaterEqual[0]].left.map(error => invalidations.add("seconds", error))
-      calories    <- calories.refineEither[GreaterEqual[0]].left.map(error => invalidations.add("calories", error))
-      datetime  <- datetime.refineEither[Greater[0]].left.map(error => invalidations.add("datetime", error))
-    yield Session(id, swimmerId, weight, weightUnit, laps, lapDistance, lapUnit, style, kickboard, fins, minutes, seconds, calories, datetime)
-    invalidations.toEither(either)
-
 enum WeightUnit:
   case lb, kg
 
