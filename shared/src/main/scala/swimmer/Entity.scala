@@ -3,10 +3,6 @@ package swimmer
 import com.github.plokhotnyuk.jsoniter_scala.core.*
 import com.github.plokhotnyuk.jsoniter_scala.macros.*
 
-import io.github.iltotore.iron.*
-import io.github.iltotore.iron.constraint.collection.{FixedLength, MinLength}
-import io.github.iltotore.iron.constraint.numeric.{Greater, GreaterEqual}
-
 import java.time.{Instant, LocalDateTime, ZoneOffset}
 import java.time.format.DateTimeFormatter
 import java.util.UUID
