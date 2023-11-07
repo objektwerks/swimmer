@@ -86,7 +86,7 @@ final case class Session(id: Long = 0,
 object Session:
   val MET = 6
   given JsonValueCodec[Session] = JsonCodecMaker.make[Session]
-  given sessionOrdering: Ordering[Session] = Ordering.by[Session, Long](dt => dt.datetime).reverse
+  given sessionOrdering: Ordering[Session] = Ordering.by[Session, Long](session => session.datetime).reverse
 
 enum WeightUnit:
   case lb, kg
