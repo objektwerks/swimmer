@@ -56,10 +56,10 @@ Client Assembly
 Execute Client
 --------------
 >To execute an assembled jar locally:
-1. java -jar .assembly/pool-balance-mac-0.4.jar
-2. java -jar .assembly/pool-balance-m1-0.4.jar
-3. java -jar .assembly/pool-balance-win-0.4.jar
-4. java -jar .assembly/pool-balance-linux-0.4.jar
+1. java -jar .assembly/swimmer-mac-0.4.jar
+2. java -jar .assembly/swimmer-m1-0.4.jar
+3. java -jar .assembly/swimmer-win-0.4.jar
+4. java -jar .assembly/swimmer-linux-0.4.jar
 
 Deploy
 ------
