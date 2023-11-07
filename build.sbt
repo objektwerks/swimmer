@@ -26,16 +26,6 @@ lazy val jsoniter = Seq(
   }
 )
 
-lazy val iron = Seq(
-  libraryDependencies ++= {
-    val ironVersion = "2.3.0"
-    Seq(
-      "io.github.iltotore" %% "iron" % ironVersion,
-      "io.github.iltotore" %% "iron-jsoniter" % ironVersion
-    )
-  }
-)
-
 lazy val swimmer = (project in file("."))
   .aggregate(client, shared, server)
   .settings(common)
@@ -127,7 +117,7 @@ lazy val client = project
   )
 
 lazy val shared = project
-  .settings(common, jsoniter, iron)
+  .settings(common, jsoniter)
   .settings(
     libraryDependencies ++= {
       Seq(
