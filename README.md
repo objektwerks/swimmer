@@ -56,10 +56,10 @@ Client Assembly
 Execute Client
 --------------
 >To execute an assembled jar locally:
-1. java -jar .assembly/swimmer-mac-0.6.jar
-2. java -jar .assembly/swimmer-m1-0.6.jar
-3. java -jar .assembly/swimmer-win-0.6.jar
-4. java -jar .assembly/swimmer-linux-0.6.jar
+1. java -jar .assembly/swimmer-mac-0.7.jar
+2. java -jar .assembly/swimmer-m1-0.7.jar
+3. java -jar .assembly/swimmer-win-0.7.jar
+4. java -jar .assembly/swimmer-linux-0.7.jar
 
 Deploy
 ------
