@@ -1,6 +1,6 @@
 Swimmer
 -------
->Swimmer app using ScalaFX, ScalikeJdbc, Jsoniter, JoddMail, PostgreSql and Scala 3.
+>Swimmer app using ScalaFX, ScalikeJdbc, Jsoniter, JoddMail, Helidon, PostgreSql and Scala 3.
 
 Todo
 ----
