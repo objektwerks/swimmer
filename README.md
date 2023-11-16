@@ -132,7 +132,6 @@ Resources
 * [JavaFX](https://openjfx.io/index.html)
 * [ScalaFX](http://www.scalafx.org/)
 * [ScalikeJdbc](http://scalikejdbc.org/)
-* [jDeploy](https://www.jdeploy.com/)
 
 License
 -------
