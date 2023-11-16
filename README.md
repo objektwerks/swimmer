@@ -4,7 +4,7 @@ Swimmer
 
 Todo
 ----
-1. Test Client
+1. Test client
 2. Add app png
 
 Model
@@ -56,10 +56,10 @@ Client Assembly
 Execute Client
 --------------
 >To execute an assembled jar locally:
-1. java -jar .assembly/swimmer-mac-0.7.jar
-2. java -jar .assembly/swimmer-m1-0.7.jar
-3. java -jar .assembly/swimmer-win-0.7.jar
-4. java -jar .assembly/swimmer-linux-0.7.jar
+1. java -jar .assembly/swimmer-mac-0.8.jar
+2. java -jar .assembly/swimmer-m1-0.8.jar
+3. java -jar .assembly/swimmer-win-0.8.jar
+4. java -jar .assembly/swimmer-linux-0.8.jar
 
 Deploy
 ------
@@ -109,6 +109,7 @@ Environment
 ```
 export SWIMMER_HOST="127.0.0.1"
 export SWIMMER_PORT=7171
+export SWIMMER_ENDPOINT="/command"
 
 export SWIMMER_POSTGRESQL_URL="jdbc:postgresql://localhost:5432/swimmer"
 export SWIMMER_POSTGRESQL_USER="yourusername"
