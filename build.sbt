@@ -4,7 +4,7 @@ val scalatestVersion = "3.2.17"
 
 lazy val common = Defaults.coreDefaultSettings ++ Seq(
   organization := "objektwerks",
-  version := "0.12",
+  version := "0.13-SNAPSHOT",
   scalaVersion := "3.3.1",
   scalacOptions ++= Seq(
     "-Wunused:all"
@@ -70,11 +70,11 @@ lazy val swimmer = (project in file("."))
     case _ => ""
   }
 
-  if (OS == "mac") assemblyJarName := "swimmer-mac-0.12.jar"
-  else if (OS == "mac-aarch64") assemblyJarName := "swimmer-m1-0.12.jar"
-  else if (OS == "win") assemblyJarName := "swimmer-win-0.12.jar"
-  else if (OS == "linux") assemblyJarName := "swimmer-linux-0.12.jar"
-  else assemblyJarName := "swimmer-no-valid-target-specified-0.12.jar"
+  if (OS == "mac") assemblyJarName := "swimmer-mac-0.13.jar"
+  else if (OS == "mac-aarch64") assemblyJarName := "swimmer-m1-0.13.jar"
+  else if (OS == "win") assemblyJarName := "swimmer-win-0.13.jar"
+  else if (OS == "linux") assemblyJarName := "swimmer-linux-0.13.jar"
+  else assemblyJarName := "swimmer-no-valid-target-specified-0.13.jar"
 
   client / assembly / assemblyMergeStrategy := {
     case PathList("META-INF", xs @ _*) => MergeStrategy.discard
