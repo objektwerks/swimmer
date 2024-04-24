@@ -23,7 +23,7 @@ object Server extends LazyLogging:
 
     val builder = HttpRouting
       .builder
-      .get(endpoint, handler)
+      .post(endpoint, handler)
 
     WebServer
       .builder
@@ -32,7 +32,7 @@ object Server extends LazyLogging:
       .build
       .start
 
-    println(s"*** Press Control-C to shutdown Swimmer Http Server at: $host:$port")
-    logger.info(s"*** Swimmer Http Server started at: $host:$port")
+    println(s"*** Press Control-C to shutdown Swimmer Http Server at: $host:$port$endpoint")
+    logger.info(s"*** Swimmer Http Server started at: $host:$port$endpoint")
 
     Thread.currentThread().join()
