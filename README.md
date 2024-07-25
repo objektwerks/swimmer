@@ -111,16 +111,10 @@ export SWIMMER_HOST="127.0.0.1"
 export SWIMMER_PORT=7171
 export SWIMMER_ENDPOINT="/command"
 
+export SWIMMER_POSTGRESQL_DRIVER="org.postgresql.ds.PGSimpleDataSource"
 export SWIMMER_POSTGRESQL_URL="jdbc:postgresql://localhost:5432/swimmer"
 export SWIMMER_POSTGRESQL_USER="yourusername"
 export SWIMMER_POSTGRESQL_PASSWORD="swimmer"
-export WALKER_POSTGRESQL_DRIVER="org.postgresql.ds.PGSimpleDataSource"
-export SWIMMER_POSTGRESQL_DB_NAME="swimmer"
-export SWIMMER_POSTGRESQL_HOST="127.0.0.1"
-export SWIMMER_POSTGRESQL_PORT=5432
-export SWIMMER_POSTGRESQL_POOL_INITIAL_SIZE=9
-export SWIMMER_POSTGRESQL_POOL_MAX_SIZE=32
-export SWIMMER_POSTGRESQL_POOL_CONNECTION_TIMEOUT_MILLIS=30000
 
 export SWIMMER_EMAIL_HOST="your-email.provider.com"
 export SWIMMER_EMAIL_ADDRESS="your-email@provider.com"
