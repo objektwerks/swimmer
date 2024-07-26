@@ -111,6 +111,10 @@ export SWIMMER_HOST="127.0.0.1"
 export SWIMMER_PORT=7171
 export SWIMMER_ENDPOINT="/command"
 
+export SWIMMER_CACHE_INITIAL_SIZE=4
+export SWIMMER_CACHE_MAX_SIZE=10
+export SWIMMER_CACHE_EXPIRE_AFTER=24
+
 export SWIMMER_POSTGRESQL_DRIVER="org.postgresql.ds.PGSimpleDataSource"
 export SWIMMER_POSTGRESQL_URL="jdbc:postgresql://localhost:5432/swimmer"
 export SWIMMER_POSTGRESQL_USER="yourusername"
