@@ -146,96 +146,104 @@ final class Store(cache: Cache[String, String],
       else None
     }
 
-  def listSwimmers(accountId: Long): List[Swimmer] = DB readOnly { implicit session =>
-    sql"select * from swimmer where account_id = $accountId order by name"
-      .map(rs =>
-        Swimmer(
-          rs.long("id"),
-          rs.long("account_id"),
-          rs.string("name"), 
+  def listSwimmers(accountId: Long): List[Swimmer] =
+    DB readOnly { implicit session =>
+      sql"select * from swimmer where account_id = $accountId order by name"
+        .map(rs =>
+          Swimmer(
+            rs.long("id"),
+            rs.long("account_id"),
+            rs.string("name"), 
+          )
         )
-      )
-      .list()
-  }
+        .list()
+    }
 
-  def addSwimmer(swimmer: Swimmer): Long = DB localTx { implicit session =>
-    sql"""
-      insert into swimmer(account_id, name) values(${swimmer.accountId}, ${swimmer.name})
-      """
-      .updateAndReturnGeneratedKey()
-  }
+  def addSwimmer(swimmer: Swimmer): Long =
+    DB localTx { implicit session =>
+      sql"""
+        insert into swimmer(account_id, name) values(${swimmer.accountId}, ${swimmer.name})
+        """
+        .updateAndReturnGeneratedKey()
+    }
 
-  def updateSwimmer(swimmer: Swimmer): Long = DB localTx { implicit session =>
-    sql"""
-      update swimmer set name = ${swimmer.name}
-      where id = ${swimmer.id}
-      """
-      .update()
-    swimmer.id
-  }
+  def updateSwimmer(swimmer: Swimmer): Long =
+    DB localTx { implicit session =>
+      sql"""
+        update swimmer set name = ${swimmer.name}
+        where id = ${swimmer.id}
+        """
+        .update()
+      swimmer.id
+    }
 
-  def listSessions(swimmerId: Long): List[Session] = DB readOnly { implicit session =>
-    sql"select * from session where swimmer_id = $swimmerId order by datetime desc"
-      .map(rs =>
-        Session(
-          rs.long("id"),
-          rs.long("swimmer_id"),
-          rs.int("weight"),
-          rs.string("weight_unit"),
-          rs.int("laps"),
-          rs.int("lap_distance"),
-          rs.string("lap_unit"),
-          rs.string("style"),
-          rs.boolean("kickboard"),
-          rs.boolean("fins"),
-          rs.int("minutes"),
-          rs.int("seconds"),
-          rs.int("calories"),
-          rs.long("datetime")
+  def listSessions(swimmerId: Long): List[Session] =
+    DB readOnly { implicit session =>
+      sql"select * from session where swimmer_id = $swimmerId order by datetime desc"
+        .map(rs =>
+          Session(
+            rs.long("id"),
+            rs.long("swimmer_id"),
+            rs.int("weight"),
+            rs.string("weight_unit"),
+            rs.int("laps"),
+            rs.int("lap_distance"),
+            rs.string("lap_unit"),
+            rs.string("style"),
+            rs.boolean("kickboard"),
+            rs.boolean("fins"),
+            rs.int("minutes"),
+            rs.int("seconds"),
+            rs.int("calories"),
+            rs.long("datetime")
+          )
         )
-      )
-      .list()
-  }
+        .list()
+    }
 
-  def addSession(sess: Session): Long = DB localTx { implicit session =>
-    sql"""
-      insert into session(swimmer_id, weight, weight_unit, laps, lap_distance,
-      lap_unit, style, kickboard, fins, minutes, seconds, calories, datetime)
-      values(${sess.swimmerId}, ${sess.weight}, ${sess.weightUnit}, ${sess.laps},
-      ${sess.lapDistance}, ${sess.lapUnit}, ${sess.style}, ${sess.kickboard},
-      ${sess.fins}, ${sess.minutes}, ${sess.seconds}, ${sess.calories}, ${sess.datetime})
-      """
-      .updateAndReturnGeneratedKey()
-  }
+  def addSession(sess: Session): Long =
+    DB localTx { implicit session =>
+      sql"""
+        insert into session(swimmer_id, weight, weight_unit, laps, lap_distance,
+        lap_unit, style, kickboard, fins, minutes, seconds, calories, datetime)
+        values(${sess.swimmerId}, ${sess.weight}, ${sess.weightUnit}, ${sess.laps},
+        ${sess.lapDistance}, ${sess.lapUnit}, ${sess.style}, ${sess.kickboard},
+        ${sess.fins}, ${sess.minutes}, ${sess.seconds}, ${sess.calories}, ${sess.datetime})
+        """
+        .updateAndReturnGeneratedKey()
+    }
 
-  def updateSession(sess: Session): Long = DB localTx { implicit session =>
-    sql"""
-      update session set weight = ${sess.weight}, weight_unit = ${sess.weightUnit},
-      laps = ${sess.laps}, lap_distance = ${sess.lapDistance}, lap_unit = ${sess.lapUnit},
-      style = ${sess.style}, kickboard = ${sess.kickboard}, fins = ${sess.fins},
-      minutes = ${sess.minutes}, seconds = ${sess.seconds}, calories = ${sess.calories},
-      datetime = ${sess.datetime}
-      where id = ${sess.id}
-      """
-      .update()
-    sess.id
-  }
+  def updateSession(sess: Session): Long =
+    DB localTx { implicit session =>
+      sql"""
+        update session set weight = ${sess.weight}, weight_unit = ${sess.weightUnit},
+        laps = ${sess.laps}, lap_distance = ${sess.lapDistance}, lap_unit = ${sess.lapUnit},
+        style = ${sess.style}, kickboard = ${sess.kickboard}, fins = ${sess.fins},
+        minutes = ${sess.minutes}, seconds = ${sess.seconds}, calories = ${sess.calories},
+        datetime = ${sess.datetime}
+        where id = ${sess.id}
+        """
+        .update()
+      sess.id
+    }
 
-  def listFaults(): List[Fault] = DB readOnly { implicit session =>
-    sql"select * from fault order by occurred desc"
-      .map(rs =>
-        Fault(
-          rs.string("cause"),
-          rs.string("occurred")
+  def listFaults(): List[Fault] =
+    DB readOnly { implicit session =>
+      sql"select * from fault order by occurred desc"
+        .map(rs =>
+          Fault(
+            rs.string("cause"),
+            rs.string("occurred")
+          )
         )
-      )
-      .list()
-  }
+        .list()
+    }
 
-  def addFault(fault: Fault): Fault = DB localTx { implicit session =>
-    sql"""
-      insert into fault(cause, occurred) values(${fault.cause}, ${fault.occurred})
-      """
-      .update()
-      fault
-  }
+  def addFault(fault: Fault): Fault =
+    DB localTx { implicit session =>
+      sql"""
+        insert into fault(cause, occurred) values(${fault.cause}, ${fault.occurred})
+        """
+        .update()
+        fault
+    }
