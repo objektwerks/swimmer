@@ -2,36 +2,35 @@ package swimmer
 
 import com.github.blemale.scaffeine.{Cache, Scaffeine}
 import com.typesafe.config.Config
-import com.typesafe.scalalogging.LazyLogging
 import com.zaxxer.hikari.HikariDataSource
 
 import java.time.LocalDate
+import java.util.concurrent.TimeUnit
 import javax.sql.DataSource
 
-import scalikejdbc.*
 import scala.concurrent.duration.FiniteDuration
 
+import scalikejdbc.*
+
 object Store:
-  def cache(minSize: Int,
-            maxSize: Int,
-            expireAfter: FiniteDuration): Cache[String, String] =
+  def cache(config: Config): Cache[String, String] =
     Scaffeine()
-      .initialCapacity(minSize)
-      .maximumSize(maxSize)
-      .expireAfterWrite(expireAfter)
+      .initialCapacity(config.getInt("cache.initialSize"))
+      .maximumSize(config.getInt("cache.maxSize"))
+      .expireAfterWrite( FiniteDuration( config.getLong("cache.expireAfter"), TimeUnit.HOURS) )
       .build[String, String]()
 
-final class Store(config: Config,
-                  cache: Cache[String, String]) extends LazyLogging:
-  private val dataSource: DataSource = {
-    val ds = new HikariDataSource()
-    ds.setDataSourceClassName(config.getString("db.driverClassName"))
+  def dataSource(config: Config): DataSource =
+    val ds = HikariDataSource()
+    ds.setDataSourceClassName(config.getString("db.driver"))
     ds.addDataSourceProperty("url", config.getString("db.url"))
     ds.addDataSourceProperty("user", config.getString("db.user"))
     ds.addDataSourceProperty("password", config.getString("db.password"))
     ds
-  }
-  ConnectionPool.singleton(new DataSourceConnectionPool(dataSource))
+
+final class Store(cache: Cache[String, String],
+                  dataSource: DataSource):
+  ConnectionPool.singleton( DataSourceConnectionPool(dataSource) )
 
   def register(account: Account): Account = addAccount(account)
 
@@ -62,7 +61,6 @@ final class Store(config: Config,
   def isAuthorized(license: String): Boolean =
     cache.getIfPresent(license) match
       case Some(_) =>
-        logger.debug(s"*** store cache get: $license")
         true
       case None =>
         val optionalLicense = DB readOnly { implicit session =>
@@ -72,7 +70,6 @@ final class Store(config: Config,
         }
         if optionalLicense.isDefined then
           cache.put(license, license)
-          logger.debug(s"*** store cache put: $license")
           true
         else false
 
