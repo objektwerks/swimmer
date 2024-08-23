@@ -71,7 +71,8 @@ final class Dispatcher(store: Store, emailer: Emailer):
 
   private def deactivateAccount(license: String)(using IO): Event =
     Try:
-      retry( RetryConfig.delay(1, 100.millis) )( store.deactivateAccount(license) )
+      supervised:
+        retry( RetryConfig.delay(1, 100.millis) )( store.deactivateAccount(license) )
     .fold(
       error => Fault("Deactivate account failed:", error),
       optionalAccount =>
@@ -81,7 +82,8 @@ final class Dispatcher(store: Store, emailer: Emailer):
 
   private def reactivateAccount(license: String)(using IO): Event =
     Try:
-      retry( RetryConfig.delay(1, 100.millis) )( store.reactivateAccount(license) )
+      supervised:
+        retry( RetryConfig.delay(1, 100.millis) )( store.reactivateAccount(license) )
     .fold(
       error => Fault("Reactivate account failed:", error),
       optionalAccount =>
