@@ -129,7 +129,7 @@ final class Dispatcher(store: Store, emailer: Emailer):
         else retry( RetryConfig.delay(1, 100.millis) )( store.updateSession(session) )
       )
     .recover:
-      case NonFatal(error) => Fault("Save cleaning failed:", error)
+      case NonFatal(error) => Fault("Save session failed:", error)
     .get
 
   private def addFault(fault: Fault)(using IO): Event =
