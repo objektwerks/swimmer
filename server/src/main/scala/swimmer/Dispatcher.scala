@@ -69,16 +69,20 @@ final class Dispatcher(store: Store, emailer: Emailer):
         else Fault(s"Login failed for email address: $emailAddress and pin: $pin")
     )
 
-  private def deactivateAccount(license: String): Event =
-    Try { store.deactivateAccount(license) }.fold(
+  private def deactivateAccount(license: String)(using IO): Event =
+    Try:
+      retry( RetryConfig.delay(1, 100.millis) )( store.deactivateAccount(license) )
+    .fold(
       error => Fault("Deactivate account failed:", error),
       optionalAccount =>
         if optionalAccount.isDefined then Deactivated(optionalAccount.get)
         else Fault(s"Deactivate account failed for license: $license")
     )
 
-  private def reactivateAccount(license: String): Event =
-    Try { store.reactivateAccount(license) }.fold(
+  private def reactivateAccount(license: String)(using IO): Event =
+    Try:
+      retry( RetryConfig.delay(1, 100.millis) )( store.reactivateAccount(license) )
+    .fold(
       error => Fault("Reactivate account failed:", error),
       optionalAccount =>
         if optionalAccount.isDefined then Reactivated(optionalAccount.get)
