@@ -113,10 +113,14 @@ final class Dispatcher(store: Store, emailer: Emailer):
     .get
 
   private def listSessions(swimmerId: Long)(using IO): Event =
-    Try {
-      SessionsListed( store.listSessions(swimmerId) )
-    }.recover { case NonFatal(error) => Fault("List sessions failed:", error) }
-     .get
+    Try:
+      SessionsListed(
+        supervised:
+          retry( RetryConfig.delay(1, 100.millis) )( store.listSessions(swimmerId) )
+      )
+    .recover:
+      case NonFatal(error) => Fault("List sessions failed:", error)
+    .get
 
   private def saveSession(session: Session)(using IO): Event =
     Try {
