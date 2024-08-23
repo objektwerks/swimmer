@@ -89,13 +89,13 @@ final class Dispatcher(store: Store, emailer: Emailer):
         else Fault(s"Reactivate account failed for license: $license")
     )
 
-  private def listSwimmers(accountId: Long): Event =
+  private def listSwimmers(accountId: Long)(using IO): Event =
     Try {
       SwimmersListed(store.listSwimmers(accountId))
     }.recover { case NonFatal(error) => Fault("List swimmers failed:", error) }
      .get
 
-  private def saveSwimmer(swimmer: Swimmer): Event =
+  private def saveSwimmer(swimmer: Swimmer)(using IO): Event =
     Try {
       SwimmerSaved(
         if swimmer.id == 0 then store.addSwimmer(swimmer)
@@ -104,13 +104,13 @@ final class Dispatcher(store: Store, emailer: Emailer):
     }.recover { case NonFatal(error) => Fault("Save swimmer failed:", error) }
      .get
 
-  private def listSessions(swimmerId: Long): Event =
+  private def listSessions(swimmerId: Long)(using IO): Event =
     Try {
       SessionsListed( store.listSessions(swimmerId) )
     }.recover { case NonFatal(error) => Fault("List sessions failed:", error) }
      .get
 
-  private def saveSession(session: Session): Event =
+  private def saveSession(session: Session)(using IO): Event =
     Try {
       SessionSaved(
         if session.id == 0 then store.addSession(session)
@@ -119,9 +119,11 @@ final class Dispatcher(store: Store, emailer: Emailer):
     }.recover { case NonFatal(error) => Fault("Save cleaning failed:", error) }
      .get
 
-  private def addFault(fault: Fault): Event =
-    Try {
-      store.addFault(fault)
-      FaultAdded()
-    }.recover { case NonFatal(error) => Fault("Add fault failed:", error) }
-     .get
+  private def addFault(fault: Fault)(using IO): Event =
+    Try:
+      supervised:
+        retry( RetryConfig.delay(1, 100.millis) )( store.addFault(fault) )
+        FaultAdded()
+    .recover:
+      case NonFatal(error) => Fault("Add fault failed:", error)
+    .get
