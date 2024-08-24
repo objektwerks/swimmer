@@ -4,7 +4,6 @@ import com.typesafe.config.ConfigFactory
 
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
-import ox.{IO, supervised}
 
 import scala.sys.process.Process
 
@@ -25,23 +24,21 @@ final class DispatcherTest extends AnyFunSuite with Matchers:
   var testSession = Session(swimmerId = 0, weight = 150, laps = 10, minutes = 15)
 
   test("dispatcher"):
-    IO.unsafe:
-      supervised:
-        register
-        login
+    register
+    login
 
-        deactivate
-        reactivate
+    deactivate
+    reactivate
 
-        addSwimmer
-        updateSwimmer
-        listSwimmers
+    addSwimmer
+    updateSwimmer
+    listSwimmers
 
-        addSession
-        updateSession
-        listSessions
+    addSession
+    updateSession
+    listSessions
 
-        fault
+    fault
 
   def register: Unit =
     val register = Register(config.getString("email.sender"))
@@ -50,7 +47,7 @@ final class DispatcherTest extends AnyFunSuite with Matchers:
         assert( account.isActivated )
         testAccount = account
       case fault => fail(s"Invalid registered event: $fault")
-    
+
   def login: Unit =
     val login = Login(testAccount.emailAddress, testAccount.pin)
     dispatcher.dispatch(login) match
@@ -85,7 +82,7 @@ final class DispatcherTest extends AnyFunSuite with Matchers:
     dispatcher.dispatch(saveSwimmer) match
       case SwimmerSaved(id) => id shouldBe testSwimmer.id
       case fault => fail(s"Invalid swimmer saved event: $fault")
-    
+
   def listSwimmers: Unit =
     val listSwimmers = ListSwimmers(testAccount.license, testSwimmer.accountId)
     dispatcher.dispatch(listSwimmers) match
