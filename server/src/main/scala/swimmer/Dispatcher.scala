@@ -99,15 +99,14 @@ final class Dispatcher(store: Store, emailer: Emailer):
       case NonFatal(error) => Fault("List swimmers failed:", error)
 
   private def saveSwimmer(swimmer: Swimmer)(using IO): Event =
-    Try:
+    try
       SwimmerSaved(
         supervised:
           if swimmer.id == 0 then retry( RetryConfig.delay(1, 100.millis) )( store.addSwimmer(swimmer) )
           else retry( RetryConfig.delay(1, 100.millis) )( store.updateSwimmer(swimmer) )
       )
-    .recover:
+    catch
       case NonFatal(error) => Fault("Save swimmer failed:", error)
-    .get
 
   private def listSessions(swimmerId: Long)(using IO): Event =
     Try:
