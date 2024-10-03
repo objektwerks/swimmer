@@ -72,11 +72,11 @@ lazy val swimmer = (project in file("."))
     case _ => ""
   }
 
-  if (OS == "mac") assemblyJarName := "swimmer-mac-0.21.jar"
-  else if (OS == "mac-aarch64") assemblyJarName := "swimmer-m1-0.21.jar"
-  else if (OS == "win") assemblyJarName := "swimmer-win-0.21.jar"
-  else if (OS == "linux") assemblyJarName := "swimmer-linux-0.21.jar"
-  else assemblyJarName := "swimmer-no-valid-target-specified-0.21.jar"
+  if (OS == "mac") assemblyJarName := "swimmer-mac-0.32.jar"
+  else if (OS == "mac-aarch64") assemblyJarName := "swimmer-m1-0.32.jar"
+  else if (OS == "win") assemblyJarName := "swimmer-win-0.32.jar"
+  else if (OS == "linux") assemblyJarName := "swimmer-linux-0.32.jar"
+  else assemblyJarName := "swimmer-no-valid-target-specified-0.32.jar"
 
   client / assembly / assemblyMergeStrategy := {
     case PathList("META-INF", xs @ _*) => MergeStrategy.discard
