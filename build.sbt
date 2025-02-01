@@ -53,35 +53,13 @@ lazy val swimmer = (project in file("."))
   }
 // End: Assembly Tasks
 
-// Begin: Client Assembly
-
-  /*
-  See assembly section in readme.
-  1. sbt -Dtarget="mac" clean test assembly copyAssemblyJar
-  2. sbt -Dtarget="m1" clean test assembly copyAssemblyJar
-  3. sbt -Dtarget="win" clean test assembly copyAssemblyJar
-  4. sbt -Dtarget="linux" clean test assembly copyAssemblyJar
-  */
-  lazy val OS: String = sys.props.getOrElse("target", "") match {
-    case name if name.startsWith("mac")   => "mac"
-    case name if name.startsWith("m1")    => "mac-aarch64"
-    case name if name.startsWith("win")   => "win"
-    case name if name.startsWith("linux") => "linux"
-    case _ => ""
-  }
-
-  if (OS == "mac") assemblyJarName := "swimmer-mac-0.32.jar"
-  else if (OS == "mac-aarch64") assemblyJarName := "swimmer-m1-0.32.jar"
-  else if (OS == "win") assemblyJarName := "swimmer-win-0.32.jar"
-  else if (OS == "linux") assemblyJarName := "swimmer-linux-0.32.jar"
-  else assemblyJarName := "swimmer-no-valid-target-specified-0.32.jar"
-
-  client / assembly / assemblyMergeStrategy := {
-    case PathList("META-INF", xs @ _*) => MergeStrategy.discard
-    case x => MergeStrategy.first
-  }
-
-// End: Client Assembly
+// Begin: Assembly
+assemblyJarName := s"brewmeister-${version.value}.jar"
+assembly / assemblyMergeStrategy := {
+  case PathList("META-INF",  xs @ _*) => MergeStrategy.discard
+  case x => MergeStrategy.first
+}
+// End: Assembly
 
 lazy val client = project
   .dependsOn(shared)
