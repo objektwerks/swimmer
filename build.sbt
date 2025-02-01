@@ -54,7 +54,7 @@ lazy val swimmer = (project in file("."))
 // End: Assembly Tasks
 
 // Begin: Assembly
-assemblyJarName := s"brewmeister-${version.value}.jar"
+assemblyJarName := s"brewmeister-${common.version.value}.jar"
 assembly / assemblyMergeStrategy := {
   case PathList("META-INF",  xs @ _*) => MergeStrategy.discard
   case x => MergeStrategy.first
