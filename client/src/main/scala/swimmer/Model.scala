@@ -118,7 +118,8 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
       (event: Event) => event match
         case fault @ Fault(_, _) => onFetchFault("Model.save swimmer", swimmer, fault)
         case SwimmerSaved(id) =>
-          observableSwimmers += swimmer.copy(id = id)
+          assertNotInFxThread(s"add swimmer: $swimmer")
+          observableSwimmers.insert(0, swimmer.copy(id = id))
           observableSwimmers.sort()
           selectedSwimmerId.set(id)
           runLast
