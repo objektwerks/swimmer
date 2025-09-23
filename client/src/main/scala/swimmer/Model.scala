@@ -66,7 +66,7 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
     fetcher.fetch(
       register,
       (event: Event) => event match
-        case fault @ Fault(_, _) => registered.set(false)
+        case _ @ Fault(_, _) => registered.set(false)
         case Registered(account) => objectAccount.set(account)
         case _ => ()
     )
@@ -75,7 +75,7 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
     fetcher.fetch(
       login,
       (event: Event) => event match
-        case fault @ Fault(_, _) => loggedin.set(false)
+        case _ @ Fault(_, _) => loggedin.set(false)
         case LoggedIn(account) =>
           objectAccount.set(account)
           swimmers()
@@ -111,7 +111,7 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
         case _ => ()
     )
 
-  def add(selectedIndex: Int, swimmer: Swimmer)(runLast: => Unit): Unit =
+  def add(swimmer: Swimmer)(runLast: => Unit): Unit =
     fetcher.fetch(
       SaveSwimmer(objectAccount.get.license, swimmer),
       (event: Event) => event match
@@ -146,7 +146,7 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
         case _ => ()
     )
 
-  def add(selectedIndex: Int, session: Session)(runLast: => Unit): Unit =
+  def add(session: Session)(runLast: => Unit): Unit =
     fetcher.fetch(
       SaveSession(objectAccount.get.license, session),
       (event: Event) => event match
