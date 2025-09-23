@@ -11,7 +11,8 @@ import Fault.given
 final class Model(fetcher: Fetcher) extends LazyLogging:
   def assertInFxThread(message: String, suffix: String = " should be in fx thread!"): Unit =
     require(Platform.isFxApplicationThread, message + suffix)
-  val shouldNotBeInFxThread = (message: String) => require(!Platform.isFxApplicationThread, message)
+  def assertNotInFxThread(message: String, suffix: String = " should not be in fx thread!"): Unit =
+    require(!Platform.isFxApplicationThread, message + suffix)
 
   val registered = ObjectProperty[Boolean](true)
   val loggedin = ObjectProperty[Boolean](true)
