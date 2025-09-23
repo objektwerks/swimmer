@@ -18,9 +18,7 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
   val selectedSwimmerId = ObjectProperty[Long](0)
   val selectedSessionId = ObjectProperty[Long](0)
 
-  selectedSwimmerId.onChange { (_, oldSwimmerId, newSwimmerId) =>
-    logger.info("*** selected swimmer id onchange event: {} -> {}", oldSwimmerId, newSwimmerId)
-    shouldBeInFxThread("*** selected swimmer id onchange should be in fx thread.")
+  selectedSwimmerId.onChange { (_, _, newSwimmerId) =>
     sessions(newSwimmerId)
   }
 
