@@ -28,7 +28,7 @@ final class Fetcher(context: Context) extends LazyLogging:
     logger.info("*** fetcher command: {}", command)
     val commandJson = writeToString[Command](command)
     logger.info("*** fetcher command json: {}", commandJson)
-    Try {
+    Try:
       val eventJson = client
         .post(endpoint)
         .submit(commandJson, classOf[String])
@@ -37,9 +37,8 @@ final class Fetcher(context: Context) extends LazyLogging:
       val event = readFromString[Event](eventJson)
       logger.info("*** fetcher event: {}", event)
       Platform.runLater(handler(event))
-    }.recover {
+    .recover:
       case NonFatal(error) =>
         val fault = Fault(error, defaultError)
         logger.error("*** fetcher fault: {}", fault)
         Platform.runLater(handler(fault))
-    }
