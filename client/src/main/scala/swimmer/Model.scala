@@ -9,7 +9,8 @@ import scalafx.beans.property.ObjectProperty
 import Fault.given
 
 final class Model(fetcher: Fetcher) extends LazyLogging:
-  val shouldBeInFxThread = (message: String) => require(Platform.isFxApplicationThread, message)
+  def assertInFxThread(message: String, suffix: String = " should be in fx thread!"): Unit =
+    require(Platform.isFxApplicationThread, message + suffix)
   val shouldNotBeInFxThread = (message: String) => require(!Platform.isFxApplicationThread, message)
 
   val registered = ObjectProperty[Boolean](true)
