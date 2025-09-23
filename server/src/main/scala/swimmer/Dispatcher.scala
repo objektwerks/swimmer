@@ -34,7 +34,7 @@ final class Dispatcher(store: Store, emailer: Emailer):
       case license: License =>
         try
           supervised:
-            retry( Schedule.fixedInterval(100.millis).maxRepeats(1) )(
+            retry( Schedule.fixedInterval(100.millis).maxAttempts(1) )(
               if store.isAuthorized(license.license) then Authorized
               else Unauthorized(s"Unauthorized: $command")
             )
@@ -51,7 +51,7 @@ final class Dispatcher(store: Store, emailer: Emailer):
       supervised:
         val account = Account(emailAddress = emailAddress)
         val message = s"Your new pin is: ${account.pin}\n\nWelcome aboard!"
-        val result = retry( Schedule.fixedInterval(600.millis).maxRepeats(1) )( sendEmail(account.emailAddress, message) )
+        val result = retry( Schedule.fixedInterval(600.millis).maxAttempts(1) )( sendEmail(account.emailAddress, message) )
         if result then
           Registered( store.register(account) )
         else
@@ -62,7 +62,7 @@ final class Dispatcher(store: Store, emailer: Emailer):
   private def login(emailAddress: String, pin: String): Event =
     Try:
       supervised:
-        retry( Schedule.fixedInterval(100.millis).maxRepeats(1) )( store.login(emailAddress, pin) )
+        retry( Schedule.fixedInterval(100.millis).maxAttempts(1) )( store.login(emailAddress, pin) )
     .fold(
       error => Fault("Login failed:", error),
       optionalAccount =>
@@ -73,7 +73,7 @@ final class Dispatcher(store: Store, emailer: Emailer):
   private def deactivateAccount(license: String): Event =
     Try:
       supervised:
-        retry( Schedule.fixedInterval(100.millis).maxRepeats(1) )( store.deactivateAccount(license) )
+        retry( Schedule.fixedInterval(100.millis).maxAttempts(1) )( store.deactivateAccount(license) )
     .fold(
       error => Fault("Deactivate account failed:", error),
       optionalAccount =>
@@ -84,7 +84,7 @@ final class Dispatcher(store: Store, emailer: Emailer):
   private def reactivateAccount(license: String): Event =
     Try:
       supervised:
-        retry( Schedule.fixedInterval(100.millis).maxRepeats(1) )( store.reactivateAccount(license) )
+        retry( Schedule.fixedInterval(100.millis).maxAttempts(1) )( store.reactivateAccount(license) )
     .fold(
       error => Fault("Reactivate account failed:", error),
       optionalAccount =>
@@ -96,7 +96,7 @@ final class Dispatcher(store: Store, emailer: Emailer):
     try
       SwimmersListed(
         supervised:
-          retry( Schedule.fixedInterval(100.millis).maxRepeats(1) )( store.listSwimmers(accountId) )
+          retry( Schedule.fixedInterval(100.millis).maxAttempts(1) )( store.listSwimmers(accountId) )
       )
     catch
       case NonFatal(error) => Fault("List swimmers failed:", error)
@@ -105,8 +105,8 @@ final class Dispatcher(store: Store, emailer: Emailer):
     try
       SwimmerSaved(
         supervised:
-          if swimmer.id == 0 then retry( Schedule.fixedInterval(100.millis).maxRepeats(1) )( store.addSwimmer(swimmer) )
-          else retry( Schedule.fixedInterval(100.millis).maxRepeats(1) )( store.updateSwimmer(swimmer) )
+          if swimmer.id == 0 then retry( Schedule.fixedInterval(100.millis).maxAttempts(1) )( store.addSwimmer(swimmer) )
+          else retry( Schedule.fixedInterval(100.millis).maxAttempts(1) )( store.updateSwimmer(swimmer) )
       )
     catch
       case NonFatal(error) => Fault("Save swimmer failed:", error)
@@ -115,7 +115,7 @@ final class Dispatcher(store: Store, emailer: Emailer):
     try
       SessionsListed(
         supervised:
-          retry( Schedule.fixedInterval(100.millis).maxRepeats(1) )( store.listSessions(swimmerId) )
+          retry( Schedule.fixedInterval(100.millis).maxAttempts(1) )( store.listSessions(swimmerId) )
       )
     catch
       case NonFatal(error) => Fault("List sessions failed:", error)
@@ -123,8 +123,8 @@ final class Dispatcher(store: Store, emailer: Emailer):
   private def saveSession(session: Session): Event =
     try
       SessionSaved(
-        if session.id == 0 then retry( Schedule.fixedInterval(100.millis).maxRepeats(1) )( store.addSession(session) )
-        else retry( Schedule.fixedInterval(100.millis).maxRepeats(1) )( store.updateSession(session) )
+        if session.id == 0 then retry( Schedule.fixedInterval(100.millis).maxAttempts(1) )( store.addSession(session) )
+        else retry( Schedule.fixedInterval(100.millis).maxAttempts(1) )( store.updateSession(session) )
       )
     catch
       case NonFatal(error) => Fault("Save session failed:", error)
@@ -132,7 +132,7 @@ final class Dispatcher(store: Store, emailer: Emailer):
   private def addFault(fault: Fault): Event =
     try
       supervised:
-        retry( Schedule.fixedInterval(100.millis).maxRepeats(1) )( store.addFault(fault) )
+        retry( Schedule.fixedInterval(100.millis).maxAttempts(1) )( store.addFault(fault) )
         FaultAdded()
     catch
       case NonFatal(error) => Fault("Add fault failed:", error)
