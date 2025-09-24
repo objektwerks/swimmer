@@ -83,7 +83,7 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
     fetcher.fetch(
       reactivate,
       (event: Event) => event match
-        case fault @ Fault(_, _) => onFetchFault("Model.reactivate", fault)
+        case fault @ Fault(_, _) => onFetchFault("reactivate", fault)
         case Reactivated(account) => objectAccount.set(account)
         case _ => ()
     )
