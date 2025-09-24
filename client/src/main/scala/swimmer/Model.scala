@@ -162,7 +162,7 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
     fetcher.fetch(
       SaveSession(objectAccount.get.license, session),
       (event: Event) => event match
-        case fault @ Fault(_, _) => onFetchFault("Model.save session", session, fault)
+        case fault @ Fault(_, _) => onFetchFault("update session", session, fault)
         case SessionSaved(id) =>
           assertNotInFxThread(s"update session from: $selectedIndex to: $session")
           if selectedIndex > -1 then
