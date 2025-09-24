@@ -92,7 +92,7 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
     fetcher.fetch(
       ListSwimmers(objectAccount.get.license, objectAccount.get.id),
       (event: Event) => event match
-        case fault @ Fault(_, _) => onFetchFault("Model.swimmers", fault)
+        case fault @ Fault(_, _) => onFetchFault("swimmers", fault)
         case SwimmersListed(swimmers) =>
           assertNotInFxThread("list swimmers")
           observableSwimmers.clear()
