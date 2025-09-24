@@ -135,7 +135,7 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
     fetcher.fetch(
       ListSessions(objectAccount.get.license, swimmerId),
       (event: Event) => event match
-        case fault @ Fault(_, _) => onFetchFault("Model.sessions", fault)
+        case fault @ Fault(_, _) => onFetchFault("sessions", fault)
         case SessionsListed(sessions) =>
           assertNotInFxThread("list sessions")
           observableSessions.clear()
