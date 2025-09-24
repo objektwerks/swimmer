@@ -149,6 +149,7 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
       (event: Event) => event match
         case fault @ Fault(_, _) => onFetchFault("Model.sessions", fault)
         case SessionsListed(sessions) =>
+          assertNotInFxThread("list sessions")
           observableSessions.clear()
           observableSessions ++= sessions
         case _ => ()
