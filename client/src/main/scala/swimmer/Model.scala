@@ -131,7 +131,7 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
     fetcher.fetch(
       SaveSwimmer(objectAccount.get.license, swimmer),
       (event: Event) => event match
-        case fault @ Fault(_, _) => onFetchFault("Model.save swimmer", swimmer, fault)
+        case fault @ Fault(_, _) => onFetchFault("update swimmer", swimmer, fault)
         case SwimmerSaved(id) =>
           assertNotInFxThread(s"update swimmer from: $selectedIndex to: $swimmer")
           if selectedIndex > -1 then
