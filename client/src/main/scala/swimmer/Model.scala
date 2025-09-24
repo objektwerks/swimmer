@@ -147,7 +147,7 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
     fetcher.fetch(
       SaveSession(objectAccount.get.license, session),
       (event: Event) => event match
-        case fault @ Fault(_, _) => onFetchFault("Model.save session", session, fault)
+        case fault @ Fault(_, _) => onFetchFault("add session", session, fault)
         case SessionSaved(id) =>
           assertNotInFxThread(s"add session: $session")
           observableSessions.insert(0, session.copy(id = id))
