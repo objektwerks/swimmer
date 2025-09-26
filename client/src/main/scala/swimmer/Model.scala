@@ -76,13 +76,14 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
       )
 
   def deactivate(deactivate: Deactivate): Unit =
-    fetcher.fetch(
-      deactivate,
-      (event: Event) => event match
-        case fault @ Fault(_, _) => onFetchFault("deactivate", fault)
-        case Deactivated(account) => objectAccount.set(account)
-        case _ => ()
-    )
+    supervised:
+      fetcher.fetch(
+        deactivate,
+        (event: Event) => event match
+          case fault @ Fault(_, _) => onFetchFault("deactivate", fault)
+          case Deactivated(account) => objectAccount.set(account)
+          case _ => ()
+      )
 
   def reactivate(reactivate: Reactivate): Unit =
     fetcher.fetch(
