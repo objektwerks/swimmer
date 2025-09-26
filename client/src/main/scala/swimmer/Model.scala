@@ -55,6 +55,7 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
 
   def register(register: Register): Unit =
     supervised:
+      assertNotInFxThread(s"register: $register")
       fetcher.fetch(
         register,
         (event: Event) => event match
