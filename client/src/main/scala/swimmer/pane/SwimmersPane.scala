@@ -15,6 +15,7 @@ final class SwimmersPane(context: Context, model: Model) extends VBox:
   val tableView = new TableView[Swimmer]():
     columns ++= List(
       new TableColumn[Swimmer, String]:
+        prefWidth = 340
         text = context.headerName
         cellValueFactory = _.value.nameProperty
     )
