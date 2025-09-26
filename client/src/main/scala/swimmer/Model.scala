@@ -109,19 +109,20 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
       )
 
   def add(swimmer: Swimmer)(runLast: => Unit): Unit =
-    fetcher.fetch(
-      SaveSwimmer(objectAccount.get.license, swimmer),
-      (event: Event) => event match
-        case fault @ Fault(_, _) => onFetchFault("add swimmer", swimmer, fault)
-        case SwimmerSaved(id) =>
-          assertNotInFxThread(s"add swimmer: $swimmer")
-          observableSwimmers.insert(0, swimmer.copy(id = id))
-          observableSwimmers.sort()
-          selectedSwimmerId.set(id)
-          logger.info(s"Added swimmer: $swimmer")
-          runLast
-        case _ => ()
-    )
+    supervised:
+      fetcher.fetch(
+        SaveSwimmer(objectAccount.get.license, swimmer),
+        (event: Event) => event match
+          case fault @ Fault(_, _) => onFetchFault("add swimmer", swimmer, fault)
+          case SwimmerSaved(id) =>
+            assertNotInFxThread(s"add swimmer: $swimmer")
+            observableSwimmers.insert(0, swimmer.copy(id = id))
+            observableSwimmers.sort()
+            selectedSwimmerId.set(id)
+            logger.info(s"Added swimmer: $swimmer")
+            runLast
+          case _ => ()
+      )
 
   def update(selectedIndex: Int, swimmer: Swimmer)(runLast: => Unit): Unit =
     fetcher.fetch(
