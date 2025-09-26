@@ -43,6 +43,7 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
 
   def add(fault: Fault): Unit =
     supervised:
+      assertNotInFxThread(s"add fault: $fault")
       fetcher.fetch(
         AddFault(objectAccount.get.license, fault),
         (event: Event) => event match
