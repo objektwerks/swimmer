@@ -102,12 +102,12 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
 
   def swimmers(): Unit =
     supervised:
+      assertNotInFxThread("list swimmers")
       fetcher.fetch(
         ListSwimmers(objectAccount.get.license, objectAccount.get.id),
         (event: Event) => event match
           case fault @ Fault(_, _) => onFetchFault("swimmers", fault)
           case SwimmersListed(swimmers) =>
-            assertNotInFxThread("list swimmers")
             observableSwimmers.clear()
             observableSwimmers ++= swimmers
           case _ => ()
