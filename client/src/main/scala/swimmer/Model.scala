@@ -131,12 +131,12 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
 
   def update(selectedIndex: Int, swimmer: Swimmer)(runLast: => Unit): Unit =
     supervised:
+      assertNotInFxThread(s"update swimmer from: $selectedIndex to: $swimmer")
       fetcher.fetch(
         SaveSwimmer(objectAccount.get.license, swimmer),
         (event: Event) => event match
           case fault @ Fault(_, _) => onFetchFault("update swimmer", swimmer, fault)
           case SwimmerSaved(id) =>
-            assertNotInFxThread(s"update swimmer from: $selectedIndex to: $swimmer")
             if selectedIndex > -1 then
               observableSwimmers.update(selectedIndex, swimmer)      
               logger.info(s"Updated swimmer from: $selectedIndex to: $swimmer")
