@@ -77,6 +77,7 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
 
   def deactivate(deactivate: Deactivate): Unit =
     supervised:
+      assertNotInFxThread(s"deactivate: $deactivate")
       fetcher.fetch(
         deactivate,
         (event: Event) => event match
