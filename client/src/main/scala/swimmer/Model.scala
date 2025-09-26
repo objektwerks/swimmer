@@ -177,12 +177,12 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
 
   def update(selectedIndex: Int, session: Session)(runLast: => Unit): Unit =
     supervised:
+      assertNotInFxThread(s"update session from: $selectedIndex to: $session")
       fetcher.fetch(
         SaveSession(objectAccount.get.license, session),
         (event: Event) => event match
           case fault @ Fault(_, _) => onFetchFault("update session", session, fault)
           case SessionSaved(id) =>
-            assertNotInFxThread(s"update session from: $selectedIndex to: $session")
             if selectedIndex > -1 then
               observableSessions.update(selectedIndex, session)      
               logger.info(s"Updated session from: $selectedIndex to: $session")
