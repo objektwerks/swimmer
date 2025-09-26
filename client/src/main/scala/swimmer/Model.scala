@@ -171,17 +171,18 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
       )
 
   def update(selectedIndex: Int, session: Session)(runLast: => Unit): Unit =
-    fetcher.fetch(
-      SaveSession(objectAccount.get.license, session),
-      (event: Event) => event match
-        case fault @ Fault(_, _) => onFetchFault("update session", session, fault)
-        case SessionSaved(id) =>
-          assertNotInFxThread(s"update session from: $selectedIndex to: $session")
-          if selectedIndex > -1 then
-            observableSessions.update(selectedIndex, session)      
-            logger.info(s"Updated session from: $selectedIndex to: $session")
-            runLast
-          else
-            logger.error(s"Update of session from: $selectedIndex to: $session failed due to invalid index: $selectedIndex")
-        case _ => ()
-    )
+    supervised:
+      fetcher.fetch(
+        SaveSession(objectAccount.get.license, session),
+        (event: Event) => event match
+          case fault @ Fault(_, _) => onFetchFault("update session", session, fault)
+          case SessionSaved(id) =>
+            assertNotInFxThread(s"update session from: $selectedIndex to: $session")
+            if selectedIndex > -1 then
+              observableSessions.update(selectedIndex, session)      
+              logger.info(s"Updated session from: $selectedIndex to: $session")
+              runLast
+            else
+              logger.error(s"Update of session from: $selectedIndex to: $session failed due to invalid index: $selectedIndex")
+          case _ => ()
+      )
