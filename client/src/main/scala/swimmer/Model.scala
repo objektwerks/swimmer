@@ -2,6 +2,8 @@ package swimmer
 
 import com.typesafe.scalalogging.LazyLogging
 
+import ox.supervised
+
 import scalafx.application.Platform
 import scalafx.collections.ObservableBuffer
 import scalafx.beans.property.ObjectProperty
@@ -89,16 +91,17 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
     )
 
   def swimmers(): Unit =
-    fetcher.fetch(
-      ListSwimmers(objectAccount.get.license, objectAccount.get.id),
-      (event: Event) => event match
-        case fault @ Fault(_, _) => onFetchFault("swimmers", fault)
-        case SwimmersListed(swimmers) =>
-          assertNotInFxThread("list swimmers")
-          observableSwimmers.clear()
-          observableSwimmers ++= swimmers
-        case _ => ()
-    )
+    supervised:
+      fetcher.fetch(
+        ListSwimmers(objectAccount.get.license, objectAccount.get.id),
+        (event: Event) => event match
+          case fault @ Fault(_, _) => onFetchFault("swimmers", fault)
+          case SwimmersListed(swimmers) =>
+            assertNotInFxThread("list swimmers")
+            observableSwimmers.clear()
+            observableSwimmers ++= swimmers
+          case _ => ()
+      )
 
   def add(swimmer: Swimmer)(runLast: => Unit): Unit =
     fetcher.fetch(
