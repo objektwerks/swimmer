@@ -80,6 +80,7 @@ final class SwimmersPane(context: Context, model: Model) extends VBox:
     if selectedItem != null then
       model.selectedSwimmerId.value = selectedItem.id
       editButton.disable = false
+    else editButton.disable = true
   }
 
   def add(): Unit =
@@ -90,13 +91,14 @@ final class SwimmersPane(context: Context, model: Model) extends VBox:
       case _ =>
 
   def update(): Unit =
-    val selectedIndex = tableView.selectionModel().getSelectedIndex
-    val swimmer = tableView.selectionModel().getSelectedItem.swimmer
-    SwimmerDialog(context, swimmer).showAndWait() match
-      case Some(swimmer: Swimmer) => model.update(selectedIndex, swimmer) {
-        tableView.selectionModel().select(selectedIndex)
-      }
-      case _ =>
+    if tableView.selectionModel().getSelectedItem != null then
+      val selectedIndex = tableView.selectionModel().getSelectedIndex
+      val swimmer = tableView.selectionModel().getSelectedItem.swimmer
+      SwimmerDialog(context, swimmer).showAndWait() match
+        case Some(swimmer: Swimmer) => model.update(selectedIndex, swimmer) {
+          tableView.selectionModel().select(selectedIndex)
+        }
+        case _ =>
 
   def faults(): Unit = FaultsDialog(context, model).showAndWait() match
     case _ => faultsButton.disable = model.observableFaults.isEmpty
