@@ -125,20 +125,21 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
       )
 
   def update(selectedIndex: Int, swimmer: Swimmer)(runLast: => Unit): Unit =
-    fetcher.fetch(
-      SaveSwimmer(objectAccount.get.license, swimmer),
-      (event: Event) => event match
-        case fault @ Fault(_, _) => onFetchFault("update swimmer", swimmer, fault)
-        case SwimmerSaved(id) =>
-          assertNotInFxThread(s"update swimmer from: $selectedIndex to: $swimmer")
-          if selectedIndex > -1 then
-            observableSwimmers.update(selectedIndex, swimmer)      
-            logger.info(s"Updated swimmer from: $selectedIndex to: $swimmer")
-            runLast
-          else
-            logger.error(s"Update of swimmer from: $selectedIndex to: $swimmer failed due to invalid index: $selectedIndex")
-        case _ => ()
-    )
+    supervised:
+      fetcher.fetch(
+        SaveSwimmer(objectAccount.get.license, swimmer),
+        (event: Event) => event match
+          case fault @ Fault(_, _) => onFetchFault("update swimmer", swimmer, fault)
+          case SwimmerSaved(id) =>
+            assertNotInFxThread(s"update swimmer from: $selectedIndex to: $swimmer")
+            if selectedIndex > -1 then
+              observableSwimmers.update(selectedIndex, swimmer)      
+              logger.info(s"Updated swimmer from: $selectedIndex to: $swimmer")
+              runLast
+            else
+              logger.error(s"Update of swimmer from: $selectedIndex to: $swimmer failed due to invalid index: $selectedIndex")
+          case _ => ()
+      )
 
   def sessions(swimmerId: Long): Unit =
     fetcher.fetch(
