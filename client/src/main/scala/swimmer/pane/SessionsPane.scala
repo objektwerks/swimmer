@@ -59,6 +59,7 @@ final class SessionsPane(context: Context, model: Model) extends VBox:
         cellValueFactory = _.value.caloriesProperty
       ,
       new TableColumn[Session, String]:
+        prefWidth = 150
         text = context.headerDatetime
         cellValueFactory = _.value.datetimeProperty
       ,
