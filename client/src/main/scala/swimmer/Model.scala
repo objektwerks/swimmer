@@ -188,6 +188,6 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
               logger.info(s"Updated session from: $selectedIndex to: $session")
               runLast
             else
-              logger.error(s"Update of session from: $selectedIndex to: $session failed due to invalid index: $selectedIndex")
+              logger.error(s"Update of session: $session failed due to invalid index: $selectedIndex")
           case _ => ()
       )
