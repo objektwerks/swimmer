@@ -142,7 +142,7 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
               logger.info(s"Updated swimmer from: $selectedIndex to: $swimmer")
               runLast
             else
-              logger.error(s"Update of swimmer from: $selectedIndex to: $swimmer failed due to invalid index: $selectedIndex")
+              logger.error(s"Update of swimmer: $swimmer \nfailed due to invalid index: $selectedIndex")
           case _ => ()
       )
 
@@ -188,6 +188,6 @@ final class Model(fetcher: Fetcher) extends LazyLogging:
               logger.info(s"Updated session from: $selectedIndex to: $session")
               runLast
             else
-              logger.error(s"Update of session: $session failed due to invalid index: $selectedIndex")
+              logger.error(s"Update of session: $session \nfailed due to invalid index: $selectedIndex")
           case _ => ()
       )
